@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 16:52:48 by akharrou          #+#    #+#             */
-/*   Updated: 2019/05/20 18:16:16 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/05/20 19:32:21 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,25 @@
 **        ◦ tcgetattr
 **        ◦ listxattr
 **
+**        ◦ opendir
+**        ◦ readdir
+**        ◦ closedir
+**
 **        ◦ readlink
 **
 **        ◦ time
 **        ◦ ctime
 **
+**        ◦ write
+**        ◦ malloc
+**        ◦ free
 **
+**        ◦ strerror
+**        ◦ perror
+**        ◦ exit
+
+
+
 ** — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — #
 **  opendir:
 **
@@ -79,18 +92,18 @@
 **
 **        RETURN VALUE
 **             Upon successful completion, opendir() returns a pointer to an
-**             object of type DIR. Otherwise, a null pointer is returned and
+**             object of type 'DIR'. Otherwise, a null pointer is returned and
 **             errno is set to indicate the error.
 **
 ** — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — #
 **  readdir:
 **
 **       NAME
-**            readdir - open a directory
+**            readdir - read (the entry) a directory
 **
 **       PROTOTYPE
-**            DIR
-**                   *opendir(const char *);
+**            struct dirent
+**                   *readdir(DIR *dirp);
 **
 **       DESCRIPTION
 **            The readdir() function returns a pointer to a structure
@@ -108,13 +121,16 @@
 **
 **        RETURN VALUE
 **             Upon successful completion, readdir() returns a pointer to an
-**             object of type struct 'dirent'. When an error is encountered,
-**             a null pointer is returned and errno is set to indicate the
-**             error. When the end of the directory is encountered, a null
-**             pointer is returned and errno is not changed.
+**             object of type struct 'dirent'.
+**
+**             When an error is encountered, a null pointer is returned and
+**             errno is set to indicate the error.
+**
+**             When the end of the directory is encountered, a null pointer
+**             is returned and errno is not changed.
 **
 ** — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — #
-**  opendir:
+**  closedir:
 **
 **       NAME
 **            opendir - open a directory
@@ -139,108 +155,66 @@
 **             errno is set to indicate the error.
 **
 ** — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — #
-**  opendir:
 **
 **       NAME
-**            opendir - open a directory
+**            DIR -- directory descriptor
 **
-**       PROTOTYPE
-**            DIR
-**                   *opendir(const char *);
+**       DECLARATION
+**
+**           ==>> structure describing an open directory. <<==
+**
+**           typedef struct
+**           {
+**                int                           __dd_fd;       // file descriptor associated with directory
+**                long                          __dd_loc;      // offset in current buffer
+**                long                          __dd_size;     // amount of data returned
+**                char                          *__dd_buf;     // data buffer
+**                int                           __dd_len;      // size of data buffer
+**                long                          __dd_seek;     // magic cookie returned
+**                __unused long                 __padding;     // (__dd_rewind space left for bincompat)
+**                int                           __dd_flags;    // flags for readdir
+**                __darwin_pthread_mutex_t      __dd_lock;     // for thread locking
+**                struct _telldir               *__dd_td;      // telldir position recording
+**           }
+**           DIR;
 **
 **       DESCRIPTION
-**            The opendir() function opens a directory stream corresponding
-**            to the directory named by the dirname argument. The directory
-**            stream is positioned at the first entry. If the type DIR, is
-**            implemented using a file descriptor, applications will only
-**            be able to open up to a total of {OPEN_MAX} files and
-**            directories. A successful call to any of the exec functions
-**            will close any directory streams that are open in the calling
-**            process.
-**
-**        RETURN VALUE
-**             Upon successful completion, opendir() returns a pointer to an
-**             object of type DIR. Otherwise, a null pointer is returned and
-**             errno is set to indicate the error.
+**            The type DIR, which is defined in the header <dirent.h>,
+**            represents a directory stream, which is an ordered sequence
+**            of all the directory entries in a particular directory.
+**            Directory entries represent files; files may be removed
+**            from a directory or added to a directory asynchronously
+**            to the operation of readdir().
 **
 ** — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — #
 **
-**        ◦ readdir
-**
-**             PROTOTYPE
-**
-**                  struct dirent
-**                         *readdir(DIR *);
-**
-**             DESCRIPTION
-**
-**
-**
-**        ◦ closedir
-**
-**             PROTOTYPE
-**
-**                  int
-**                         closedir(DIR *);
-**
-**             DESCRIPTION
-**
-**
-**
-**        ◦ write
-**        ◦ malloc
-**        ◦ free
-**
-**        ◦ strerror
-**        ◦ perror
-**        ◦ exit
-**
-**
-**
-**      int              readdir_r(DIR *, struct dirent *, struct dirent **);
-**      void             rewinddir(DIR *);
-**      void             seekdir(DIR *, long int);
-**      long int         telldir(DIR *);
-**
-**
-**
+**             NAME
+**                  struct dirent -- directory structure
 **
 **             DECLARATION
 **
-**                 ==>> structure describing an open directory. <<==
+**                 ==>> structure describing a directory <<==
 **
-**                 typedef struct
+**                 #define __DARWIN_MAXNAMLEN   (255)
+**                 #define __DARWIN_MAXPATHLEN  (1024)
+**
+**                 #define __DARWIN_STRUCT_DIRENTRY
 **                 {
-**                      int                           __dd_fd;               // file descriptor associated with directory
-**                      long                          __dd_loc;              // offset in current buffer
-**                      long                          __dd_size;             // amount of data returned
-**                      char                          *__dd_buf;             // data buffer
-**                      int                           __dd_len;              // size of data buffer
-**                      long                          __dd_seek;             // magic cookie returned
-**                      __unused long                 __padding;             // (__dd_rewind space left for bincompat)
-**                      int                           __dd_flags;            // flags for readdir
-**                      __darwin_pthread_mutex_t      __dd_lock;             // for thread locking
-**                      struct _telldir               *__dd_td;              // telldir position recording
+**                     __uint64_t    d_ino;           // file number of entry
+**                     __uint64_t    d_seekoff;       // seek offset (optional, used by servers)
+**                     __uint16_t    d_reclen;        // length of this record
+**                     __uint16_t    d_namlen;        // length of string in d_name
+**                     __uint8_t     d_type;          // file type, see below
+**                     char          d_name[1024];    // entry name (up to MAXPATHLEN bytes)
 **                 }
-**                 DIR;
+**
+**                 struct dirent __DARWIN_STRUCT_DIRENTRY;
 **
 **             DESCRIPTION
-**                  The type DIR, which is defined in the header <dirent.h>,
-**                  represents a directory stream, which is an ordered sequence
-**                  of all the directory entries in a particular directory.
-**                  Directory entries represent files; files may be removed
-**                  from a directory or added to a directory asynchronously
-**                  to the operation of readdir().
+**                  .
 **
+** — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — #
 **
-**          #define __DARWIN_STRUCT_DIRENTRY { \
-**          	__uint64_t  d_ino;      // file number of entry
-**          	__uint64_t  d_seekoff;  // seek offset (optional, used by servers)
-**          	__uint16_t  d_reclen;   // length of this record
-**          	__uint16_t  d_namlen;   // length of string in d_name
-**          	__uint8_t   d_type;     // file type, see below
-**          	char      d_name[__DARWIN_MAXPATHLEN]; // entry name (up to MAXPATHLEN bytes)
-**          }
 **
 **
 **
@@ -258,24 +232,58 @@
 
 #include "ft_ls.h"
 
-int		main(int ac, const char *av[])
+void    listdir(DIR *dirdes)
 {
-    struct dirent *dir;
-    DIR *d;
+    struct dirent	*dir;
 
-    d = opendir(".");
-    if (d)
-    {
-        while ((dir = readdir(d)) != NULL)
-        {
-            printf("%s\n", dir->d_name);
-        }
-        closedir(d);
-    }
+	if (!dirdes)
+	{
+        perror(NULL);
+		return ;
+	}
+	errno = 0;
+	while (errno == 0 && (dir = readdir(dirdes)) != NULL)
+		ft_printf("%s\n", dir->d_name);
+	if (errno != 0)
+		perror(NULL);
+	return ;
+}
 
-	(void)ac;
-	(void)av;
-	return (0);
+void    listdirname(const char *dirname)
+{
+    DIR             *dirdes;
+
+    dirdes = opendir(dirname);
+	if (dirdes)
+	{
+		listdir(dirdes);
+		closedir(dirdes);
+	}
+	else
+		perror(NULL);
+	return ;
+}
+
+void    listcwd(void)
+{
+	listdirname(".");
+}
+
+void    listparentdir(void)
+{
+	listdirname("..");
 }
 
 
+int		main(int ac, const char *av[])
+{
+
+	listcwd();
+	listparentdir();
+	listdirname(av[1]);
+
+	(void)ac;
+	(void)av;
+
+	return (0);
+}

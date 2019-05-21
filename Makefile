@@ -6,7 +6,7 @@
 #    By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/07 18:55:23 by akharrou          #+#    #+#              #
-#    Updated: 2019/05/20 17:09:15 by akharrou         ###   ########.fr        #
+#    Updated: 2019/05/20 19:10:46 by akharrou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,6 @@ HEADERS     =   ft_ls.h
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
 SOURCES     =   main.c                                                        \
-                utils.c                                                       \
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
@@ -74,11 +73,9 @@ DEL = /bin/rm -rf
 
 clean:
 	@$(DEL) $(shell find . -name '*.o')
-	@make clean -C Libft/
 
 fclean: clean
 	@$(DEL) $(NAME)
-	@make fclean -C Libft/
 
 re: fclean all
 
@@ -104,3 +101,6 @@ na: nh nc
 .PHONY: all clean fclean re nc nh na
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+
+	# @make clean -C Libft/
+	# @make fclean -C Libft/
