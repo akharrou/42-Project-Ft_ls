@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 16:52:48 by akharrou          #+#    #+#             */
-/*   Updated: 2019/05/20 20:08:02 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/05/21 16:29:37 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,7 +249,7 @@ void    listdir(DIR *dirdes)
 	return ;
 }
 
-void    listdirname(const char *dirname)
+void	listdirname(const char *dirname)
 {
     DIR             *dirdes;
 
@@ -274,13 +274,12 @@ void    listparentdir(void)
 	listdirname("..");
 }
 
-
 int		main(int ac, const char *av[])
 {
 
-	listcwd();
-	listparentdir();
-	listdirname(av[1]);
+	// listcwd();
+	// listparentdir();
+	// listdirname(av[1]);
 
 	(void)ac;
 	(void)av;
