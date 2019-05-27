@@ -6,7 +6,7 @@
 #    By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/17 16:23:01 by akharrou          #+#    #+#              #
-#    Updated: 2019/05/20 17:09:13 by akharrou         ###   ########.fr        #
+#    Updated: 2019/05/26 16:28:20 by akharrou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,14 +21,13 @@ OPTIM_FLAGS =   -O3 -march=native                                             \
 
 DEBUG_FLAGS =   -O0 -g                                                      \
                                                                             \
-                -fsanitize=address                                          \
-                -fsanitize=undefined                                        \
-                -fsanitize=bounds                                           \
-                -fsanitize=nullability-arg                                  \
-                -fsanitize=nullability-return                               \
-                -fsanitize=nullability-assign                               \
-                -fsanitize=undefined                                        \
-                -fsanitize-address-use-after-scope                          \
+                # -fsanitize=address                                          \
+                # -fsanitize=undefined                                        \
+                # -fsanitize=bounds                                           \
+                # -fsanitize=nullability-arg                                  \
+                # -fsanitize=nullability-return                               \
+                # -fsanitize=nullability-assign                               \
+                # -fsanitize-address-use-after-scope                          \
                 # -fsanitize=integer                                          \
                 # -fsanitize=object-size                                      \
 
@@ -53,12 +52,15 @@ HEADERS     =   Includes/libft.h                                              \
                 Includes/math_42.h                                            \
                                                                               \
                 Includes/bigint.h                                             \
-                                                                              \
+                Includes/vector.h                                             \
+                Includes/uvector.h                                            \
                 Includes/list.h                                               \
                 Includes/btree.h                                              \
                 Includes/trie.h                                               \
                 Includes/hashtable.h                                          \
                 Includes/dict.h                                               \
+                                                                              \
+                Includes/crypt.h                                              \
                                                                               \
                 Includes/ft_readline.h                                        \
                 Includes/ft_printf.h                                          \
@@ -72,12 +74,15 @@ SOURCES     =   $(STDIO)                                                      \
                 $(MATH)                                                       \
                                                                               \
                 $(BIGINT)                                                     \
-                                                                              \
+                $(VECTOR)                                                     \
+                $(UVECTOR)                                                    \
                 $(LIST)                                                       \
                 $(BTREE)                                                      \
                 $(TRIE)                                                       \
                 $(HASHTABLE)                                                  \
                 $(DICT)                                                       \
+                                                                              \
+                $(CRYPT)                                                      \
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
@@ -133,11 +138,20 @@ STDIO       =   Stdio/ft_readline.c                                           \
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
-STDLIB      =   Stdlib/ft_bzero.c                                             \
+STDLIB      =   Stdlib/ft_bubble_sort.c                                       \
+                Stdlib/ft_insertion_sort.c                                    \
+                Stdlib/ft_selection_sort.c                                    \
+                Stdlib/ft_mergesort.c                                         \
+                Stdlib/ft_quicksort.c                                         \
+                                                                              \
+                Stdlib/ft_bzero.c                                             \
+                Stdlib/ft_bnull.c                                             \
                 Stdlib/ft_memset.c                                            \
                 Stdlib/ft_memset_addr.c                                       \
                 Stdlib/ft_memcpy.c                                            \
                 Stdlib/ft_memccpy.c                                           \
+                Stdlib/ft_memdup.c                                            \
+                Stdlib/ft_memswap.c                                           \
                 Stdlib/ft_memmove.c                                           \
                 Stdlib/ft_memchr.c                                            \
                 Stdlib/ft_memcmp.c                                            \
@@ -146,6 +160,7 @@ STDLIB      =   Stdlib/ft_bzero.c                                             \
                 Stdlib/ft_malloc.c                                            \
                 Stdlib/ft_realloc.c                                           \
                 Stdlib/ft_matrix_new.c                                        \
+                                                                              \
                 Stdlib/valid_base.c                                           \
                 Stdlib/ft_padding.c                                           \
                 Stdlib/ft_intlen.c                                            \
@@ -168,16 +183,18 @@ STDLIB      =   Stdlib/ft_bzero.c                                             \
                 Stdlib/ft_dtoa_base.c                                         \
                 Stdlib/ft_ldtoa_base.c                                        \
                 Stdlib/ft_convert_base.c                                      \
-                Stdlib/ft_find_next_prime.c                                   \
-                Stdlib/ft_wcount.c                                            \
-                Stdlib/ft_chrcount.c                                          \
+                                                                              \
                 Stdlib/ft_swap_int.c                                          \
                 Stdlib/ft_swap_char.c                                         \
                 Stdlib/ft_swap_str.c                                          \
-                Stdlib/ft_swap_item.c                                         \
+                Stdlib/ft_swap_ptr.c                                          \
+                                                                              \
+                Stdlib/ft_find_next_prime.c                                   \
+                Stdlib/ft_wcount.c                                            \
+                Stdlib/ft_chrcount.c                                          \
+                Stdlib/ft_reverse_bytes.c                                     \
                 Stdlib/ft_hash.c                                              \
                                                                               \
-                Stdlib/ft_reverse_bytes.c                                     \
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
@@ -305,6 +322,60 @@ BIGINT      =   BigInt/bigint_add.c                                           \
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
+VECTOR      =   Vector/vector_constructor.c                                   \
+                Vector/vector_destructor.c                                    \
+                                                                              \
+                Vector/vector_copy.c                                          \
+                Vector/vector_reverse.c                                       \
+                Vector/vector_resize.c                                        \
+                Vector/vector_rightshift.c                                    \
+                Vector/vector_leftshift.c                                     \
+                                                                              \
+                Vector/vector_push.c                                          \
+                Vector/vector_enque.c                                         \
+                Vector/vector_append.c                                        \
+                Vector/vector_appendleft.c                                    \
+                Vector/vector_insert.c                                        \
+                Vector/vector_extend.c                                        \
+                Vector/vector_extendleft.c                                    \
+                Vector/vector_get.c                                           \
+                Vector/vector_getby_ref.c                                     \
+                Vector/vector_pop.c                                           \
+                Vector/vector_popleft.c                                       \
+                Vector/vector_deque.c                                         \
+                Vector/vector_clear.c                                         \
+                Vector/vector_remove.c                                        \
+                Vector/vector_isfull.c                                        \
+                Vector/vector_isempty.c                                       \
+
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+
+UVECTOR      =  UVector/uvector_constructor.c                                 \
+                UVector/uvector_destructor.c                                  \
+                                                                              \
+                UVector/uvector_resize.c                                      \
+                UVector/uvector_copy.c                                        \
+                UVector/uvector_reverse.c                                     \
+                UVector/uvector_leftshift.c                                   \
+                UVector/uvector_rightshift.c                                  \
+                                                                              \
+                UVector/uvector_push.c                                        \
+                UVector/uvector_enque.c                                       \
+                UVector/uvector_append.c                                      \
+                UVector/uvector_appendleft.c                                  \
+                UVector/uvector_extend.c                                      \
+                UVector/uvector_extendleft.c                                  \
+                UVector/uvector_insert.c                                      \
+                UVector/uvector_get.c                                         \
+                UVector/uvector_pop.c                                         \
+                UVector/uvector_popleft.c                                     \
+                UVector/uvector_deque.c                                       \
+                UVector/uvector_setall.c                                      \
+                UVector/uvector_isempty.c                                     \
+                UVector/uvector_isfull.c                                      \
+
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+
 LIST        =   Lists-Stacks-Queues/list_newelem.c                            \
                 Lists-Stacks-Queues/list_prepend.c                            \
                 Lists-Stacks-Queues/list_append.c                             \
@@ -386,6 +457,30 @@ DICT        =   Dicts/dict_new.c                                              \
                 Dicts/dict_remove.c                                           \
                 Dicts/dict_clear.c                                            \
 
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+
+CRYPT       =                                                                 \
+                                                                              \
+                Crypt/MD5/ft_md5.c                                            \
+                Crypt/MD5/md5_process.c                                       \
+                Crypt/MD5/md5_utils.c                                         \
+                                                                              \
+                Crypt/SHA2-224/ft_sha224.c                                    \
+                Crypt/SHA2-224/sha224_process.c                               \
+                Crypt/SHA2-224/sha224_utils.c                                 \
+                                                                              \
+                Crypt/SHA2-256/ft_sha256.c                                    \
+                Crypt/SHA2-256/sha256_process.c                               \
+                Crypt/SHA2-256/sha256_utils.c                                 \
+                                                                              \
+                Crypt/SHA2-384/ft_sha384.c                                    \
+                Crypt/SHA2-384/sha384_process.c                               \
+                Crypt/SHA2-384/sha384_utils.c                                 \
+                                                                              \
+                Crypt/SHA2-512/ft_sha512.c                                    \
+                Crypt/SHA2-512/sha512_process.c                               \
+                Crypt/SHA2-512/sha512_utils.c                                 \
+
 # Main — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
 all: $(NAME)
@@ -396,7 +491,7 @@ $(NAME): $(OBJECTS)
 	@echo $(WHITE)
 
 %.o: %.c $(HEADERS)
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -pipe -c $< -o $@
 	@echo "Compiling => " $<
 
 # House Keeping — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —

@@ -6,17 +6,44 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 21:39:25 by akharrou          #+#    #+#             */
-/*   Updated: 2019/05/18 07:56:41 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/05/26 19:02:18 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STDIO_42_H
 # define STDIO_42_H
 
+/*
+** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
+**  Header File(s).
+*/
+
+# include <stdio.h>
 # include <unistd.h>
 # include <string.h>
 # include <stdarg.h>
 # include <fcntl.h>
+
+/*
+ ** ** ** ** ** ** ** ** ** ** ** ** **
+**  Open Function(s).
+*/
+
+int		ft_open(char *filename, int oflag);
+
+/*
+** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
+**  Reading Function(s).
+*/
+
+int		ft_readline(const int fd, char **line);
+char	*ft_readfile(char *filename);
+char	*ft_readfiledes(const int filedes);
+
+/*
+** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
+**  Printf Function(s).
+*/
 
 int		ft_printf(const char *format, ...);
 int		ft_dprintf(int filedes, const char *format, ...);
@@ -28,7 +55,12 @@ int		ft_vdprintf(int filedes, const char *format, va_list *args);
 int		ft_vsprintf(char *str, const char *format, va_list *args);
 int		ft_vasprintf(char **ret, const char *format, va_list *args);
 
-void	ft_putbits(unsigned long long num, int n_bits);
+/*
+** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
+**  Other Printing Function(s).
+*/
+
+void	ft_putbits(void *data, size_t size);
 void	ft_putbyte(int c);
 void	ft_putbyte_fd(int c, int fd);
 void	ft_putbytes(const char *byte_str);
@@ -46,10 +78,8 @@ void	ft_putnbr_fd(int n, int fd);
 void	ft_putnbr_base(int nbr, char *base);
 void	ft_putnbr_base_fd(int nbr, char *base, int fd);
 
-int		ft_readline(const int fd, char **line);
-char	*ft_readfile(char *filename);
-char	*ft_readfiledes(int filedes);
-
-int		ft_open(char *filename, int oflag);
+/*
+** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
+*/
 
 #endif

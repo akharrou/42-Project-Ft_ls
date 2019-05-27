@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 09:07:32 by akharrou          #+#    #+#             */
-/*   Updated: 2019/05/19 21:48:14 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/05/26 19:18:05 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,27 +39,35 @@
 */
 
 # ifndef HALFLINE_SIZE
-#  define HALFLINE_SIZE 128
+#  define HALFLINE_SIZE (128)
 # endif
 
 # ifndef LINE_SIZE
-#  define LINE_SIZE 256
+#  define LINE_SIZE (256)
 # endif
 
 # ifndef CHUNK_SIZE
-#  define CHUNK_SIZE 512
+#  define CHUNK_SIZE (512)
 # endif
 
 # ifndef PAGE_SIZE
-#  define PAGE_SIZE 4096
+#  define PAGE_SIZE (4096)
 # endif
 
 # ifndef BUFF_SIZE
-#  define BUFF_SIZE 1024
+#  define BUFF_SIZE (1024)
+# endif
+
+# ifndef NAMEMAX
+#  define NAMEMAX (256)
+# endif
+
+# ifndef PATHMAX
+#  define PATHMAX (1024)
 # endif
 
 # ifndef MAX_FDS
-#  define MAX_FDS 65536
+#  define MAX_FDS (65536)
 # endif
 
 /*
