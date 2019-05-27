@@ -1,14 +1,7 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_ls.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/16 13:53:43 by akharrou          #+#    #+#             */
-/*   Updated: 2019/05/26 19:35:09 by akharrou         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+
+/*
+**  Ft_ls -- Header File.
+*/
 
 #ifndef FT_LS_H
 # define FT_LS_H
@@ -22,7 +15,6 @@
 
 # include <sys/types.h>
 # include <dirent.h>
-# include <stdio.h>
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
@@ -32,49 +24,65 @@
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
+** Flags.
+*/
+
+typedef struct	s_flag
+{
+	const char	symbol;
+	void		(*handler)(void *);
+}				t_flag;
+
+enum			e_flag_values
+{
+	LS_A_OPTION = (1 << 0),
+	LS_L_OPTION = (1 << 1),
+	LS_R_OPTION = (1 << 2),
+	LS_T_OPTION = (1 << 3),
+	LS_RR_OPTION = (1 << 4)
+};
+
+/*
+** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
 ** Structure(s).
 */
 
-typedef struct	s_ft_ls_information
+typedef struct	s_file_information
 {
-
-}				t_ls;
-
-typedef struct	s_ls_file
-{
+	char		name[NAMEMAX + 1];
+	\
 	uint32_t	month;
 	uint32_t	day;
 	uint32_t	hour;
 	uint32_t	minute;
 	\
-	uint32_t	filemode;
-	uint32_t	links;
-	uint32_t	owner;
-	uint32_t	group;
-	\
 	size_t		total_bytes;
 	\
-	char		name[NAMEMAX + 1];
-}				t_ls_file;
+	uint32_t	group;
+	uint32_t	owner;
+	\
+	uint32_t	links;
+	uint32_t	filemode;
+	\
+}				t_file;
 
-typedef struct	s_ls_order
+/*
+** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
+** State.
+*/
+
+typedef struct	s_ft_ls_state
 {
-	char *name;
-	/* function pointer to comparasion function */
-}				t_ls_order;
-
-extern t_ls_orders[] = {
-
-	{ "l", &cmp_lexicographically },
-	{ "t", &cmp_time },
-	{ "f", &cmp_none }
-}
+	uint8_t		flags;
+	int			(*compare)(t_file a, t_file b);
+}				t_state;
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
 ** Global(s).
 */
 
+extern t_flag g_flags[];
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
@@ -87,6 +95,12 @@ extern t_ls_orders[] = {
 ** Utility Function(s).
 */
 
+void	ls_a_handler(t_state *state, uint64_t *flags);
+void	ls_l_handler(t_state *state, uint64_t *flags);
+void	ls_r_handler(t_state *state, uint64_t *flags);
+void	ls_t_handler(t_state *state, uint64_t *flags);
+void	ls_rr_handler(t_state *state, uint64_t *flags);
+void	ls_f_handler(t_state *state, uint64_t *flags);
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **

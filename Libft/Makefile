@@ -6,12 +6,12 @@
 #    By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/17 16:23:01 by akharrou          #+#    #+#              #
-#    Updated: 2019/05/26 16:28:20 by akharrou         ###   ########.fr        #
+#    Updated: 2019/05/27 12:34:40 by akharrou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC          =   gcc
-CFLAGS      =   -Wall -Wextra -Werror $(DEBUG_FLAGS)
+CFLAGS      =   -Wall -Wextra -Werror
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
@@ -20,16 +20,10 @@ OPTIM_FLAGS =   -O3 -march=native                                             \
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
 DEBUG_FLAGS =   -O0 -g                                                      \
-                                                                            \
+                #                                                             \
                 # -fsanitize=address                                          \
                 # -fsanitize=undefined                                        \
                 # -fsanitize=bounds                                           \
-                # -fsanitize=nullability-arg                                  \
-                # -fsanitize=nullability-return                               \
-                # -fsanitize=nullability-assign                               \
-                # -fsanitize-address-use-after-scope                          \
-                # -fsanitize=integer                                          \
-                # -fsanitize=object-size                                      \
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
@@ -47,6 +41,7 @@ HEADERS     =   Includes/libft.h                                              \
                 Includes/stdlib_42.h                                          \
                 Includes/string_42.h                                          \
                 Includes/stdint_42.h                                          \
+                Includes/unistd_42.h                                          \
                 Includes/macros_42.h                                          \
                 Includes/ctype_42.h                                           \
                 Includes/math_42.h                                            \
@@ -70,6 +65,7 @@ HEADERS     =   Includes/libft.h                                              \
 SOURCES     =   $(STDIO)                                                      \
                 $(STDLIB)                                                     \
                 $(STRING)                                                     \
+                $(UNISTD)                                                     \
                 $(CTYPE)                                                      \
                 $(MATH)                                                       \
                                                                               \
@@ -257,6 +253,16 @@ STRING      =   String/ft_strlen.c                                            \
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
+UNISTD      =   \
+                Unistd/ft_listcwd.c                                           \
+                Unistd/ft_listdir.c                                           \
+                Unistd/ft_listdirectory.c                                     \
+                                                                              \
+                Unistd/ft_getdir.c                                            \
+                Unistd/ft_getdirectory.c                                      \
+
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+
 CTYPE       =   Ctype/ft_isupper.c                                            \
                 Ctype/ft_islower.c                                            \
                 Ctype/ft_isblank.c                                            \
@@ -323,6 +329,9 @@ BIGINT      =   BigInt/bigint_add.c                                           \
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
 VECTOR      =   Vector/vector_constructor.c                                   \
+                Vector/vector_init.c                                          \
+                Vector/vector_empty.c                                         \
+                Vector/vector_instance.c                                      \
                 Vector/vector_destructor.c                                    \
                                                                               \
                 Vector/vector_copy.c                                          \
@@ -345,8 +354,10 @@ VECTOR      =   Vector/vector_constructor.c                                   \
                 Vector/vector_deque.c                                         \
                 Vector/vector_clear.c                                         \
                 Vector/vector_remove.c                                        \
+                Vector/vector_free.c                                          \
                 Vector/vector_isfull.c                                        \
                 Vector/vector_isempty.c                                       \
+                Vector/vector_isvoid.c                                        \
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 

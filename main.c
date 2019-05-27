@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/20 16:52:48 by akharrou          #+#    #+#             */
-/*   Updated: 2019/05/26 19:34:55 by akharrou         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 
 /*
 **
@@ -369,57 +357,50 @@
 **
 **
 */
+/* ––––––––––––––––––––––––––––––––– */
+// void			compute_digests(t_ssl_command cmd, const char **av)
+// {
+// 	int8_t		options;
+// 	int			i;
+
+// 	while (*av && (*av)[0] == '-')
+// 	{
+// 		if (ft_strcmp(*av, "-s") == 0)
+// 			break ;
+// 		i = -1;
+// 		while (g_ssl_options[++i].name != NULL)
+// 			if (ft_strcmp((*av), g_ssl_options[i].name) == 0)
+// 			{
+// 				g_ssl_options[i].handler(cmd, (void *)*(av++), &options);
+// 				break ;
+// 			}
+// 		if (g_ssl_options[i].name == NULL)
+// 			EXIT(unknown_option(*av));
+// 	}
+// 	while (*av && ft_strcmp(*av, "-s") == 0)
+// 	{
+// 		FT_SSL_STRING.handler(cmd, (void *)(*(++av)), &options);
+// 		if (*av)
+// 			++av;
+// 	}
+// 	while (*av)
+// 		ft_ssl_file(cmd, (void *)(*(av++)), &options);
+// }
+/* ––––––––––––––––––––––––––––––––– */
 
 #include "ft_ls.h"
 
-void    listdir(DIR *dirdes)
-{
-    struct dirent	*dir;
-
-	if (!dirdes)
-	{
-        perror(NULL);
-		return ;
-	}
-	errno = 0;
-	while (errno == 0 && (dir = readdir(dirdes)) != NULL)
-		ft_printf("%s\n", dir->d_name);
-	if (errno != 0)
-		perror(NULL);
-	return ;
-}
-
-void	listdirname(const char *dirname)
-{
-    DIR             *dirdes;
-
-    dirdes = opendir(dirname);
-	if (dirdes)
-	{
-		listdir(dirdes);
-		closedir(dirdes);
-	}
-	else
-		perror(NULL);
-	return ;
-}
-
-void    listcwd(void)
-{
-	listdirname(".");
-}
-
-void    listparentdir(void)
-{
-	listdirname("..");
-}
-
 int		main(int ac, const char *av[])
 {
+	t_vector	directory;
 
-	// listcwd();
-	// listparentdir();
-	listdirname(av[1]);
+	ft_printf("\n");
+
+	directory = ft_getdirectory(av[1]);
+	for (size_t i = 0; i < directory.length; i++)
+		ft_printf("%3i: %p : %s\n", i, directory.vector[i], ((struct dirent *)directory.vector[i])->d_name);
+
+	ft_printf("\nLength: %i ; Capacity: %i\n\n", directory.length, directory.capacity);
 
 	(void)ac;
 	(void)av;

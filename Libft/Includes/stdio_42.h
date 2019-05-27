@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 21:39:25 by akharrou          #+#    #+#             */
-/*   Updated: 2019/05/26 19:02:18 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/05/27 08:59:24 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include <fcntl.h>
 
 /*
- ** ** ** ** ** ** ** ** ** ** ** ** **
+** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
 **  Open Function(s).
 */
 
@@ -42,7 +42,7 @@ char	*ft_readfiledes(const int filedes);
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
-**  Printf Function(s).
+**  Printing Function(s).
 */
 
 int		ft_printf(const char *format, ...);

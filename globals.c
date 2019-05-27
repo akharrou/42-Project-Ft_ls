@@ -1,12 +1,27 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   globals.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/26 19:08:23 by akharrou          #+#    #+#             */
-/*   Updated: 2019/05/26 19:18:06 by akharrou         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
+/*
+**  Ft_ls -- Global Variable Definition(s).
+*/
+
+#include "ft_ls.h"
+
+t_flag g_flags[] =
+{
+	{ 'a',
+	 &ls_a_handler },
+
+	{ 'l',
+	 &ls_l_handler },
+
+	{ 'r',
+	 &ls_r_handler },
+
+	{ 't',
+	 &ls_t_handler },
+
+	{ 'R',
+	 &ls_rr_handler },
+
+	{ 'f',
+	 &ls_f_handler }
+};

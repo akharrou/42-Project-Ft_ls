@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 11:08:45 by akharrou          #+#    #+#             */
-/*   Updated: 2019/05/24 17:59:41 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/05/27 11:53:12 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,13 @@
 **
 **    PARAMETERS
 **
-**         size_t capacity           Starting capacity of
-**                                   the vector instance.
+**         size_t capacity                Starting capacity of
+**                                        the vector instance.
+**
+**         void (*custom_free)(void *)    Function pointer that
+**                                        points to a function
+**                                        that will free a vector
+**                                        element.
 **
 **    DESCRIPTION
 **         Creates an instance of a vector object.
@@ -35,27 +40,27 @@
 #include "../Includes/stdlib_42.h"
 #include "../Includes/vector.h"
 
-t_vector		vector_constructor(size_t capacity, void (*vector_free)(void *))
+t_vector		vector_constructor(size_t capacity, void (*custom_free)(void *))
 {
 	t_vector	instance;
 
 	instance = (struct s_vector) {
 		.vector = NULL, .length = 0, .capacity = 0,
-		.push = &vector_push,
-		.enque = &vector_enque,
-		.append = &vector_append,
-		.appendleft = &vector_appendleft,
+		\
 		.insert = &vector_insert,
-		.extend = &vector_extend,
-		.extendleft = &vector_extendleft,
-		.pop = &vector_pop,
-		.popleft = &vector_popleft,
-		.deque = &vector_deque,
-		.clear = &vector_clear,
-		.remove = &vector_remove, .free = vector_free,
+		.push = &vector_push, .enque = &vector_enque,
+		.append = &vector_append, .appendleft = &vector_appendleft,
+		.extend = &vector_extend, .extendleft = &vector_extendleft,
 		.get = &vector_get, .getby_ref = &vector_getby_ref,
-		.isempty = &vector_isempty, .isfull = &vector_isfull };
-	instance.vector = (void **)malloc(sizeof(void *) * (capacity + 1));
+		.pop = &vector_pop, .popleft = &vector_popleft, .deque = &vector_deque,
+		.free = &vector_free, .remove = &vector_remove, .clear = &vector_clear,
+		.isempty = &vector_isempty, .isfull = &vector_isfull,
+		.isvoid = &vector_isvoid
+	};
+	if (custom_free != NULL)
+		instance.free = custom_free;
+	if (capacity > 0)
+		instance.vector = (void **)malloc(sizeof(void *) * (capacity + 1));
 	if (instance.vector != NULL)
 	{
 		instance.capacity = capacity;
@@ -71,7 +76,11 @@ t_vector		vector_constructor(size_t capacity, void (*vector_free)(void *))
 const struct s_vector_class vector =
 {
 	.constructor = &vector_constructor,
+	.instance = &vector_instance,
+	.init = &vector_init,
+	.empty = &vector_empty,
 	.destructor = &vector_destructor,
+	\
 	.copy = &vector_copy,
 	.reverse = &vector_reverse,
 	.resize = &vector_resize,
