@@ -14,6 +14,7 @@
 # include "Libft/Includes/libft.h"
 
 # include <sys/types.h>
+# include <sys/dir.h>
 # include <dirent.h>
 
 /*
@@ -32,8 +33,8 @@ typedef struct	s_flag
 {
 	const char	symbol;
 	uint64_t	value;
-	int			(*cmp_funct)(void *, void *);
-	int			(*rev_cmp_funct)(void *, void *);
+	int			(*cmp_function)(void *, void *);
+	int			(*reverse_cmp_function)(void *, void *);
 }				t_flag;
 
 enum			e_flag_values
@@ -51,11 +52,16 @@ enum			e_flag_values
 ** Structure(s).
 */
 
-enum			e_types
+enum			e_file_types
 {
-	FILE_,
-	ERROR_,
-	DIRECTORY_
+    ERROR           = DT_UNKNOWN,         /*        Unknown file.  */
+    REGULAR_FILE    = DT_REG,             /*  -     Regular file.  */
+    DIRECTORY       = DT_DIR,             /*  d     Directory.  */
+    SYMBOLIC_LINK   = DT_LNK,             /*  l     Symbolic link.  */
+    NAMED_PIPE      = DT_FIFO,            /*  p     FIFO.  */
+    SOCKET          = DT_SOCK,            /*  s     Socket link.  */
+    BLOCK_FILE      = DT_BLK,             /*  b     Block special file.  */
+    CHARACTER_FILE  = DT_CHR              /*  c     Character special file.  */
 };
 
 typedef struct	s_file_information
@@ -80,16 +86,16 @@ typedef struct	s_file_information
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
-** FILE: globals.c
-** Describtion: Global(s).
+** Defined in: globals.c
+** Global(s).
 */
 
 extern t_flag	g_flags[];
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
-** FILE: core.c
-** Describtion: Core Function(s).
+** Defined in: core.c
+** Core Function(s).
 */
 
 int				ft_ls(int ac, const char *av[], uint64_t flags,
@@ -100,8 +106,8 @@ void			ft_listdir(const char dirname[PATHMAX], uint64_t flags,
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
-** FILE: preliminaries.c & core.c
-** Describtion: Utility Function(s).
+** Defined in: preliminaries.c & core.c
+** Utility Function(s).
 */
 
 uint64_t		get_flags(int *ac, const char **av[]);
@@ -112,8 +118,8 @@ void			ft_print_dir(t_vector directory, uint64_t flags);
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
-** FILE: error.c
-** Describtion: Error Management Function(s).
+** Defined in: error.c
+** Error Management Function(s).
 */
 
 void			usage(void);
@@ -121,18 +127,19 @@ void			unknown_flag(char unknown_flag);
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
+** Defined in: compare_functions.c
+** Compare Function(s).
 */
 
-/*
-** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
-** FILE: compare_functions.c
-** Describtion: Compare Function(s).
-*/
+int				compare_by_none(void *a, void *b);
 
-int				sort_by_time(void *a, void *b);
-int				sort_by_rev_time(void *a, void *b);
-int				sort_by_nosort(void *a, void *b);
-int				sort_by_ascii(void *a, void *b);
+int				compare_by_size(void *a, void *b);
+int				compare_by_time(void *a, void *b);
+int				compare_by_ascii(void *a, void *b);
+
+int				reverse_compare_by_size(void *a, void *b);
+int				reverse_compare_by_time(void *a, void *b);
+int				reverse_compare_by_ascii(void *a, void *b);
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **

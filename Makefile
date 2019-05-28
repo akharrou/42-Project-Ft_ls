@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
+#    By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/07 18:55:23 by akharrou          #+#    #+#              #
-#    Updated: 2019/05/28 12:28:41 by kmira            ###   ########.fr        #
+#    Updated: 2019/05/28 15:16:40 by akharrou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,17 +41,19 @@ HEADERS     =   ft_ls.h
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
-OBJ_DIR     =   objects/
-
-# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
-
 SOURCES     =                                                                 \
-                    compare_functions.c                                       \
-                    core.c                                                    \
-                    error.c                                                   \
-                    globals.c                                                 \
                     main.c                                                    \
                     preliminaries.c                                           \
+                    core.c                                                    \
+                    utils.c                                                   \
+					                                                          \
+                    globals.c                                                 \
+                    error.c                                                   \
+					                                                          \
+                	Comparators/compare_by_ascii.c                            \
+                	Comparators/compare_by_none.c                             \
+                	Comparators/compare_by_size.c                             \
+                	Comparators/compare_by_time.c                             \
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 

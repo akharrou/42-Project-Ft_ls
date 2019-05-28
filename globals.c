@@ -8,7 +8,8 @@
 /*
 **    DESCRIPTION
 **         Dispatch table associating every flag with the
-**         unique bit it is represented by.
+**         unique bit it is represented by & its comparsion.
+**         function if it has one.
 */
 
 t_flag g_flags[] =
@@ -17,8 +18,8 @@ t_flag g_flags[] =
 	{ 'l', L_FLAG, NULL, NULL },
 	{ 'a', A_FLAG, NULL, NULL },
 	{ 'r', R_FLAG, NULL, NULL },
-	{ 't', T_FLAG, &sort_by_time, &sort_by_rev_time },
-	{ 'f', F_FLAG, &sort_by_nosort, &sort_by_nosort },
+	{ 't', T_FLAG, &compare_by_time, &reverse_compare_by_time },
+	{ 'f', F_FLAG, &compare_by_none, &compare_by_none },
 	\
 	{ '\0', 0, NULL, NULL}
 };
