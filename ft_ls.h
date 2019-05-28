@@ -44,7 +44,8 @@ enum			e_flag_values
 	L_FLAG = (1 << 2),
 	R_FLAG = (1 << 3),
 	T_FLAG = (1 << 4),
-	F_FLAG = ((1 << 5) | A_FLAG)
+	F_FLAG = ((1 << 5) | A_FLAG),
+	ONE_FLAG = (1 << 6)
 };
 
 /*

@@ -308,12 +308,35 @@ void	ft_listdir(const char dirname[PATHMAX], uint64_t flags,
 **         If successful returns 0; otherwise -1.
 */
 
-int		ft_ls(int ac, const char *av[], uint64_t flags,
-			int (*cmpft)(void *, void *))
-{
-	(void)ac;
-	(void)av;
-	(void)flags;
-	(void)cmpft;
-	return (0);
-}
+// int		ft_ls(int ac, const char *av[], uint64_t flags,
+// 			int (*cmpft)(void *, void *))
+// {
+// 	size_t	i;
+
+// 	i = 0;
+// 	if (av == NULL || cmpft == NULL)
+// 		return (-1);
+// 	if (*av == NULL)
+// 		ft_listdir("./", flags, cmpft);
+// 	else
+// 	{
+// 		while (av[i] != NULL)
+// 	}
+// 	(void)ac;
+// 	return (0);
+// }
+
+
+// int		ft_ls(int ac, const char *av[], uint64_t flags,
+// 			int (*cmpft)(void *, void *))
+// {
+// 	if (!av || ! cmpft)
+// 		return (-1);
+// 	if (av && *av)
+// 	{
+// 		/* TODO: aymen - implement the input into 3: errors, files & directories */
+// 	}
+// 	else
+// 		ft_listdir("./", flags, cmpft);
+// 	return (0);
+// }

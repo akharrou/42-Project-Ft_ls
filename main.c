@@ -13,7 +13,8 @@ int				main(int ac, const char *av[])
 	++av;
 	flags = get_flags(&ac, &av);
 	cmpft = (int (*)(void *, void *))get_cmpft(flags);
-	ft_ls(ac, av, flags, cmpft);
+	ft_printf("%.8b\n", flags);
+	// ft_ls(ac, av, flags, cmpft);
 	return (0);
 }
 

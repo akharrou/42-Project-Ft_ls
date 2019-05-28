@@ -14,6 +14,7 @@
 
 t_flag g_flags[] =
 {
+	{ '1', ONE_FLAG, NULL, NULL },
 	{ 'R', RR_FLAG, NULL, NULL },
 	{ 'l', L_FLAG, NULL, NULL },
 	{ 'a', A_FLAG, NULL, NULL },

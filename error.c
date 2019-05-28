@@ -7,7 +7,7 @@
 
 void	usage(void)
 {
-	ft_printf("usage: ./ft_ls [ -Ralrt1 ] [ file ... ]\n");
+	ft_printf("usage: ./ft_ls [ -Ralrtf1 ] [ file ... ]\n");
 }
 
 void	unknown_flag(char unknown_flag)
