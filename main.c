@@ -21,7 +21,7 @@ int				main(int ac, const char *av[])
 **  TODO :
 **
 **  Done [_]  ;  Reviewed [_]  ;            1 - implement comparasion functions
-**  Done [_]  ;  Reviewed [_]  ;  Kevin     2 - get the comparasion function
+**  Done [✓]  ;  Reviewed [_]  ;  Kevin     2 - get the comparasion function
 **  Done [_]  ;  Reviewed [_]  ;            3 - must check if we have permissions before recursing down
 **  Done [_]  ;  Reviewed [_]  ;            4 - must exclude '.' & '..' from recursive calling
 **  Done [_]  ;  Reviewed [_]  ;  Aymen     5 - implement the input into 3: errors, files & directories

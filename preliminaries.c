@@ -36,8 +36,22 @@ uint64_t		get_flags(int *ac, const char **av[])
 void			*get_cmpft(uint64_t flags)
 {
 	int			(*cmpft)(void *, void *);
+	size_t		i;
 
-	cmpft = NULL;
-	(void)flags;
+	i = 0;
+	cmpft = &sort_by_ascii;
+	if (flags & SORT_FLAGMASK)
+		while (g_flags[i].symbol != 0)
+		{
+			if (flags & g_flags[i].value)
+			{
+				if (flags & R_FLAG)
+					cmpft = g_flags[i].rev_cmp_funct;
+				else
+					cmpft = g_flags[i].cmp_funct;
+				break ;
+			}
+			i++;
+		}
 	return (cmpft);
 }
