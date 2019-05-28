@@ -19,17 +19,22 @@ uint64_t		get_flags(int *ac, const char **av[])
 		{
 			j = 0;
 			while (g_flags[j].symbol != '\0')
+			{
 				if ((*(*av))[i] == g_flags[j].symbol)
 				{
 					flags |= g_flags[j].value;
 					break ;
 				}
-			if (g_flags[i].symbol == '\0')
-				EXIT(unknown_flag((char *)(*(*av))[j]));
+				j++;
+			}
+			if (g_flags[j].symbol == '\0')
+				EXIT(unknown_flag((*(*av))[i]));
+			i++;
 		}
 		(*av) += 1;
 		(*ac) -= 1;
 	}
+	ft_printf("%ld\n", flags);
 	return (flags);
 }
 
@@ -40,7 +45,7 @@ void			*get_cmpft(uint64_t flags)
 
 	i = 0;
 	cmpft = &sort_by_ascii;
-	if (flags & SORT_FLAGMASK)
+	if (flags & SORT_FLAG)
 		while (g_flags[i].symbol != 0)
 		{
 			if (flags & g_flags[i].value)

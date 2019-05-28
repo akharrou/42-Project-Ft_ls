@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+         #
+#    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/07 18:55:23 by akharrou          #+#    #+#              #
-#    Updated: 2019/05/27 13:41:10 by akharrou         ###   ########.fr        #
+#    Updated: 2019/05/28 12:28:41 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,17 @@ HEADERS     =   ft_ls.h
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
-SOURCES     =   main.c                                                        \
+OBJ_DIR     =   objects/
+
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+
+SOURCES     =                                                                 \
+                    compare_functions.c                                       \
+                    core.c                                                    \
+                    error.c                                                   \
+                    globals.c                                                 \
+                    main.c                                                    \
+                    preliminaries.c                                           \
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
@@ -74,6 +84,9 @@ fclean: clean
 	@$(DEL) $(NAME)
 
 re: fclean all
+
+rebuild: re
+	@make clean
 
 # Text Colorization — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 

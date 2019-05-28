@@ -21,7 +21,7 @@
 ** Macro(s).
 */
 
-#define SORT_FLAGMASK (T_FLAG | R_FLAG | F_FLAG)
+# define SORT_FLAG (T_FLAG | R_FLAG | F_FLAG)
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
@@ -85,7 +85,6 @@ typedef struct	s_file_information
 */
 
 extern t_flag	g_flags[];
-extern t_sort_dispatcher g_compare_functions[];
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
@@ -118,7 +117,7 @@ void			ft_print_dir(t_vector directory, uint64_t flags);
 */
 
 void			usage(void);
-void			unknown_flag(char *unknown_flag);
+void			unknown_flag(char unknown_flag);
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
