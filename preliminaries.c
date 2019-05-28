@@ -34,7 +34,6 @@ uint64_t		get_flags(int *ac, const char **av[])
 		(*av) += 1;
 		(*ac) -= 1;
 	}
-	ft_printf("%ld\n", flags);
 	return (flags);
 }
 
