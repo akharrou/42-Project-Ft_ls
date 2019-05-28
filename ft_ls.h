@@ -94,6 +94,15 @@ extern t_flag	g_flags[];
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
+** Defined in: preliminaries.c
+** Utility Function(s).
+*/
+
+uint64_t		get_flags(int *ac, const char **av[]);
+void			*get_cmpft(uint64_t flags);
+
+/*
+** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
 ** Defined in: core.c
 ** Core Function(s).
 */
@@ -106,14 +115,12 @@ void			ft_listdir(const char dirname[PATHMAX], uint64_t flags,
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
-** Defined in: preliminaries.c & core.c
+** Defined in: utils.c
 ** Utility Function(s).
 */
 
-uint64_t		get_flags(int *ac, const char **av[]);
-void			*get_cmpft(uint64_t flags);
-
 t_vector		ft_getdir(const char dirname[PATHMAX]);
+t_vector		ft_getdirinfo(const char dirname[PATHMAX]);
 void			ft_print_dir(t_vector directory, uint64_t flags);
 
 /*
@@ -127,7 +134,7 @@ void			unknown_flag(char unknown_flag);
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
-** Defined in: compare_functions.c
+** Defined in: Comparators/
 ** Compare Function(s).
 */
 
