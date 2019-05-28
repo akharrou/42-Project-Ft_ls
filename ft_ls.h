@@ -48,6 +48,13 @@ enum			e_flag_values
 ** Structure(s).
 */
 
+enum			e_types
+{
+	FILE_,
+	ERROR_,
+	DIRECTORY_
+};
+
 typedef struct	s_file_information
 {
 	char		name[NAMEMAX + 1];
@@ -77,14 +84,14 @@ extern t_flag	g_flags[];
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
-** Main Function(s).
+** Core Function(s).
 */
 
-void			ft_ls(int ac, const char *av[], uint64_t flags,
-				int (*cmpft)(void *, void *));
+int				ft_ls(int ac, const char *av[], uint64_t flags,
+					int (*cmpft)(void *, void *));
 
 void			ft_listdir(const char dirname[PATHMAX], uint64_t flags,
-				int (*cmpft)(void *, void *));
+					int (*cmpft)(void *, void *));
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
@@ -93,6 +100,9 @@ void			ft_listdir(const char dirname[PATHMAX], uint64_t flags,
 
 uint64_t		get_flags(int *ac, const char **av[]);
 void			*get_cmpft(uint64_t flags);
+
+t_vector		ft_getdir(const char dirname[PATHMAX]);
+void			ft_print_dir(t_vector directory, uint64_t flags);
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **

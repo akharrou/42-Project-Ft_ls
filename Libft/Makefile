@@ -6,7 +6,7 @@
 #    By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/17 16:23:01 by akharrou          #+#    #+#              #
-#    Updated: 2019/05/27 13:41:19 by akharrou         ###   ########.fr        #
+#    Updated: 2019/05/27 19:02:20 by akharrou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,10 +20,16 @@ OPTIM_FLAGS =   -O3 -march=native                                             \
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
 DEBUG_FLAGS =   -O0 -g                                                      \
-                #                                                             \
+                                                                            \
                 # -fsanitize=address                                          \
                 # -fsanitize=undefined                                        \
                 # -fsanitize=bounds                                           \
+                # -fsanitize=nullability-arg                                  \
+                # -fsanitize=nullability-return                               \
+                # -fsanitize=nullability-assign                               \
+                # -fsanitize-address-use-after-scope                          \
+                # -fsanitize=integer                                          \
+                # -fsanitize=object-size                                      \
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
@@ -65,7 +71,6 @@ HEADERS     =   Includes/libft.h                                              \
 SOURCES     =   $(STDIO)                                                      \
                 $(STDLIB)                                                     \
                 $(STRING)                                                     \
-                $(UNISTD)                                                     \
                 $(CTYPE)                                                      \
                 $(MATH)                                                       \
                                                                               \
@@ -79,6 +84,7 @@ SOURCES     =   $(STDIO)                                                      \
                 $(DICT)                                                       \
                                                                               \
                 $(CRYPT)                                                      \
+                # $(UNISTD)                                                     \
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 

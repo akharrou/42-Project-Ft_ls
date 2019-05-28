@@ -6,13 +6,13 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 14:12:13 by akharrou          #+#    #+#             */
-/*   Updated: 2019/05/27 11:53:03 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/05/27 12:01:03 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
 **    NAME
-**         vector_isvoid -- check if a vector is empty
+**         vector_isvoid -- check if a vector is void
 **
 **    SYNOPSIS
 **         #include <libft.h>
