@@ -14,7 +14,7 @@ uint64_t		get_flags(int *argc, const char **argv[])
 
 	flags = 0;
 	i = -1;
-	while ((*argv)[++i] && (*argv)[i][0] == '-')
+	while ((*argv)[++i] && (*argv)[i][0] == '-' && (*argv)[i][1] != '\0')
 	{
 		j = 0;
 		while ((*argv)[i][++j] != '\0')
@@ -55,5 +55,5 @@ void			*get_cmpft(uint64_t flags)
 			++i;
 		}
 	}
-	return (cmpft);
+	return ((void *)cmpft);
 }
