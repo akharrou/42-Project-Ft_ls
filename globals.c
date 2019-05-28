@@ -3,25 +3,41 @@
 **  Ft_ls -- Global Variable Definition(s).
 */
 
+/*
+**    DESCRIPTION
+**         Dispatch table associating every single flag specifier to
+**         its function (handler).
+*/
+
+// t_handler g_table[] =
+// {
+// 	{ '%', &mod_handler },
+// 	{ 'c', &c_handler },
+// 	{ 'i', &i_handler },
+// 	{ 'u', &u_handler },
+// 	{ 'f', &f_handler },
+// 	{ 'b', &b_handler },
+// 	{ 'o', &o_handler },
+// 	{ 'd', &d_handler },
+// 	{ 'x', &x_handler },
+// 	{ 'X', &xx_handler },
+// 	{ 's', &s_handler },
+// 	{ 'r', &r_handler },
+// 	{ 'p', &p_handler },
+// 	{ '\0', NULL }
+// };
+
+
 #include "ft_ls.h"
 
 t_flag g_flags[] =
 {
-	{ 'a',
-	 &ls_a_handler },
-
-	{ 'l',
-	 &ls_l_handler },
-
-	{ 'r',
-	 &ls_r_handler },
-
-	{ 't',
-	 &ls_t_handler },
-
-	{ 'R',
-	 &ls_rr_handler },
-
-	{ 'f',
-	 &ls_f_handler }
+	{ 'l', L_FLAG },
+	{ 'a', A_FLAG },
+	{ 'r', R_FLAG },
+	{ 't', T_FLAG },
+	{ 'R', F_FLAG },
+	{ 'f', RR_FLAG },
+	\
+	{ '\0', 0 }
 };

@@ -1,4 +1,3 @@
-
 /*
 **  Ft_ls -- Error Function(s).
 */
@@ -8,11 +7,10 @@
 void	usage(void)
 {
 	ft_printf("usage: ./ft_ls [ -Ralrt1 ] [ file ... ]\n");
-	exit(EXIT_FAILURE);
 }
 
-void	error(void)
+void	unknown_flag(char *unknown_flag)
 {
-	perror(NULL);
-	exit(EXIT_FAILURE);
+	ft_printf("./ft_ls: illegal option -- %c\n", unknown_flag);
+	usage();
 }
