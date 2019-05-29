@@ -14,11 +14,11 @@
 
 t_flag g_flags[] =
 {
-	{ '1', ONE_FLAG, NULL, NULL },
-	{ 'R', RR_FLAG, NULL, NULL },
-	{ 'l', L_FLAG, NULL, NULL },
-	{ 'a', A_FLAG, NULL, NULL },
-	{ 'r', R_FLAG, NULL, NULL },
+	{ '1', ONE_FLAG, compare_by_ascii, reverse_compare_by_ascii },
+	{ 'R', RR_FLAG, compare_by_ascii, reverse_compare_by_ascii },
+	{ 'l', L_FLAG, compare_by_ascii, reverse_compare_by_ascii },
+	{ 'a', A_FLAG, compare_by_ascii, reverse_compare_by_ascii },
+	{ 'r', R_FLAG, compare_by_ascii, reverse_compare_by_ascii },
 	{ 't', T_FLAG, &compare_by_time, &reverse_compare_by_time },
 	{ 'f', F_FLAG, &compare_by_none, &compare_by_none },
 	\

@@ -99,7 +99,7 @@ extern t_flag	g_flags[];
 ** Utility Function(s).
 */
 
-uint64_t		get_flags(int *ac, const char **av[]);
+uint64_t		get_flags(int *argc, const char **argv[]);
 void			*get_cmpft(uint64_t flags);
 
 /*
@@ -108,10 +108,13 @@ void			*get_cmpft(uint64_t flags);
 ** Core Function(s).
 */
 
-int				ft_ls(int ac, const char *av[], uint64_t flags,
+int				ft_ls(int argc, const char *argv[], uint64_t flags,
 					int (*cmpft)(void *, void *));
 
-void			ft_listdir(const char dirname[PATHMAX], uint64_t flags,
+int				ft_listdirs(const char *dirs[], size_t n, uint64_t flags,
+					int (*cmpft)(void *, void *));
+
+int				ft_listdir(const char dirname[PATHMAX], uint64_t flags,
 					int (*cmpft)(void *, void *));
 
 /*
@@ -120,9 +123,9 @@ void			ft_listdir(const char dirname[PATHMAX], uint64_t flags,
 ** Utility Function(s).
 */
 
-t_vector		ft_getdir(const char dirname[PATHMAX]);
 t_vector		ft_getdirinfo(const char dirname[PATHMAX]);
-void			ft_print_dir(t_vector directory, uint64_t flags);
+t_vector		ft_getdirentries(const char dirname[PATHMAX]);
+void			ft_printdir(t_vector directory, uint64_t flags);
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **

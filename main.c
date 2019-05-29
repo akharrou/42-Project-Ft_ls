@@ -13,7 +13,6 @@ int				main(int ac, const char *av[])
 	++av;
 	flags = get_flags(&ac, &av);
 	cmpft = (int (*)(void *, void *))get_cmpft(flags);
-	ft_printf("%.8b\n", flags);
 	ft_ls(ac, av, flags, cmpft);
 	return (0);
 }
@@ -21,8 +20,8 @@ int				main(int ac, const char *av[])
 /*
 **  TODO :
 **
-**  Done [_]  ;  Reviewed [_]  ;            1 - implement comparasion functions
-**  Done [_]  ;  Reviewed [_]  ;            3 - must check if we have permissions before recursing down
+**  Done [_]  ;  Reviewed [_]  ;            1 - implement comparasion functions                             / Need to know how the file will expand
+**  Done [_]  ;  Reviewed [_]  ;            3 - must check if we have permissions before recursing down     / Need to know how the file will expand
 **  Done [_]  ;  Reviewed [_]  ;            4 - must exclude '.' & '..' from recursive calling
 **  Done [_]  ;  Reviewed [_]  ;  Aymen     5 - implement the input into 3: errors, files & directories
 **  Done [_]  ;  Reviewed [_]  ;  Aymen     6 - implement the vector.filter constructor

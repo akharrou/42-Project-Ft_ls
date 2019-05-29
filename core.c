@@ -270,12 +270,61 @@ t_vector	ft_getdir(const char dirname[PATHMAX])
 **         If successful returns 0; otherwise -1.
 */
 
-void	ft_listdir(const char dirname[PATHMAX], uint64_t flags,
-			int (*cmpft)(void *, void *))
+int			ft_listdir(const char dirname[PATHMAX], uint64_t flags,
+				int (*cmpft)(void *, void *))
 {
-	(void)dirname;
-	(void)flags;
-	(void)cmpft;
+	t_vector	directory;
+	size_t		i;
+
+	directory = ft_getdirentries(dirname);
+	if (!directory.vector)
+		return (-1);
+	ft_quicksort(
+		directory.vector, directory.length, sizeof(void *), cmpft);
+	ft_printdir(directory, flags);
+	if (flags & RR_FLAG)
+	{
+		i = 0;
+		while (i < directory.length)
+		{
+			if (((t_file *)directory.vector)[i].type == DIRECTORY)
+			{
+				if (ft_isdirectory(dirs[i]))
+				{
+					ft_printf("%s:\n", dirs[i]);
+					ft_listdirs(
+						((t_file *)directory.vector)[i].name, flags, cmpft);
+				}
+			}
+			++i;
+		}
+	}
+	vector.destructor(&directory);
+	return (0);
+}
+
+int			ft_listdirs(const char *dirs[], size_t n, uint64_t flags,
+				int (*cmpft)(void *, void *))
+{
+	size_t	i;
+
+	if (!dirs || !cmpft || n < 1)
+		return (-1);
+	(flags & R_FLAG) ?
+		ft_quicksort(dirs, n, sizeof(char *), &ft_reverse_cmpstr) :
+		ft_quicksort(dirs, n, sizeof(char *), &ft_cmpstr);
+	/* print errors, then files, then directories */
+	i = 0;
+	while (dirs[i])
+	{
+		if (ft_isdirectory(dirs[i]))
+		{
+			if (n > 1)
+				ft_printf("%s:\n", dirs[i]);
+			ft_listdir(dirs[i++], flags, cmpft);
+		}
+	}
+	return (0);
 }
 
 /*
@@ -286,7 +335,7 @@ void	ft_listdir(const char dirname[PATHMAX], uint64_t flags,
 **         #include <libft.h>
 **
 **         int
-**         ft_ls(int ac, const char *av[], uint64_t flags,
+**         ft_ls(int argc, const char *argv[], uint64_t flags,
 **             int (*cmpft)(void *, void *));
 **
 **    PARAMETERS
@@ -308,35 +357,17 @@ void	ft_listdir(const char dirname[PATHMAX], uint64_t flags,
 **         If successful returns 0; otherwise -1.
 */
 
-// int		ft_ls(int ac, const char *av[], uint64_t flags,
-// 			int (*cmpft)(void *, void *))
-// {
-// 	size_t	i;
+int			ft_ls(int argc, const char *argv[], uint64_t flags,
+				int (*cmpft)(void *, void *))
+{
+	size_t	i;
 
-// 	i = 0;
-// 	if (av == NULL || cmpft == NULL)
-// 		return (-1);
-// 	if (*av == NULL)
-// 		ft_listdir("./", flags, cmpft);
-// 	else
-// 	{
-// 		while (av[i] != NULL)
-// 	}
-// 	(void)ac;
-// 	return (0);
-// }
-
-
-// int		ft_ls(int ac, const char *av[], uint64_t flags,
-// 			int (*cmpft)(void *, void *))
-// {
-// 	if (!av || ! cmpft)
-// 		return (-1);
-// 	if (av && *av)
-// 	{
-// 		/* TODO: aymen - implement the input into 3: errors, files & directories */
-// 	}
-// 	else
-// 		ft_listdir("./", flags, cmpft);
-// 	return (0);
-// }
+	i = 0;
+	if (argv == NULL || cmpft == NULL)
+		return (-1);
+	if (argv[i])
+		ft_listdirs(argv, (size_t)argc, flags, cmpft);
+	else
+		ft_listdirs((const char **)ft_strtab(1, "./"), 1, flags, cmpft);
+	return (0);
+}

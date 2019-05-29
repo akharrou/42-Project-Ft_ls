@@ -13,24 +13,24 @@ uint64_t		get_flags(int *argc, const char **argv[])
 	size_t		k;
 
 	flags = 0;
-	i = -1;
-	while ((*argv)[++i] && (*argv)[i][0] == '-' && (*argv)[i][1] != '\0')
+	i = 0;
+	while ((*argv)[i] && (*argv)[i][0] == '-' && (*argv)[i][1] != '\0')
 	{
 		j = 0;
 		while ((*argv)[i][++j] != '\0')
 		{
-			k = -1;
-			while (g_flags[++k].symbol != '\0')
-				if ((*argv)[i][j] == g_flags[k].symbol)
-				{
-					flags |= g_flags[k].value;
-					break ;
-				}
-			if (g_flags[k].symbol == '\0')
+			k = 0;
+			while (g_flags[k].symbol && g_flags[k].symbol != (*argv)[i][j])
+				++k;
+			if (g_flags[k].symbol != '\0')
+				flags |= g_flags[k].value;
+			else
 				EXIT(unknown_flag((*argv)[i][j]));
 		}
+		++i;
 	}
-	(*argc) -= i;
+	(*argv) += i;
+	(*argc) -= (i + 1);
 	return (flags);
 }
 
