@@ -1,16 +1,12 @@
 
-# include "../ft_ls.h"
+#include "../ft_ls.h"
 
 int				compare_by_size(void *a, void *b)
 {
-	(void)a;
-	(void)b;
-	return (0);
+	return (((t_file *)a)->size - ((t_file *)b)->size);
 }
 
 int				reverse_compare_by_size(void *a, void *b)
 {
-	(void)a;
-	(void)b;
-	return (0);
+	return (-(compare_by_size(a, b)));
 }

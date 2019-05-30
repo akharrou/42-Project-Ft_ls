@@ -13,8 +13,7 @@ int				main(int ac, const char *av[])
 	++av;
 	flags = get_flags(&ac, &av);
 	cmpft = (int (*)(void *, void *))get_cmpft(flags);
-
-	ft_ls(av, (size_t)ac, flags, cmpft);
+	ft_ls(ac, av, flags, cmpft);
 	return (0);
 }
 

@@ -1,16 +1,13 @@
 
-# include "../ft_ls.h"
+#include "../ft_ls.h"
 
 int				compare_by_ascii(void *a, void *b)
 {
-	(void)a;
-	(void)b;
-	return (0);
+	return (
+		ft_strcmp(((t_file *)a)->name, ((t_file *)b)->name));
 }
 
 int				reverse_compare_by_ascii(void *a, void *b)
 {
-	(void)a;
-	(void)b;
-	return (0);
+	return (-(compare_by_ascii(a, b)));
 }

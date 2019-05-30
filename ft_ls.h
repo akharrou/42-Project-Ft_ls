@@ -57,33 +57,38 @@ enum			e_flag_values
 
 enum			e_file_types
 {
-    ERROR           = DT_UNKNOWN,         /*        Unknown file.  */
-    REGULAR_FILE    = DT_REG,             /*  -     Regular file.  */
-    DIRECTORY       = DT_DIR,             /*  d     Directory.  */
-    SYMBOLIC_LINK   = DT_LNK,             /*  l     Symbolic link.  */
-    NAMED_PIPE      = DT_FIFO,            /*  p     FIFO.  */
-    SOCKET          = DT_SOCK,            /*  s     Socket link.  */
-    BLOCK_FILE      = DT_BLK,             /*  b     Block special file.  */
-    CHARACTER_FILE  = DT_CHR              /*  c     Character special file.  */
+    UNKNOWN         = DT_UNKNOWN,
+    REGULAR_FILE    = DT_REG,
+    DIRECTORY       = DT_DIR,
+    SYMBOLIC_LINK   = DT_LNK,
+    NAMED_PIPE      = DT_FIFO,
+    SOCKET          = DT_SOCK,
+    BLOCK_FILE      = DT_BLK,
+    CHARACTER_FILE  = DT_CHR
 };
 
 typedef struct	s_file_information
 {
 	char		name[NAMEMAX + 1];
+	char		path[PATHMAX + 1];
 	uint32_t	type;
 	\
-	uint32_t	month;
+	char		linked_to_path[PATHMAX + 1];
+	\
+	uint32_t	time;
+	char		month[4];
 	uint32_t	day;
 	uint32_t	hour;
 	uint32_t	minute;
+	uint32_t	second;
 	\
-	size_t		total_bytes;
+	size_t		size;
 	\
 	uint32_t	group;
 	uint32_t	owner;
 	\
 	uint32_t	links;
-	uint32_t	filemode;
+	uint32_t	mode;
 	\
 }				t_file;
 
@@ -101,7 +106,7 @@ extern t_flag	g_flags[];
 ** Utility Function(s).
 */
 
-uint64_t		get_flags(int *argc, const char **argv[]);
+uint64_t		get_flags(int *argc,
 void			*get_cmpft(uint64_t flags);
 
 /*
@@ -113,18 +118,24 @@ void			*get_cmpft(uint64_t flags);
 int				ft_ls(int argc, const char *argv[], uint64_t flags,
 					int (*cmpft)(void *, void *));
 
-int				ft_listdir(const char dirname[PATHMAX], uint64_t flags,
-					int (*cmpft)(void *, void *));
-
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
 ** Defined in: utils.c
 ** Utility Function(s).
 */
 
-t_vector		ft_getdirinfo(const char dirname[PATHMAX]);
-t_vector		ft_getdirentries(const char *path[PATHMAX]);
+t_vector		ft_getdirentries(const char dirpath[PATHMAX + 1]);
+t_vector		ft_getdir(const char path[PATHMAX + 1]);
 void			ft_printdir(t_vector directory, uint64_t flags);
+int				ft_listdir(const char dirname[PATHMAX], uint64_t flags,
+					int (*cmpft)(void *, void *));
+
+void			print_errors(void *vector_element);
+void			print_files(void *vector_element);
+void			vprint_directories(void *vector_element, va_list ap);
+void			ft_vprintfile(void *vector_element, va_list ap);
+void			ft_printfile(t_file file, uint64_t flags,
+					int links_width, int size_width);
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
