@@ -13,7 +13,8 @@ int				main(int ac, const char *av[])
 	++av;
 	flags = get_flags(&ac, &av);
 	cmpft = (int (*)(void *, void *))get_cmpft(flags);
-	ft_ls(ac, av, flags, cmpft);
+
+	ft_ls(av, (size_t)ac, flags, cmpft);
 	return (0);
 }
 
@@ -29,3 +30,20 @@ int				main(int ac, const char *av[])
 **  Done [_]  ;  Reviewed [_]  ;  Aymen     8 - add functionality to ft_getdirectory function so that it returns a vector with
 **                                              t_file struct containing all needed information for each file/dir
 */
+
+/*
+
+	TODO : implement the following functions/methods:
+
+	vec_instance = vector.filter((void *)iterable, length, width, filter_ft);
+	vec_instance = vector.map((void *)iterable, length, width, applyft);
+
+	n = files.iter(&files, &ft_isdirectory);
+	n = files.count(&files, &ft_isdirectory);
+	n = files.find(&files, &ft_isdirectory);
+
+	t_vector		ft_getdirentries(const char *path[PATHMAX]);
+	t_vector		ft_get_file_entry(const char path[PATHMAX]);
+
+*/
+

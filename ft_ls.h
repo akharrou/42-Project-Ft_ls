@@ -22,7 +22,7 @@
 ** Macro(s).
 */
 
-# define SORT_FLAG (T_FLAG | R_FLAG | F_FLAG)
+# define SORT_FLAG (T_FLAG | S_FLAG| F_FLAG | R_FLAG)
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
@@ -39,13 +39,15 @@ typedef struct	s_flag
 
 enum			e_flag_values
 {
-	RR_FLAG = (1 << 0),
-	A_FLAG = (1 << 1),
-	L_FLAG = (1 << 2),
-	R_FLAG = (1 << 3),
-	T_FLAG = (1 << 4),
+	A_FLAG = (1 << 0),
+	L_FLAG = (1 << 1),
+	R_FLAG = (1 << 2),
+	T_FLAG = (1 << 3),
+	S_FLAG = (1 << 4),
+	\
 	F_FLAG = ((1 << 5) | A_FLAG),
-	ONE_FLAG = (1 << 6)
+	RR_FLAG = (1 << 6),
+	ONE_FLAG = (1 << 7)
 };
 
 /*
@@ -111,9 +113,6 @@ void			*get_cmpft(uint64_t flags);
 int				ft_ls(int argc, const char *argv[], uint64_t flags,
 					int (*cmpft)(void *, void *));
 
-int				ft_listdirs(const char *dirs[], size_t n, uint64_t flags,
-					int (*cmpft)(void *, void *));
-
 int				ft_listdir(const char dirname[PATHMAX], uint64_t flags,
 					int (*cmpft)(void *, void *));
 
@@ -124,7 +123,7 @@ int				ft_listdir(const char dirname[PATHMAX], uint64_t flags,
 */
 
 t_vector		ft_getdirinfo(const char dirname[PATHMAX]);
-t_vector		ft_getdirentries(const char dirname[PATHMAX]);
+t_vector		ft_getdirentries(const char *path[PATHMAX]);
 void			ft_printdir(t_vector directory, uint64_t flags);
 
 /*

@@ -208,8 +208,17 @@
 
 void	ft_print_dir(t_vector directory, uint64_t flags)
 {
-	(void)directory;
 	(void)flags;
+	size_t i;
+	t_file file;
+
+	i = 0;
+	while (i < directory.length)
+	{
+		file = *(t_file *)(directory.vector[i]);
+		write(1, file.name, ft_strlen(file.name));
+		i++;
+	}
 	return ;
 }
 
@@ -289,10 +298,10 @@ int			ft_listdir(const char dirname[PATHMAX], uint64_t flags,
 		{
 			if (((t_file *)directory.vector)[i].type == DIRECTORY)
 			{
-				if (ft_isdirectory(dirs[i]))
+				if (ft_isdirectory(directory.vector[i]))
 				{
-					ft_printf("%s:\n", dirs[i]);
-					ft_listdirs(
+					ft_printf("%s:\n", directory.vector[i]);
+					ft_listdir(
 						((t_file *)directory.vector)[i].name, flags, cmpft);
 				}
 			}
@@ -300,30 +309,6 @@ int			ft_listdir(const char dirname[PATHMAX], uint64_t flags,
 		}
 	}
 	vector.destructor(&directory);
-	return (0);
-}
-
-int			ft_listdirs(const char *dirs[], size_t n, uint64_t flags,
-				int (*cmpft)(void *, void *))
-{
-	size_t	i;
-
-	if (!dirs || !cmpft || n < 1)
-		return (-1);
-	(flags & R_FLAG) ?
-		ft_quicksort(dirs, n, sizeof(char *), &ft_reverse_cmpstr) :
-		ft_quicksort(dirs, n, sizeof(char *), &ft_cmpstr);
-	/* print errors, then files, then directories */
-	i = 0;
-	while (dirs[i])
-	{
-		if (ft_isdirectory(dirs[i]))
-		{
-			if (n > 1)
-				ft_printf("%s:\n", dirs[i]);
-			ft_listdir(dirs[i++], flags, cmpft);
-		}
-	}
 	return (0);
 }
 
@@ -357,17 +342,60 @@ int			ft_listdirs(const char *dirs[], size_t n, uint64_t flags,
 **         If successful returns 0; otherwise -1.
 */
 
-int			ft_ls(int argc, const char *argv[], uint64_t flags,
-				int (*cmpft)(void *, void *))
+int				ft_ls(int argc, const char *argv[], uint64_t flags,
+					int (*cmpft)(void *, void *))
 {
-	size_t	i;
+	t_vector	files;
+	size_t		i;
 
-	i = 0;
 	if (argv == NULL || cmpft == NULL)
 		return (-1);
-	if (argv[i])
-		ft_listdirs(argv, (size_t)argc, flags, cmpft);
+	if (argc == 0)
+		return (ft_listdir(".", flags, cmpft));
+	files = vector.map(argv, (size_t)argc, sizeof(char *), &get_file_entry);
+	ft_quicksort(files.vector, files.length, sizeof(void *), cmpft);
+	files.iter(&files, &print_errs);
+	files.iter(&files, &print_files);
+	i = -1;
+	while (i < files.length)
+	{
+		if (ft_isdirectory((char *)((t_file *)files.vector[i])->name))
+		{
+			if (argc > 1)
+				ft_printf("%s:\n", (char *)((t_file *)files.vector[i])->name);
+			ft_listdir((char *)((t_file *)files.vector[i])->name, flags, cmpft);
+		}
+	}
+	vector.destructor(&files);
+	return (0);
+}
+
+void			print_errs(void *element)
+{
+	t_file file;
+
+	file = *(t_file *)element;
+	if (file.type == ERROR)
+		ft_printf("Stuff");
 	else
-		ft_listdirs((const char **)ft_strtab(1, "./"), 1, flags, cmpft);
+		return ;
+}
+
+int				ft_ls(int argc, const char *argv[], uint64_t flags,
+					int (*cmpft)(void *, void *))
+{
+	t_vector	files;
+	size_t		i;
+
+	if (argv == NULL || cmpft == NULL)
+		return (-1);
+	if (argc == 0)
+		return (ft_listdir(".", flags, cmpft));
+	files = vector.map(argv, (size_t)argc, sizeof(char *), &get_file_entry);
+	ft_quicksort(files.vector, files.length, sizeof(void *), cmpft);
+	files.iter(&files, &print_errs);
+	files.iter(&files, &print_files);
+	files.viter(&files, &print_dirs, flags, cmpft);
+	vector.destructor(&files);
 	return (0);
 }
