@@ -76,11 +76,11 @@ enum			e_file_types
 
 typedef struct	s_file_information
 {
-	char		name[NAMEMAX + 1];
-	char		path[PATHMAX + 1];
+	char		name[MAX_NAMELEN + 1];
+	char		path[MAX_PATHLEN + 1];
 	uint32_t	type;
 	\
-	char		linked_to_path[PATHMAX + 1];
+	char		linked_to_path[MAX_PATHLEN + 1];
 	\
 	char		*time;
 	\
@@ -126,10 +126,10 @@ int				ft_ls(int argc, const char *argv[], uint64_t flags,
 ** Utility Function(s).
 */
 
-t_vector		ft_getdirentries(const char dirpath[PATHMAX + 1]);
-t_vector		ft_getdir(const char path[PATHMAX + 1]);
+t_vector		ft_getdirentries(const char dirpath[MAX_PATHLEN + 1]);
+t_vector		ft_getdir(const char path[MAX_PATHLEN + 1]);
 void			ft_printdir(t_vector directory, uint64_t flags);
-int				ft_listdir(const char dirname[PATHMAX], uint64_t flags,
+int				ft_listdir(const char dirname[MAX_PATHLEN], uint64_t flags,
 					int (*cmpft)(void *, void *));
 
 void			print_errors(void *vector_element);

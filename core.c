@@ -7,44 +7,6 @@
 
 /*
 **    NAME
-**         ft_getdir -- get all entries of a directory
-**
-**    SYNOPSIS
-**         #include <libft.h>
-**
-**         t_vector
-**         ft_getdir(struct s_vector *self);
-**
-**    PARAMETERS
-**
-**         const char dirname[PATHMAX]      Name of directory.
-**
-**    DESCRIPTION
-**         (not done); get a vector containing all the directory entries of
-**         the 'dirname' directory
-**
-**    RETURN VALUES
-**         If successful returns 0; otherwise -1.
-*/
-
-t_vector	ft_getdirentries(const char dirpath[PATHMAX + 1]);
-{
-	t_vector	result;
-	DIR			*dirdes;
-
-	result = vector.empty(NULL);
-	dirdes = opendir(dirpath);
-	if (dirdes != NULL)
-	{
-
-	}
-	else
-		perror();
-	return (result);
-}
-
-/*
-**    NAME
 **         func_name -- brief
 **
 **    SYNOPSIS
@@ -97,12 +59,12 @@ void			ft_printdir(t_vector directory, uint64_t flags)
 **         #include <libft.h>
 **
 **         int
-**         ft_listdir(const char dirname[PATHMAX], uint64_t flags,
+**         ft_listdir(const char dirname[MAX_PATHLEN], uint64_t flags,
 **             int (*cmpft)(void *, void *));
 **
 **    PARAMETERS
 **
-**         const char dirname[PATHMAX]      Name of directory.
+**         const char dirname[MAX_PATHLEN]      Name of directory.
 **
 **         uint64_t flags                   Brief
 **
@@ -115,21 +77,25 @@ void			ft_printdir(t_vector directory, uint64_t flags)
 **         If successful returns 0; otherwise -1.
 */
 
-int			ft_listdir(const char dirname[PATHMAX], uint64_t flags,
+int			ft_listdir(const char dirname[MAX_PATHLEN], uint64_t flags,
 				int (*cmpft)(void *, void *))
 {
-	t_vector	directory;
+	t_vector	direntries;
+	t_vector	dirfiles;
 	size_t		i;
 
-	directory = ft_getdirentries(dirname);
-	if (!directory.vector)
+	direntries = ft_getdirentries(dirname);
+	dirfiles = vector.map(
+		dir.vector, dir.length, sizeof(void *), &ft_getdirfile);
+	if (!dirfiles.vector)
 		return (-1);
 	ft_quicksort(
-		directory.vector, directory.length, sizeof(void *), cmpft);
-	ft_printdir(directory, flags);
+		dirfiles.vector, dirfiles.length, sizeof(void *), cmpft);
+	ft_printdir(dirfiles, flags);
 	if (flags & RR_FLAG)
-		directory.viter(&directory, &vprint_directories, 2, flags, cmpft);
-	vector.destructor(&directory);
+		dirfiles.viter(&dirfiles, &vprint_directories, 2, flags, cmpft);
+	vector.destructor(&direntries);
+	vector.destructor(&dirfiles);
 	return (0);
 }
 

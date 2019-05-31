@@ -41,8 +41,8 @@ int				main(int ac, const char *av[])
 	n = files.count(&files, &ft_isdirectory);
 	n = files.find(&files, &ft_isdirectory);
 
-	t_vector		ft_getdirentries(const char *path[PATHMAX]);
-	t_vector		ft_get_file_entry(const char path[PATHMAX]);
+	t_vector		ft_getdirentries(const char *path[MAX_PATHLEN]);
+	t_vector		ft_get_file_entry(const char path[MAX_PATHLEN]);
 
 */
 

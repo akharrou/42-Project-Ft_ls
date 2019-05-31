@@ -188,7 +188,7 @@ int				ft_ls(int argc, const char *argv[], uint64_t flags,
 // **
 // **    PARAMETERS
 // **
-// **         const char dirname[PATHMAX]      Name of directory.
+// **         const char dirname[MAX_PATHLEN]      Name of directory.
 // **
 // **    DESCRIPTION
 // **         (not done); get a vector containing all the directory entries of
@@ -198,7 +198,7 @@ int				ft_ls(int argc, const char *argv[], uint64_t flags,
 // **         If successful returns 0; otherwise -1.
 // */
 
-// t_vector		ft_getdir(const char dirname[PATHMAX])
+// t_vector		ft_getdir(const char dirname[MAX_PATHLEN])
 // {
 // /* TODO : Aymen -- add functionality to ft_getdirectory function so that it returns a vector with */
 // /*                 t_file struct containing all needed information for each file/dir */
@@ -226,12 +226,12 @@ int				ft_ls(int argc, const char *argv[], uint64_t flags,
 // **         #include <libft.h>
 // **
 // **         int
-// **         ft_listdir(const char dirname[PATHMAX], uint64_t flags,
+// **         ft_listdir(const char dirname[MAX_PATHLEN], uint64_t flags,
 // **             int (*cmpft)(void *, void *));
 // **
 // **    PARAMETERS
 // **
-// **         const char dirname[PATHMAX]      Name of directory.
+// **         const char dirname[MAX_PATHLEN]      Name of directory.
 // **
 // **         uint64_t flags                   Brief
 // **
@@ -244,7 +244,7 @@ int				ft_ls(int argc, const char *argv[], uint64_t flags,
 // **         If successful returns 0; otherwise -1.
 // */
 
-// void	ft_listdir(const char dirname[PATHMAX], uint64_t flags,
+// void	ft_listdir(const char dirname[MAX_PATHLEN], uint64_t flags,
 // 			int (*cmpft)(void *, void *))
 // {
 // 	t_vector	directory;
