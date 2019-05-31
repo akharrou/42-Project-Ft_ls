@@ -7,55 +7,6 @@
 
 /*
 **    NAME
-**         ft_ls -- equivalent to the 'ls' system command
-**
-**    SYNOPSIS
-**         #include <libft.h>
-**
-**         int
-**         ft_ls(int argc, const char *argv[], uint64_t flags,
-**             int (*cmpft)(void *, void *));
-**
-**    PARAMETERS
-**
-**         int ac                           Argument count.
-**
-**         const char *av[]                 Argument vector.
-**
-**         uint64_t flags                   Flags.
-**
-**         int (*cmpft)(void *, void *)     Comparasion function
-**                                          used to sort the entries
-**                                          of a directory.
-**
-**    DESCRIPTION
-**         Description.
-**
-**    RETURN VALUES
-**         If successful returns 0; otherwise -1.
-*/
-
-int				ft_ls(int argc, const char *argv[], uint64_t flags,
-					int (*cmpft)(void *, void *))
-{
-	t_vector	files;
-	size_t		i;
-
-	if (argv == NULL || cmpft == NULL)
-		return (-1);
-	if (argc == 0)
-		return (ft_listdir(".", flags, cmpft));
-	files = vector.map(argv, (size_t)argc, sizeof(char *), &get_file_entry);
-	ft_quicksort(files.vector, files.length, sizeof(void *), cmpft);
-	files.iter(&files, &print_errors);
-	files.iter(&files, &print_files);
-	files.viter(&files, &vprint_directories, argc, flags, cmpft);
-	vector.destructor(&files);
-	return (0);
-}
-
-/*
-**    NAME
 **         ft_getdir -- get all entries of a directory
 **
 **    SYNOPSIS
@@ -78,10 +29,17 @@ int				ft_ls(int argc, const char *argv[], uint64_t flags,
 
 t_vector	ft_getdirentries(const char dirpath[PATHMAX + 1]);
 {
-	t_vector result;
+	t_vector	result;
+	DIR			*dirdes;
 
-	result = vector.constructor(0, NULL);
-	(void)dirname;
+	result = vector.empty(NULL);
+	dirdes = opendir(dirpath);
+	if (dirdes != NULL)
+	{
+
+	}
+	else
+		perror();
 	return (result);
 }
 
@@ -170,7 +128,56 @@ int			ft_listdir(const char dirname[PATHMAX], uint64_t flags,
 		directory.vector, directory.length, sizeof(void *), cmpft);
 	ft_printdir(directory, flags);
 	if (flags & RR_FLAG)
-		directory.viter(&directory, &vprint_directories, flags, cmpft);
+		directory.viter(&directory, &vprint_directories, 2, flags, cmpft);
 	vector.destructor(&directory);
+	return (0);
+}
+
+/*
+**    NAME
+**         ft_ls -- equivalent to the 'ls' system command
+**
+**    SYNOPSIS
+**         #include <libft.h>
+**
+**         int
+**         ft_ls(int argc, const char *argv[], uint64_t flags,
+**             int (*cmpft)(void *, void *));
+**
+**    PARAMETERS
+**
+**         int ac                           Argument count.
+**
+**         const char *av[]                 Argument vector.
+**
+**         uint64_t flags                   Flags.
+**
+**         int (*cmpft)(void *, void *)     Comparasion function
+**                                          used to sort the entries
+**                                          of a directory.
+**
+**    DESCRIPTION
+**         Description.
+**
+**    RETURN VALUES
+**         If successful returns 0; otherwise -1.
+*/
+
+int				ft_ls(int argc, const char *argv[], uint64_t flags,
+					int (*cmpft)(void *, void *))
+{
+	t_vector	files;
+	size_t		i;
+
+	if (argv == NULL || cmpft == NULL)
+		return (-1);
+	if (argc == 0)
+		return (ft_listdir(".", flags, cmpft));
+	files = vector.map(argv, (size_t)argc, sizeof(char *), &get_file_entry);
+	ft_quicksort(files.vector, files.length, sizeof(void *), cmpft);
+	files.iter(&files, &print_errors);
+	files.iter(&files, &print_files);
+	files.viter(&files, &vprint_directories, argc, flags, cmpft);
+	vector.destructor(&files);
 	return (0);
 }

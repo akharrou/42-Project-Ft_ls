@@ -13,9 +13,16 @@
 
 # include "Libft/Includes/libft.h"
 
-# include <sys/types.h>
+# include <time.h>
+
 # include <sys/dir.h>
 # include <dirent.h>
+
+# include <sys/types.h>
+# include <sys/stat.h>
+
+# include <grp.h>
+# include <pwd.h>
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
@@ -75,12 +82,7 @@ typedef struct	s_file_information
 	\
 	char		linked_to_path[PATHMAX + 1];
 	\
-	uint32_t	time;
-	char		month[4];
-	uint32_t	day;
-	uint32_t	hour;
-	uint32_t	minute;
-	uint32_t	second;
+	char		*time;
 	\
 	size_t		size;
 	\
@@ -106,7 +108,7 @@ extern t_flag	g_flags[];
 ** Utility Function(s).
 */
 
-uint64_t		get_flags(int *argc,
+uint64_t		get_flags(int *argc, const char **argv[]);
 void			*get_cmpft(uint64_t flags);
 
 /*
