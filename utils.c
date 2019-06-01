@@ -35,15 +35,15 @@ void			print_files(void *vector_element)
 void			vprint_directories(void *vector_element, va_list ap)
 {
 	int			(*cmpft)(void *, void *);
-	t_file		file;
 	uint64_t	flags;
 	int			argc;
+	t_file		file;
 
 	if (!vector_element)
 		return ;
-	argc = va_arg(ap, int);
 	flags = va_arg(ap, uint64_t);
 	cmpft = va_arg(ap, int (*)(void *, void *));
+	argc = va_arg(ap, int);
 	file = *(t_file *)vector_element;
 	if (file.type == DIRECTORY)
 	{

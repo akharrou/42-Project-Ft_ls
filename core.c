@@ -5,51 +5,6 @@
 
 #include "ft_ls.h"
 
-/*
-**    NAME
-**         func_name -- brief
-**
-**    SYNOPSIS
-**         #include <libft.h>
-**
-**         int
-**         func_name(struct s_vector *self);
-**
-**    PARAMETERS
-**
-**         struct s_vector *self     Pointer to a vector instance.
-**
-**         void *data                Pointer to some data.
-**
-**         PARAM 3          Brief
-**
-**    DESCRIPTION
-**         Description.
-**
-**    RETURN VALUES
-**         If successful returns 0; otherwise -1.
-*/
-
-void			ft_printdir(t_vector directory, uint64_t flags)
-{
-	int			links_width;
-	int			size_width;
-	size_t		i;
-
-	size_width = 0;
-	links_width = 0;
-	i = 0;
-	while (i < directory.length)
-	{
-		links_width = MAX(
-			links_width, ft_intlen(((t_file *)directory.vector[i])->links));
-		size_width = MAX(
-			size_width, ft_intlen(((t_file *)directory.vector[i])->size));
-		++i;
-	}
-	directory.viter(&directory, &ft_vprintfile, flags, links_width, size_width);
-	return ;
-}
 
 /*
 **    NAME
@@ -80,13 +35,10 @@ void			ft_printdir(t_vector directory, uint64_t flags)
 int			ft_listdir(const char dirname[MAX_PATHLEN], uint64_t flags,
 				int (*cmpft)(void *, void *))
 {
-	t_vector	direntries;
 	t_vector	dirfiles;
 	size_t		i;
 
-	direntries = ft_getdirentries(dirname);
-	dirfiles = vector.map(
-		dir.vector, dir.length, sizeof(void *), &ft_getdirfile);
+	dirfiles = ft_getdirfiles(dirname);
 	if (!dirfiles.vector)
 		return (-1);
 	ft_quicksort(
@@ -94,7 +46,6 @@ int			ft_listdir(const char dirname[MAX_PATHLEN], uint64_t flags,
 	ft_printdir(dirfiles, flags);
 	if (flags & RR_FLAG)
 		dirfiles.viter(&dirfiles, &vprint_directories, 2, flags, cmpft);
-	vector.destructor(&direntries);
 	vector.destructor(&dirfiles);
 	return (0);
 }
@@ -139,7 +90,9 @@ int				ft_ls(int argc, const char *argv[], uint64_t flags,
 		return (-1);
 	if (argc == 0)
 		return (ft_listdir(".", flags, cmpft));
-	files = vector.map(argv, (size_t)argc, sizeof(char *), &get_file_entry);
+	if (argc == 1)
+		return (ft_listdir(argv[1], flags, cmpft));
+	files = vector.map(argv, (size_t)argc, sizeof(char *), &/* TODO */);
 	ft_quicksort(files.vector, files.length, sizeof(void *), cmpft);
 	files.iter(&files, &print_errors);
 	files.iter(&files, &print_files);
