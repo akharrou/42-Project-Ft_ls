@@ -1,7 +1,14 @@
-
-/*
-**  Ft_ls -- Header File.
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_ls.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/06/01 19:50:11 by akharrou          #+#    #+#             */
+/*   Updated: 2019/06/01 19:50:25 by akharrou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef FT_LS_H
 # define FT_LS_H
@@ -30,6 +37,20 @@
 */
 
 # define SORT_FLAG (T_FLAG | S_FLAG| F_FLAG | R_FLAG)
+
+/*
+** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
+** File Types.
+*/
+
+# define UNKNOWN_FILE    DT_UNKNOWN
+# define REGULAR_FILE    DT_REG
+# define DIRECTORY       DT_DIR
+# define SYMBOLIC_LINK   DT_LNK
+# define NAMED_PIPE      DT_FIFO
+# define SOCKET          DT_SOCK
+# define BLOCK_FILE      DT_BLK
+# define CHARACTER_FILE  DT_CHR
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
@@ -62,36 +83,27 @@ enum			e_flag_values
 ** Structure(s).
 */
 
-enum			e_file_types
-{
-    UNKNOWN         = DT_UNKNOWN,
-    REGULAR_FILE    = DT_REG,
-    DIRECTORY       = DT_DIR,
-    SYMBOLIC_LINK   = DT_LNK,
-    NAMED_PIPE      = DT_FIFO,
-    SOCKET          = DT_SOCK,
-    BLOCK_FILE      = DT_BLK,
-    CHARACTER_FILE  = DT_CHR
-};
-
 typedef struct	s_file_information
 {
 	char		name[MAX_NAMELEN + 1];
 	char		path[MAX_PATHLEN + 1];
-	uint32_t	type;
 	\
-	char		linked_to_path[MAX_PATHLEN + 1];
+	dev_t		device_id;
+	char		*owner;
+	char		*group;
 	\
-	char		*time;
+	uint8_t		type;
+	mode_t		mode;
 	\
-	size_t		size;
+	char		linkpath[MAX_PATHLEN + 1];
 	\
-	uint32_t	group;
-	uint32_t	owner;
+	off_t		size;
+	blkcnt_t	nblocks;
+	nlink_t		nlinks;
 	\
-	uint32_t	links;
-	uint32_t	mode;
-	\
+	time_t		access_time;
+	time_t		modifi_time;
+	time_t		change_time;
 }				t_file;
 
 /*
@@ -126,8 +138,10 @@ int				ft_ls(int argc, const char *argv[], uint64_t flags,
 ** Utility Function(s).
 */
 
-t_vector		ft_getdirentries(const char dirpath[MAX_PATHLEN + 1]);
-t_vector		ft_getdir(const char path[MAX_PATHLEN + 1]);
+t_file			ft_getdirfile(struct dirent *direntry);
+void			*wrap_getdirfile(void *vector_element, va_list ap);
+t_vector		ft_getdirfiles(const char dirname[MAX_PATHLEN + 1]);
+
 void			ft_printdir(t_vector directory, uint64_t flags);
 int				ft_listdir(const char dirname[MAX_PATHLEN], uint64_t flags,
 					int (*cmpft)(void *, void *));

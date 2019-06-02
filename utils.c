@@ -17,7 +17,7 @@ void			print_errors(void *vector_element)
 	if (!vector_element)
 		return ;
 	file = *(t_file *)vector_element;
-	if (file.type == UNKNOWN)
+	if (file.type == UNKNOWN_FILE)
 		ft_printf("./ft_ls: %s: No such file or directory\n", file.name);
 }
 
@@ -28,7 +28,7 @@ void			print_files(void *vector_element)
 	if (!vector_element)
 		return ;
 	file = *(t_file *)vector_element;
-	if (file.type != UNKNOWN && file.type != DIRECTORY)
+	if (file.type != UNKNOWN_FILE && file.type != DIRECTORY)
 		ft_printf("%s\n", file.name);
 }
 
