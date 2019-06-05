@@ -1,7 +1,14 @@
-
-/*
-**  Ft_ls -- Preliminaries.
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   preliminaries.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/06/04 22:08:16 by akharrou          #+#    #+#             */
+/*   Updated: 2019/06/04 22:08:16 by akharrou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ft_ls.h"
 
@@ -42,18 +49,16 @@ void			*get_cmpft(uint64_t flags)
 	i = 0;
 	cmpft = &compare_by_ascii;
 	if (flags & SORT_FLAG)
-	{
 		while (g_flags[i].symbol != '\0')
 		{
 			if (flags & g_flags[i].value)
 			{
-				cmpft = (flags & R_FLAG) ?
+				cmpft = (flags & r_FLAG) ?
 					g_flags[i].reverse_cmp_function :
 					g_flags[i].cmp_function;
 				break ;
 			}
 			++i;
 		}
-	}
 	return ((void *)cmpft);
 }

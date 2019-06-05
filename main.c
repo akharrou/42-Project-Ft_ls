@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:23:20 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/01 19:23:20 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/04 21:48:14 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int				main(int ac, const char *av[])
 }
 
 /*
+** Did the following bonuses: u, c, S, f, i, p
+**
 **  TODO :
 **
 **  Done [_]  ;  Reviewed [_]  ;            3 - must check if we have permissions before recursing down     / Need to know how the file will expand

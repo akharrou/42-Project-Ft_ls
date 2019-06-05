@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:50:11 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/01 19:50:25 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/04 22:08:23 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 ** Macro(s).
 */
 
-# define SORT_FLAG (T_FLAG | S_FLAG| F_FLAG | R_FLAG)
+# define SORT_FLAG (t_FLAG | u_FLAG | c_FLAG | S_FLAG| f_FLAG | r_FLAG)
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
@@ -67,15 +67,18 @@ typedef struct	s_flag
 
 enum			e_flag_values
 {
-	A_FLAG = (1 << 0),
-	L_FLAG = (1 << 1),
-	R_FLAG = (1 << 2),
-	T_FLAG = (1 << 3),
-	S_FLAG = (1 << 4),
-	\
-	F_FLAG = ((1 << 5) | A_FLAG),
-	RR_FLAG = (1 << 6),
-	ONE_FLAG = (1 << 7)
+	a_FLAG = (1 << 0),
+	l_FLAG = (1 << 1),
+	r_FLAG = (1 << 2),
+	t_FLAG = (1 << 3),
+	u_FLAG = (1 << 4),
+	c_FLAG = (1 << 5),
+	S_FLAG = (1 << 6),
+	p_FLAG = (1 << 7),
+	i_FLAG = (1 << 8),
+	f_FLAG = ((1 << 9) | a_FLAG),
+	R_FLAG = (1 << 10),
+	_1_FLAG = (1 << 11)
 };
 
 /*
@@ -88,6 +91,7 @@ typedef struct	s_file_information
 	char		name[MAX_NAMELEN + 1];
 	char		path[MAX_PATHLEN + 1];
 	\
+	ino_t		inode;
 	dev_t		device_id;
 	char		*owner;
 	char		*group;
@@ -171,12 +175,16 @@ void			unknown_flag(char unknown_flag);
 int				compare_by_none(void *a, void *b);
 
 int				compare_by_size(void *a, void *b);
-int				compare_by_time(void *a, void *b);
 int				compare_by_ascii(void *a, void *b);
+int				compare_by_mtime(void *a, void *b);
+int				compare_by_atime(void *a, void *b);
+int				compare_by_ctime(void *a, void *b);
 
 int				reverse_compare_by_size(void *a, void *b);
-int				reverse_compare_by_time(void *a, void *b);
 int				reverse_compare_by_ascii(void *a, void *b);
+int				reverse_compare_by_mtime(void *a, void *b);
+int				reverse_compare_by_atime(void *a, void *b);
+int				reverse_compare_by_ctime(void *a, void *b);
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **

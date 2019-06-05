@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:20:43 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/01 19:20:43 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/04 22:04:19 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ t_file			ft_getdirfile(struct dirent *direntry)
 	t_file		file;
 	int			ret;
 
-	ret = stat((*direntry).d_name, &filestat);
-	if (ret == -1)
+	if ((ret = stat((*direntry).d_name, &filestat)) == -1)
 		EXIT(perror(NULL));
 	file = (t_file) {
 		.type = (*direntry).d_type,
+		.inode = filestat.st_ino,
 		.device_id = filestat.st_rdev,
 		.mode = filestat.st_mode,
 		.owner = (*getpwuid(filestat.st_uid)).pw_name,
