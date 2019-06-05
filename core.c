@@ -6,13 +6,14 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:20:06 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/04 22:07:47 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/04 23:03:40 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int				ft_listdir(const char dirname[MAX_PATHLEN], uint64_t flags,
+int				ft_listdir(const char parentdir[MAX_PATHLEN],
+					const char dirname[MAX_PATHLEN], uint64_t flags,
 					int (*cmpft)(void *, void *))
 {
 	t_vector	dir;
@@ -23,7 +24,7 @@ int				ft_listdir(const char dirname[MAX_PATHLEN], uint64_t flags,
 		return (-1);
 	}
 	ft_quicksort(dir.vector, dir.length, sizeof(void *), cmpft);
-	ft_printdir(dir, flags);
+	ft_printdir(dirname, dir, flags);
 	if (flags & R_FLAG)
 	{
 		dir.viter(&dir, &vprint_directories, 2, flags, cmpft);
@@ -40,9 +41,9 @@ int				ft_ls(int argc, const char *argv[], uint64_t flags,
 	if (argv == NULL || cmpft == NULL)
 		return (-1);
 	if (argc == 0)
-		return (ft_listdir(".", flags, cmpft));
+		return (ft_listdir(".", ".", flags, cmpft));
 	if (argc == 1)
-		return (ft_listdir(argv[1], flags, cmpft));
+		return (ft_listdir(".", argv[1], flags, cmpft));
 
 	/* GET T_FILE VECTOR FROM ARGV */
 	files = vector.map(argv, (size_t)argc, sizeof(char *), &/* FUNC */);

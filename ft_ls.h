@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:50:11 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/04 22:08:23 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/04 23:03:29 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ typedef struct	s_file_information
 	char		linkpath[MAX_PATHLEN + 1];
 	\
 	off_t		size;
-	blkcnt_t	nblocks;
 	nlink_t		nlinks;
 	\
 	time_t		access_time;
@@ -146,8 +145,10 @@ t_file			ft_getdirfile(struct dirent *direntry);
 void			*wrap_getdirfile(void *vector_element, va_list ap);
 t_vector		ft_getdirfiles(const char dirname[MAX_PATHLEN + 1]);
 
-void			ft_printdir(t_vector directory, uint64_t flags);
-int				ft_listdir(const char dirname[MAX_PATHLEN], uint64_t flags,
+void			ft_printdir(const char dirname[MAX_PATHLEN], t_vector directory,
+					uint64_t flags);
+int				ft_listdir(const char parentdir[MAX_PATHLEN],
+					const char dirname[MAX_PATHLEN], uint64_t flags,
 					int (*cmpft)(void *, void *));
 
 void			print_errors(void *vector_element);

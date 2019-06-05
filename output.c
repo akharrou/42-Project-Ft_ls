@@ -6,13 +6,13 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:24:50 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/04 22:01:07 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/04 23:00:29 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static void	cmode(mode_t mode, char *modestr)
+static void		cmode(mode_t mode, char *modestr)
 {
 	ft_strcpy(modestr, "----------");
 	S_IFREG & mode && (modestr[0] = '-');
@@ -39,12 +39,12 @@ static void	cmode(mode_t mode, char *modestr)
 		modestr[9] = (mode & S_IXOTH) ? 't' : 'T';
 }
 
-void		ft_printfile(t_file file, uint64_t flags,
-				int links_width, int size_width)
+void			ft_printfile(t_file file, uint64_t flags,
+					int links_width, int size_width)
 {
-	char	*tmp_timestr;
-	char	timestr[13];
-	char	modestr[11];
+	char		*tmp_timestr;
+	char		timestr[13];
+	char		modestr[11];
 
 	if (!(flags & a_FLAG))
 		if ((ft_strcmp(file.name, ".") == 0 || ft_strcmp(file.name, "..") == 0))
@@ -69,11 +69,13 @@ void		ft_printfile(t_file file, uint64_t flags,
 			file.name, ((flags & p_FLAG) && file.type == DIRECTORY) ? "/" : "");
 }
 
-void		ft_printdir(t_vector directory, uint64_t flags)
+void			ft_printdir(const char dirname[MAX_PATHLEN], t_vector directory,
+					uint64_t flags)
 {
-	int		links_width;
-	int		size_width;
-	size_t	i;
+	struct stat	dirstat;
+	int			links_width;
+	int			size_width;
+	size_t		i;
 
 	i = 0;
 	size_width = 0;
@@ -86,6 +88,9 @@ void		ft_printdir(t_vector directory, uint64_t flags)
 			size_width, ft_intlen(((t_file *)directory.vector[i])->size));
 		++i;
 	}
+	if ((stat(dirname, &dirstat)) == -1)
+		EXIT(perror(NULL));
+	ft_printf("total %i\n", dirstat.st_blocks);
 	directory.viter(&directory, &ft_vprintfile, flags, links_width, size_width);
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:20:43 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/04 22:04:19 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/04 22:47:58 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@ t_file			ft_getdirfile(struct dirent *direntry)
 {
 	struct stat	filestat;
 	t_file		file;
-	int			ret;
 
-	if ((ret = stat((*direntry).d_name, &filestat)) == -1)
+	if (stat((*direntry).d_name, &filestat) == -1)
 		EXIT(perror(NULL));
 	file = (t_file) {
 		.type = (*direntry).d_type,
@@ -28,16 +27,15 @@ t_file			ft_getdirfile(struct dirent *direntry)
 		.owner = (*getpwuid(filestat.st_uid)).pw_name,
 		.group = (*getgrgid(filestat.st_gid)).gr_name,
 		.size = filestat.st_size,
-		.nblocks = filestat.st_blocks,
 		.nlinks = filestat.st_nlink,
 		.access_time = filestat.st_atime,
 		.modifi_time = filestat.st_mtime,
 		.change_time = filestat.st_ctime
 	};
+	ft_strncpy(file.path, (*direntry).d_name, MAX_PATHLEN);
+	ft_strncpy(file.name, ft_strrchr((*direntry).d_name, '/') + 1, MAX_NAMELEN);
 	if (file.type == SYMBOLIC_LINK)
 		readlink(file.path, file.linkpath, MAX_PATHLEN);
-	ft_strncpy(file.path, (*direntry).d_name, MAX_PATHLEN);
-	ft_strncpy(file.name, ft_strrchr((*direntry).d_name, '/'), MAX_NAMELEN);
 	return (file);
 }
 
@@ -45,9 +43,9 @@ void			*wrap_getdirfile(void *vector_element, va_list ap)
 {
 	t_file		*file;
 
+	(void)ap;
 	file = (t_file *)malloc(sizeof(t_file));
 	(*file) = ft_getdirfile((struct dirent *)vector_element);
-	(void)ap;
 	return (file);
 }
 

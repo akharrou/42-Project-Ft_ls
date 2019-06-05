@@ -35,12 +35,14 @@ void			print_files(void *vector_element)
 void			vprint_directories(void *vector_element, va_list ap)
 {
 	int			(*cmpft)(void *, void *);
+	char		*parent_dir;
 	uint64_t	flags;
 	int			argc;
 	t_file		file;
 
 	if (!vector_element)
 		return ;
+	parent_dir = va_arg(ap, char *);
 	flags = va_arg(ap, uint64_t);
 	cmpft = va_arg(ap, int (*)(void *, void *));
 	argc = va_arg(ap, int);
@@ -48,8 +50,8 @@ void			vprint_directories(void *vector_element, va_list ap)
 	if (file.type == DIRECTORY)
 	{
 		if (argc > 1)
-			ft_printf("%s:\n", file.name);
-		ft_listdir(file.name, flags, cmpft);
+			ft_printf("%s/%s:\n", parent_dir, file.name);
+		ft_listdir(file.name, parent_dir, flags, cmpft);
 	}
 }
 
