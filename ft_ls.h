@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:50:11 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/05 16:52:59 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/05 20:41:54 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ typedef struct	s_file_information
 	\
 	off_t		size;
 	nlink_t		nlinks;
+	blkcnt_t	nblocks;
 	\
 	time_t		access_time;
 	time_t		modifi_time;
@@ -144,14 +145,13 @@ int				ft_listdir(char *dirpath, uint64_t flags,
 
 t_vector		ft_getdirfiles(const char dirname[MAX_PATHLEN + 1]);
 
-t_file			ft_getfile(const char *path);
+t_file			ft_getfile(const char path[MAX_PATHLEN + 1]);
 
 /*
 **  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 */
 
-void			ft_printdir(const char *full_dirname, t_vector directory,
-					uint64_t flags);
+void			ft_printdir(t_vector dir, uint64_t flags);
 
 void			ft_printfile(t_file file, uint64_t flags,
 					int links_width, int size_width);
@@ -172,7 +172,6 @@ void			ft_vprintfile(void *vector_element, va_list ap);
 
 void			*wrap_getfile_from_argv(void *vector_element);
 void			*wrap_getfile_from_dirent(void *vector_element, va_list ap);
-
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **

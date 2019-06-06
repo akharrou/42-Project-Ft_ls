@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 17:03:13 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/05 18:20:42 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/05 20:22:49 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ void			cmode(mode_t mode, char *modestr)
 		modestr[6] = (mode & S_IXGRP) ? 's' : 'l';
 	if (mode & S_ISVTX)
 		modestr[9] = (mode & S_IXOTH) ? 't' : 'T';
+	modestr[10] = '\0';
 }
 
 /*

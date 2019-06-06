@@ -6,7 +6,7 @@
 #    By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/07 18:55:23 by akharrou          #+#    #+#              #
-#    Updated: 2019/06/05 16:55:23 by akharrou         ###   ########.fr        #
+#    Updated: 2019/06/05 18:46:56 by akharrou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,10 +22,10 @@ OPTIM_FLAGS = -O3 -march=native                                               \
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
 DEBUG_FLAGS = -O0 -g                                                          \
-            #                                                                   \
-            #   -fsanitize=address                                              \
-            #   -fsanitize=undefined                                            \
-            #   -fsanitize=bounds                                               \
+                                                                              \
+              -fsanitize=address                                              \
+              -fsanitize=undefined                                            \
+              -fsanitize=bounds                                               \
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 

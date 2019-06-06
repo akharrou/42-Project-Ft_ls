@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:20:06 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/05 17:26:13 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/05 19:11:57 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int				ft_listdir(char *dirpath, uint64_t flags,
 	if (dir.vector)
 	{
 		ft_quicksort(dir.vector, dir.length, sizeof(void *), cmpft);
-		ft_printdir(dirpath, dir, flags);
+		ft_printdir(dir, flags);
 		if (flags & R_FLAG)
 		{
 			dir.viter(&dir, &vprint_directories, dirpath, flags, cmpft);
