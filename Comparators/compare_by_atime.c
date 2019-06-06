@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 22:06:15 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/04 22:07:06 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/06 02:55:59 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		compare_by_atime(void *a, void *b)
 {
 	long	res;
 
-	res = ((t_file *)a)->access_time - ((t_file *)b)->access_time;
+	res = ((*(t_file **)a)->access_time - (*(t_file **)b)->access_time);
 	if (res == 0)
 		return (0);
 	return ((res > 0) ? 1 : -1);

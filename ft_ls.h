@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:50:11 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/05 20:41:54 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/06 05:18:05 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ t_file			ft_getfile(const char path[MAX_PATHLEN + 1]);
 void			ft_printdir(t_vector dir, uint64_t flags);
 
 void			ft_printfile(t_file file, uint64_t flags,
-					int links_width, int size_width);
+					int *str_lengths, int *num_lengths);
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
@@ -162,16 +162,9 @@ void			ft_printfile(t_file file, uint64_t flags,
 ** Utility Function(s).
 */
 
-uint8_t			mode2type(uint8_t mode);
-void			cmode(mode_t mode, char *modestr);
-
 void			print_errors(void *vector_element);
 void			print_files(void *vector_element);
 void			vprint_directories(void *vector_element, va_list ap);
-void			ft_vprintfile(void *vector_element, va_list ap);
-
-void			*wrap_getfile_from_argv(void *vector_element);
-void			*wrap_getfile_from_dirent(void *vector_element, va_list ap);
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
