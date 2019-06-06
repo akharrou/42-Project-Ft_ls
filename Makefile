@@ -6,7 +6,7 @@
 #    By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/07 18:55:23 by akharrou          #+#    #+#              #
-#    Updated: 2019/05/28 15:16:40 by akharrou         ###   ########.fr        #
+#    Updated: 2019/06/05 16:55:23 by akharrou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,15 +45,19 @@ SOURCES     =                                                                 \
                     main.c                                                    \
                     preliminaries.c                                           \
                     core.c                                                    \
-                    utils.c                                                   \
+                    info.c                                                    \
+                    output.c                                                  \
 					                                                          \
+                    utils.c                                                   \
                     globals.c                                                 \
                     error.c                                                   \
 					                                                          \
-                	Comparators/compare_by_ascii.c                            \
                 	Comparators/compare_by_none.c                             \
+                	Comparators/compare_by_ascii.c                            \
                 	Comparators/compare_by_size.c                             \
-                	Comparators/compare_by_time.c                             \
+                	Comparators/compare_by_mtime.c                            \
+                	Comparators/compare_by_atime.c                            \
+                	Comparators/compare_by_ctime.c                            \
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 

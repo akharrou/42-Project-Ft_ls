@@ -6,30 +6,29 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:20:06 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/04 23:03:40 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/05 17:26:13 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int				ft_listdir(const char parentdir[MAX_PATHLEN],
-					const char dirname[MAX_PATHLEN], uint64_t flags,
+int				ft_listdir(char *dirpath, uint64_t flags,
 					int (*cmpft)(void *, void *))
 {
 	t_vector	dir;
 
-	dir = ft_getdirfiles(dirname);
-	if (!dir.vector)
+	dir = ft_getdirfiles(dirpath);
+	if (dir.vector)
 	{
-		return (-1);
+		ft_quicksort(dir.vector, dir.length, sizeof(void *), cmpft);
+		ft_printdir(dirpath, dir, flags);
+		if (flags & R_FLAG)
+		{
+			dir.viter(&dir, &vprint_directories, dirpath, flags, cmpft);
+		}
+		vector.destructor(&dir);
 	}
-	ft_quicksort(dir.vector, dir.length, sizeof(void *), cmpft);
-	ft_printdir(dirname, dir, flags);
-	if (flags & R_FLAG)
-	{
-		dir.viter(&dir, &vprint_directories, 2, flags, cmpft);
-	}
-	vector.destructor(&dir);
+	free(dirpath);
 	return (0);
 }
 
@@ -41,17 +40,15 @@ int				ft_ls(int argc, const char *argv[], uint64_t flags,
 	if (argv == NULL || cmpft == NULL)
 		return (-1);
 	if (argc == 0)
-		return (ft_listdir(".", ".", flags, cmpft));
+		return (ft_listdir(ft_strdup("./"), flags, cmpft));
 	if (argc == 1)
-		return (ft_listdir(".", argv[1], flags, cmpft));
-
-	/* GET T_FILE VECTOR FROM ARGV */
-	files = vector.map(argv, (size_t)argc, sizeof(char *), &/* FUNC */);
-
+		return (ft_listdir(ft_strjoin(argv[1], "/"), flags, cmpft));
+	files = vector.map(
+		argv, (size_t)argc, sizeof(char *), &wrap_getfile_from_argv);
 	ft_quicksort(files.vector, files.length, sizeof(void *), cmpft);
 	files.iter(&files, &print_errors);
 	files.iter(&files, &print_files);
-	files.viter(&files, &vprint_directories, argc, flags, cmpft);
+	files.viter(&files, &vprint_directories, ft_strdup("./"), flags, cmpft);
 	vector.destructor(&files);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:50:11 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/04 23:03:29 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/05 16:52:59 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,12 +128,33 @@ void			*get_cmpft(uint64_t flags);
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
-** Defined in: core.c
+** Defined in: core.c, info.c, output.c
 ** Core Function(s).
 */
 
 int				ft_ls(int argc, const char *argv[], uint64_t flags,
 					int (*cmpft)(void *, void *));
+
+int				ft_listdir(char *dirpath, uint64_t flags,
+					int (*cmpft)(void *, void *));
+
+/*
+**  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+*/
+
+t_vector		ft_getdirfiles(const char dirname[MAX_PATHLEN + 1]);
+
+t_file			ft_getfile(const char *path);
+
+/*
+**  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+*/
+
+void			ft_printdir(const char *full_dirname, t_vector directory,
+					uint64_t flags);
+
+void			ft_printfile(t_file file, uint64_t flags,
+					int links_width, int size_width);
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
@@ -141,22 +162,17 @@ int				ft_ls(int argc, const char *argv[], uint64_t flags,
 ** Utility Function(s).
 */
 
-t_file			ft_getdirfile(struct dirent *direntry);
-void			*wrap_getdirfile(void *vector_element, va_list ap);
-t_vector		ft_getdirfiles(const char dirname[MAX_PATHLEN + 1]);
-
-void			ft_printdir(const char dirname[MAX_PATHLEN], t_vector directory,
-					uint64_t flags);
-int				ft_listdir(const char parentdir[MAX_PATHLEN],
-					const char dirname[MAX_PATHLEN], uint64_t flags,
-					int (*cmpft)(void *, void *));
+uint8_t			mode2type(uint8_t mode);
+void			cmode(mode_t mode, char *modestr);
 
 void			print_errors(void *vector_element);
 void			print_files(void *vector_element);
 void			vprint_directories(void *vector_element, va_list ap);
 void			ft_vprintfile(void *vector_element, va_list ap);
-void			ft_printfile(t_file file, uint64_t flags,
-					int links_width, int size_width);
+
+void			*wrap_getfile_from_argv(void *vector_element);
+void			*wrap_getfile_from_dirent(void *vector_element, va_list ap);
+
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **

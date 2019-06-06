@@ -6,46 +6,36 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:20:43 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/04 22:47:58 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/05 17:25:17 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_file			ft_getdirfile(struct dirent *direntry)
+t_file			ft_getfile(const char *path)
 {
 	struct stat	filestat;
 	t_file		file;
 
-	if (stat((*direntry).d_name, &filestat) == -1)
+	if (stat(path, &filestat) == -1)
 		EXIT(perror(NULL));
 	file = (t_file) {
-		.type = (*direntry).d_type,
+		.type = mode2type(filestat.st_mode),
 		.inode = filestat.st_ino,
 		.device_id = filestat.st_rdev,
 		.mode = filestat.st_mode,
-		.owner = (*getpwuid(filestat.st_uid)).pw_name,
-		.group = (*getgrgid(filestat.st_gid)).gr_name,
+		.owner = getpwuid(filestat.st_uid)->pw_name,
+		.group = getgrgid(filestat.st_gid)->gr_name,
 		.size = filestat.st_size,
 		.nlinks = filestat.st_nlink,
 		.access_time = filestat.st_atime,
 		.modifi_time = filestat.st_mtime,
 		.change_time = filestat.st_ctime
 	};
-	ft_strncpy(file.path, (*direntry).d_name, MAX_PATHLEN);
-	ft_strncpy(file.name, ft_strrchr((*direntry).d_name, '/') + 1, MAX_NAMELEN);
+	ft_strncpy(file.path, path, MAX_PATHLEN);
+	ft_strncpy(file.name, ft_strrchr(path, '/') + 1, MAX_NAMELEN);
 	if (file.type == SYMBOLIC_LINK)
 		readlink(file.path, file.linkpath, MAX_PATHLEN);
-	return (file);
-}
-
-void			*wrap_getdirfile(void *vector_element, va_list ap)
-{
-	t_file		*file;
-
-	(void)ap;
-	file = (t_file *)malloc(sizeof(t_file));
-	(*file) = ft_getdirfile((struct dirent *)vector_element);
 	return (file);
 }
 
@@ -54,6 +44,7 @@ t_vector		ft_getdirfiles(const char dirname[MAX_PATHLEN + 1])
 	t_vector	dir;
 
 	dir = ft_getdirentries(dirname);
-	dir.remap(&dir, &wrap_getdirfile);
+	if (dir.vector != NULL)
+		dir.remap(&dir, &wrap_getfile_from_dirent);
 	return (dir);
 }

@@ -6,38 +6,11 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:24:50 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/04 23:00:29 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/05 16:56:55 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-
-static void		cmode(mode_t mode, char *modestr)
-{
-	ft_strcpy(modestr, "----------");
-	S_IFREG & mode && (modestr[0] = '-');
-	S_IFDIR & mode && (modestr[0] = 'd');
-	S_IFLNK & mode && (modestr[0] = 'l');
-	S_IFIFO & mode && (modestr[0] = 'p');
-	S_IFSOCK & mode && (modestr[0] = 's');
-	S_IFCHR & mode && (modestr[0] = 'c');
-	S_IFBLK & mode && (modestr[0] = 'b');
-	S_IRUSR & mode && (modestr[1] = 'r');
-	S_IWUSR & mode && (modestr[2] = 'w');
-	S_IXUSR & mode && (modestr[3] = 'x');
-	S_IRGRP & mode && (modestr[4] = 'r');
-	S_IWGRP & mode && (modestr[5] = 'w');
-	S_IXGRP & mode && (modestr[6] = 'x');
-	S_IROTH & mode && (modestr[7] = 'r');
-	S_IWOTH & mode && (modestr[8] = 'w');
-	S_IXOTH & mode && (modestr[9] = 'x');
-	if (mode & S_ISUID)
-		modestr[3] = (mode & S_IXUSR) ? 's' : 'S';
-	if (mode & S_ISGID)
-		modestr[6] = (mode & S_IXGRP) ? 's' : 'l';
-	if (mode & S_ISVTX)
-		modestr[9] = (mode & S_IXOTH) ? 't' : 'T';
-}
 
 void			ft_printfile(t_file file, uint64_t flags,
 					int links_width, int size_width)
@@ -57,7 +30,7 @@ void			ft_printfile(t_file file, uint64_t flags,
 		ft_strncpy(timestr, tmp_timestr + 4, 12);
 		free(tmp_timestr);
 		cmode(file.mode, modestr);
-		ft_printf("%11s %*i %s  %s  %*i %12s %s%s",
+		ft_printf("%11s %*i %s  %s  %*i %12s %s%s\n",
 			modestr, links_width, file.nlinks, file.owner, file.group,
 			size_width, file.size, timestr, file.name,
 			((flags & p_FLAG) && file.type == DIRECTORY) ? "/" : "");
@@ -65,11 +38,11 @@ void			ft_printfile(t_file file, uint64_t flags,
 			ft_printf(" -> %s", file.linkpath);
 	}
 	else
-		ft_printf("%s%s",
+		ft_printf("%s%s\n",
 			file.name, ((flags & p_FLAG) && file.type == DIRECTORY) ? "/" : "");
 }
 
-void			ft_printdir(const char dirname[MAX_PATHLEN], t_vector directory,
+void			ft_printdir(const char *full_dirname, t_vector directory,
 					uint64_t flags)
 {
 	struct stat	dirstat;
@@ -83,12 +56,14 @@ void			ft_printdir(const char dirname[MAX_PATHLEN], t_vector directory,
 	while (i < directory.length)
 	{
 		links_width = MAX(
-			links_width, ft_intlen(((t_file *)directory.vector[i])->nlinks));
+			links_width,
+			(int)ft_intlen(((t_file *)directory.vector[i])->nlinks));
 		size_width = MAX(
-			size_width, ft_intlen(((t_file *)directory.vector[i])->size));
+			size_width,
+			(int)ft_intlen(((t_file *)directory.vector[i])->size));
 		++i;
 	}
-	if ((stat(dirname, &dirstat)) == -1)
+	if ((stat(full_dirname, &dirstat)) == -1)
 		EXIT(perror(NULL));
 	ft_printf("total %i\n", dirstat.st_blocks);
 	directory.viter(&directory, &ft_vprintfile, flags, links_width, size_width);

@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 21:38:09 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/01 19:36:58 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/05 17:02:34 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ void		freestrtab(char ***strtab);
 char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_strjoinfre(char const *s1, char const *s2, int free_s1,
 			int free_s2);
+char		*ft_vstrjoin(char *str, int n, ...);
+char		*ft_vstrjoinfre(char *str, int free_str, int n, ...);
 char		*ft_strappend(char const *s1, char const *s2, int free_s1,
 			int free_s2);
 char		*ft_strprepend(char const *s1, char const *s2, int free_s1,
