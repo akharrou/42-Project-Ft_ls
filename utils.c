@@ -6,16 +6,11 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 17:03:13 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/06 04:55:10 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/06 22:32:26 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-
-/*
-** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
-** These serve the vector iter() & viter() methods in the ft_ls() function.
-*/
 
 void			print_errors(void *vector_element)
 {
@@ -64,7 +59,3 @@ void			vprint_directories(void *vector_element, va_list ap)
 		ft_listdir(ft_vstrjoin(dirpath, 2, file->name, "/"), flags, cmpft);
 	}
 }
-
-/*
-** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
-*/

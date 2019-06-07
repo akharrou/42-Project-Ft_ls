@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:23:20 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/06 21:35:17 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/06 22:32:02 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,3 @@ int				main(int ac, const char *av[])
 	ft_ls(ac, av, flags, cmpft);
 	return (0);
 }
-
-/*
-** Did the following bonuses: u, c, S, f, i, p, L
-*/

@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:20:06 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/06 22:16:00 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/06 22:34:07 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@ int				ft_listdir(char *dirpath, uint64_t flags,
 		ft_quicksort(dir.vector, dir.length, sizeof(void *), cmpft);
 		ft_printdir(dir, flags);
 		if (flags & R_FLAG)
-		{
 			dir.viter(&dir, &vprint_directories, dirpath, flags, cmpft);
-		}
 		vector.destructor(&dir);
 	}
 	free(dirpath);
