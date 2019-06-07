@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:50:11 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/07 03:57:47 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/07 12:35:32 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,5 +215,6 @@ int				reverse_compare_by_ctime(void *a, void *b);
 	- FIX ~/
 	- FIX RETURN LINE OR NOT FOR PRINTING MULTIPLE DIRS
 	- FIX LEAKS
+	- FIX NORM
 
  */

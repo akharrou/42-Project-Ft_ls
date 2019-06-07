@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:20:43 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/07 02:29:37 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/07 12:58:38 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,29 +62,29 @@ t_file			ft_getfile(const char path[MAX_PATHLEN + 1], uint64_t flags)
 	return (file);
 }
 
-static void		*wrap_getfile_from_dirent(void *vector_element, va_list ap)
+t_vector			ft_getdirfiles(const char dirpath[MAX_PATHLEN + 1],
+						uint64_t flags)
 {
-	t_file		*file;
-	char		*path;
-	uint64_t	flags;
+	struct dirent	*direntry;
+	DIR				*dirdes;
+	t_file			*file;
+	t_vector		dir;
 
-	path = va_arg(ap, char *);
-	path = ft_strdup(path);
-	flags = va_arg(ap, uint64_t);
-	file = (t_file *)malloc(sizeof(t_file));
-	path = ft_strjoin(path, ((struct dirent *)vector_element)->d_name);
-	(*file) = ft_getfile(path, flags);
-	free(path);
-	return (file);
-}
-
-t_vector		ft_getdirfiles(const char dirpath[MAX_PATHLEN + 1],
-					uint64_t flags)
-{
-	t_vector	dir;
-
-	dir = ft_getdirentries(dirpath);
-	if (dir.vector != NULL)
-		dir.remap(&dir, &wrap_getfile_from_dirent, dirpath, flags);
+	errno = 0;
+	dir = vector.empty(NULL);
+	if ((dirdes = opendir(dirpath)) != NULL)
+		while (errno == 0 && (direntry = readdir(dirdes)) != NULL)
+		{
+			if (!(file = (t_file *)malloc(sizeof(t_file))))
+				EXIT(perror(NULL));
+			(*file) = ft_getfile(ft_strjoin(dirpath, direntry->d_name), flags);
+			dir.append(&dir, file);
+		}
+	if (errno != 0)
+	{
+		perror(NULL);
+		dir.clear(&dir);
+	}
+	closedir(dirdes);
 	return (dir);
 }

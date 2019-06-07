@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:24:50 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/07 03:07:15 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/07 12:54:18 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void			ft_printfile(t_file file, uint64_t flags,
 	{
 		ft_strncpy(timestr, ctime(&file.modifi_time) + 4, 12);
 		cmode(file.path, file.mode, modestr);
-		ft_printf("%-11s %*i %-*s  %-*s  %*i %s %s%s",
+		ft_printf("%-11s %*i %-*s  %-*s  %*lli %s %s%s",
 			modestr, LINKS_WIDTH, file.nlinks,
 			OWNER_WIDTH, file.owner, GROUP_WIDTH, file.group,
 			SIZE_WIDTH, file.size, timestr, file.name,
