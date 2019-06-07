@@ -1,0 +1,806 @@
+total 2432
+  4704196 drwxrwxrwx  1 akharrou  2018_october   32768 Jun  6 18:33 .
+  4500109 drwxrwxrwx  1 akharrou  2018_october   32768 May 20 13:45 ..
+  4704245 -rwxrwxrwx  1 akharrou  2018_october      42 May 20 13:44 .git
+  5130902 -rwxrwxrwx  1 akharrou  2018_october      23 Jun  5 18:20 .gitignore
+  4713831 drwxrwxrwx  1 akharrou  2018_october   32768 May 26 18:52 .vscode
+  4940973 drwxrwxrwx  1 akharrou  2018_october   32768 Jun  6 05:19 Comparators
+  5001466 -rwxrwxrwx  1 akharrou  2018_october   22939 May 30 17:37 DOCS
+  4704246 -rwxrwxrwx  1 akharrou  2018_october    1065 May 20 13:44 LICENSE
+  5118873 drwxrwxrwx  1 akharrou  2018_october   32768 Jun  6 03:30 Libft
+  5130257 -rwxrwxrwx  1 akharrou  2018_october    8256 Jun  5 18:46 Makefile
+  4704248 -rwxrwxrwx  1 akharrou  2018_october      71 May 20 13:44 README.md
+999999999 -rwxrwxrwx  1 akharrou  2018_october       0 Jun  6 18:35 __A__
+  5156941 -rwxrwxrwx  1 akharrou  2018_october   51851 Jun  6 18:35 __B__
+  5144190 -rwxrwxrwx  1 akharrou  2018_october    2260 Jun  6 04:59 core.c
+  5145493 -rwxrwxrwx  1 akharrou  2018_october   17360 Jun  6 05:18 core.o
+  5086334 -rwxrwxrwx  1 akharrou  2018_october   13252 Jun  5 16:53 draft.c
+  5030454 -rwxrwxrwx  1 akharrou  2018_october    1119 Jun  1 19:20 error.c
+  5145497 -rwxrwxrwx  1 akharrou  2018_october    4440 Jun  6 05:19 error.o
+  5144654 -rwxrwxrwx  1 akharrou  2018_october  165236 Jun  6 18:29 ft_ls
+  5145488 -rwxrwxrwx  1 akharrou  2018_october    5165 Jun  6 05:18 ft_ls.h
+  5142708 -rwxrwxrwx  1 akharrou  2018_october    1886 Jun  6 04:36 globals.c
+  5145490 -rwxrwxrwx  1 akharrou  2018_october    5016 Jun  6 05:19 globals.o
+  5142435 -rwxrwxrwx  1 akharrou  2018_october    2734 Jun  6 04:35 info.c
+  5145491 -rwxrwxrwx  1 akharrou  2018_october   22316 Jun  6 05:18 info.o
+  5144421 -rwxrwxrwx  1 akharrou  2018_october    1191 Jun  6 04:36 main.c
+  5145489 -rwxrwxrwx  1 akharrou  2018_october    4628 Jun  6 05:18 main.o
+  5156933 -rwxrwxrwx  1 akharrou  2018_october    3951 Jun  6 18:29 output.c
+  5156938 -rwxrwxrwx  1 akharrou  2018_october   45172 Jun  6 18:29 output.o
+  5144422 -rwxrwxrwx  1 akharrou  2018_october    1803 Jun  6 04:36 preliminaries.c
+  5145492 -rwxrwxrwx  1 akharrou  2018_october   18332 Jun  6 05:18 preliminaries.o
+  5145012 -rwxrwxrwx  1 akharrou  2018_october    2233 Jun  6 04:55 utils.c
+  5145496 -rwxrwxrwx  1 akharrou  2018_october   16500 Jun  6 05:19 utils.o
+
+./.vscode:
+total 256
+4713831 drwxrwxrwx  1 akharrou  2018_october  32768 May 26 18:52 .
+4704196 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 18:33 ..
+4713832 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 18:15 ipch
+5139719 -rwxrwxrwx  1 akharrou  2018_october    407 Jun  6 03:10 settings.json
+
+./.vscode/ipch:
+total 1920
+4713832 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 18:15 .
+4713831 drwxrwxrwx  1 akharrou  2018_october  32768 May 26 18:52 ..
+5118448 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  5 18:18 17788dcbe42eaba8
+5139582 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 03:07 17e54922c4c1a4eb
+5080546 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 04:35 1ec5827161419aa1
+5103135 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 00:53 221309a26c0a1739
+5087488 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 03:44 2e9d7eeeb7f9d506
+5065247 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 05:18 30d7f7050efb4292
+5080083 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 05:18 36017d4d7b76020
+5081474 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 04:06 37868aa49b87360b
+5118586 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  5 20:55 3a16b4c1a3504901
+5088421 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  5 16:57 44de7a7ededf8c0f
+5082801 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  5 13:50 49351255c394fbc4
+5080084 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 15:40 686e244c0ac91edc
+5156795 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 18:15 81661562d08cc293
+5140662 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 03:35 87225a2e700cb2bb
+5117488 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  5 18:15 8a6a164ae581d0f9
+5085404 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 05:18 97be430c6ee69875
+5102999 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  5 17:09 982710903ac526af
+5090350 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  5 17:03 984f74b707fc6766
+5085172 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 04:37 ad3b4451f25d2180
+5086096 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 04:37 afc3bf493ed8bfc1
+5131285 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 03:45 b1aea05dd3deca3f
+5086097 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  5 20:55 c8dc021b8a492bcb
+5145256 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 05:22 ce408f626b53916f
+5139098 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 03:06 df75cb47db7c9868
+5086098 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  5 16:26 ec6bc77b2de0bda6
+5117560 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  5 18:15 ee2b525d3950647f
+5143780 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 04:38 efde401703aab2f2
+5142141 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 03:35 f9172d6abd70db33
+
+./.vscode/ipch/17788dcbe42eaba8:
+total 8768
+5118448 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  5 18:18 .
+4713832 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 18:15 ..
+5118449 -rwxrwxrwx  1 akharrou  2018_october        8 Jun  5 18:18 mmap_address.bin
+5118450 -rwxrwxrwx  1 akharrou  2018_october  4382720 Jun  5 18:18 vector_destructor.ipch
+
+./.vscode/ipch/17e54922c4c1a4eb:
+total 8768
+5139582 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 03:07 .
+4713832 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 18:15 ..
+5139584 -rwxrwxrwx  1 akharrou  2018_october  4382720 Jun  6 03:07 ft_mergesort.ipch
+5139583 -rwxrwxrwx  1 akharrou  2018_october        8 Jun  6 03:07 mmap_address.bin
+
+./.vscode/ipch/1ec5827161419aa1:
+total 14912
+5080546 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 04:35 .
+4713832 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 18:15 ..
+5143794 -rwxrwxrwx  1 akharrou  2018_october  7536640 Jun  6 04:35 info.ipch
+5080548 -rwxrwxrwx  1 akharrou  2018_october        8 Jun  5 13:11 mmap_address.bin
+
+./.vscode/ipch/221309a26c0a1739:
+total 8768
+5103135 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 00:53 .
+4713832 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 18:15 ..
+5103136 -rwxrwxrwx  1 akharrou  2018_october        8 Jun  5 17:09 mmap_address.bin
+5137602 -rwxrwxrwx  1 akharrou  2018_october  4382720 Jun  6 03:01 vector_map.ipch
+
+./.vscode/ipch/2e9d7eeeb7f9d506:
+total 14912
+5087488 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 03:44 .
+4713832 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 18:15 ..
+5142246 -rwxrwxrwx  1 akharrou  2018_october  7536640 Jun  6 03:44 compare_by_ascii.ipch
+5087489 -rwxrwxrwx  1 akharrou  2018_october        8 Jun  5 16:55 mmap_address.bin
+
+./.vscode/ipch/30d7f7050efb4292:
+total 14912
+5065247 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 05:18 .
+4713832 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 18:15 ..
+5143781 -rwxrwxrwx  1 akharrou  2018_october  7536640 Jun  6 18:04 core.ipch
+5065249 -rwxrwxrwx  1 akharrou  2018_october        8 Jun  4 22:07 mmap_address.bin
+
+./.vscode/ipch/36017d4d7b76020:
+total 14912
+5080083 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 05:18 .
+4713832 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 18:15 ..
+5080547 -rwxrwxrwx  1 akharrou  2018_october        8 Jun  5 13:11 mmap_address.bin
+5144723 -rwxrwxrwx  1 akharrou  2018_october  7536640 Jun  6 18:33 output.ipch
+
+./.vscode/ipch/37868aa49b87360b:
+total 10816
+5081474 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 04:06 .
+4713832 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 18:15 ..
+5143549 -rwxrwxrwx  1 akharrou  2018_october  5435392 Jun  6 04:06 ft_getdirentries.ipch
+5081475 -rwxrwxrwx  1 akharrou  2018_october        8 Jun  5 13:34 mmap_address.bin
+
+./.vscode/ipch/3a16b4c1a3504901:
+total 8768
+5118586 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  5 20:55 .
+4713832 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 18:15 ..
+5118587 -rwxrwxrwx  1 akharrou  2018_october        8 Jun  5 18:18 mmap_address.bin
+5133500 -rwxrwxrwx  1 akharrou  2018_october  4382720 Jun  5 20:55 vector_iter.ipch
+
+./.vscode/ipch/44de7a7ededf8c0f:
+total 192
+5088421 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  5 16:57 .
+4713832 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 18:15 ..
+5088422 -rwxrwxrwx  1 akharrou  2018_october      8 Jun  5 16:57 mmap_address.bin
+
+./.vscode/ipch/49351255c394fbc4:
+total 8768
+5082801 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  5 13:50 .
+4713832 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 18:15 ..
+5082803 -rwxrwxrwx  1 akharrou  2018_october  4382720 Jun  5 13:50 ft_astrcpy.ipch
+5082802 -rwxrwxrwx  1 akharrou  2018_october        8 Jun  5 13:50 mmap_address.bin
+
+./.vscode/ipch/686e244c0ac91edc:
+total 14912
+5080084 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 15:40 .
+4713832 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 18:15 ..
+5080085 -rwxrwxrwx  1 akharrou  2018_october        8 Jun  5 13:11 mmap_address.bin
+5153686 -rwxrwxrwx  1 akharrou  2018_october  7536640 Jun  6 18:04 utils.ipch
+
+./.vscode/ipch/81661562d08cc293:
+total 8768
+5156795 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 18:15 .
+4713832 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 18:15 ..
+5156797 -rwxrwxrwx  1 akharrou  2018_october  4382720 Jun  6 18:15 ft_strjoin.ipch
+5156796 -rwxrwxrwx  1 akharrou  2018_october        8 Jun  6 18:15 mmap_address.bin
+
+./.vscode/ipch/87225a2e700cb2bb:
+total 6720
+5140662 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 03:35 .
+4713832 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 18:15 ..
+5142142 -rwxrwxrwx  1 akharrou  2018_october  3334144 Jun  6 03:35 ft_strncpy.ipch
+5142140 -rwxrwxrwx  1 akharrou  2018_october        8 Jun  6 03:35 mmap_address.bin
+
+./.vscode/ipch/8a6a164ae581d0f9:
+total 4672
+5117488 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  5 18:15 .
+4713832 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 18:15 ..
+5117490 -rwxrwxrwx  1 akharrou  2018_october  2285568 Jun  5 18:15 ft_printf.ipch
+5117489 -rwxrwxrwx  1 akharrou  2018_october        8 Jun  5 18:15 mmap_address.bin
+
+./.vscode/ipch/97be430c6ee69875:
+total 14912
+5085404 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 05:18 .
+4713832 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 18:15 ..
+5085865 -rwxrwxrwx  1 akharrou  2018_october        8 Jun  5 16:21 mmap_address.bin
+5144640 -rwxrwxrwx  1 akharrou  2018_october  7536640 Jun  6 05:18 preliminaries.ipch
+
+./.vscode/ipch/982710903ac526af:
+total 8768
+5102999 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  5 17:09 .
+4713832 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 18:15 ..
+5103001 -rwxrwxrwx  1 akharrou  2018_october  4382720 Jun  5 17:09 ft_vstrjoin.ipch
+5103000 -rwxrwxrwx  1 akharrou  2018_october        8 Jun  5 17:09 mmap_address.bin
+
+./.vscode/ipch/984f74b707fc6766:
+total 10816
+5090350 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  5 17:03 .
+4713832 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 18:15 ..
+5090353 -rwxrwxrwx  1 akharrou  2018_october  5435392 Jun  5 17:03 ft_getdirent.ipch
+5090352 -rwxrwxrwx  1 akharrou  2018_october        8 Jun  5 17:03 mmap_address.bin
+
+./.vscode/ipch/ad3b4451f25d2180:
+total 14912
+5085172 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 04:37 .
+4713832 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 18:15 ..
+5142939 -rwxrwxrwx  1 akharrou  2018_october  7536640 Jun  6 04:37 main.ipch
+5085173 -rwxrwxrwx  1 akharrou  2018_october        8 Jun  5 16:21 mmap_address.bin
+
+./.vscode/ipch/afc3bf493ed8bfc1:
+total 14912
+5086096 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 04:37 .
+4713832 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 18:15 ..
+5143551 -rwxrwxrwx  1 akharrou  2018_october  7536640 Jun  6 04:37 globals.ipch
+5087718 -rwxrwxrwx  1 akharrou  2018_october        8 Jun  5 16:38 mmap_address.bin
+
+./.vscode/ipch/b1aea05dd3deca3f:
+total 8768
+5131285 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 03:45 .
+4713832 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 18:15 ..
+5131748 -rwxrwxrwx  1 akharrou  2018_october        8 Jun  5 20:49 mmap_address.bin
+5143414 -rwxrwxrwx  1 akharrou  2018_october  4382720 Jun  6 03:45 vector_viter.ipch
+
+./.vscode/ipch/c8dc021b8a492bcb:
+total 14912
+5086097 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  5 20:55 .
+4713832 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 18:15 ..
+5131287 -rwxrwxrwx  1 akharrou  2018_october  7536640 Jun  6 03:11 error.ipch
+5086099 -rwxrwxrwx  1 akharrou  2018_october        8 Jun  5 16:21 mmap_address.bin
+
+./.vscode/ipch/ce408f626b53916f:
+total 8768
+5145256 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 05:22 .
+4713832 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 18:15 ..
+5145507 -rwxrwxrwx  1 akharrou  2018_october  4382720 Jun  6 05:22 ft_bzero.ipch
+5145495 -rwxrwxrwx  1 akharrou  2018_october        8 Jun  6 05:22 mmap_address.bin
+
+./.vscode/ipch/df75cb47db7c9868:
+total 8768
+5139098 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 03:06 .
+4713832 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 18:15 ..
+5139447 -rwxrwxrwx  1 akharrou  2018_october  4382720 Jun  6 03:06 ft_quicksort.ipch
+5139446 -rwxrwxrwx  1 akharrou  2018_october        8 Jun  6 03:06 mmap_address.bin
+
+./.vscode/ipch/ec6bc77b2de0bda6:
+total 192
+5086098 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  5 16:26 .
+4713832 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 18:15 ..
+5086333 -rwxrwxrwx  1 akharrou  2018_october      8 Jun  5 16:26 mmap_address.bin
+
+./.vscode/ipch/ee2b525d3950647f:
+total 8768
+5117560 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  5 18:15 .
+4713832 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 18:15 ..
+5117561 -rwxrwxrwx  1 akharrou  2018_october        8 Jun  5 18:15 mmap_address.bin
+5117562 -rwxrwxrwx  1 akharrou  2018_october  4382720 Jun  5 18:18 vector_constructor.ipch
+
+./.vscode/ipch/efde401703aab2f2:
+total 8768
+5143780 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 04:38 .
+4713832 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 18:15 ..
+5144876 -rwxrwxrwx  1 akharrou  2018_october  4382720 Jun  6 04:38 ft_strdup.ipch
+5144875 -rwxrwxrwx  1 akharrou  2018_october        8 Jun  6 04:38 mmap_address.bin
+
+./.vscode/ipch/f9172d6abd70db33:
+total 192
+5142141 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 03:35 .
+4713832 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 18:15 ..
+5142244 -rwxrwxrwx  1 akharrou  2018_october      8 Jun  6 03:35 mmap_address.bin
+
+./Comparators:
+total 896
+4940973 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 05:19 .
+4704196 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 18:33 ..
+5138139 -rwxrwxrwx  1 akharrou  2018_october   1119 Jun  6 02:53 compare_by_ascii.c
+5145499 -rwxrwxrwx  1 akharrou  2018_october   6536 Jun  6 05:19 compare_by_ascii.o
+5138141 -rwxrwxrwx  1 akharrou  2018_october   1190 Jun  6 02:55 compare_by_atime.c
+5145502 -rwxrwxrwx  1 akharrou  2018_october   7472 Jun  6 05:19 compare_by_atime.o
+5138143 -rwxrwxrwx  1 akharrou  2018_october   1190 Jun  6 02:55 compare_by_ctime.c
+5145503 -rwxrwxrwx  1 akharrou  2018_october   7472 Jun  6 05:19 compare_by_ctime.o
+5138144 -rwxrwxrwx  1 akharrou  2018_october   1190 Jun  6 02:55 compare_by_mtime.c
+5145501 -rwxrwxrwx  1 akharrou  2018_october   7472 Jun  6 05:19 compare_by_mtime.o
+5138145 -rwxrwxrwx  1 akharrou  2018_october    968 Jun  6 02:55 compare_by_none.c
+5145498 -rwxrwxrwx  1 akharrou  2018_october   2484 Jun  6 05:19 compare_by_none.o
+5067323 -rwxrwxrwx  1 akharrou  2018_october   1099 Jun  4 22:07 compare_by_size.c
+5145500 -rwxrwxrwx  1 akharrou  2018_october   6800 Jun  6 05:19 compare_by_size.o
+
+./Libft:
+total 3648
+5118873 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 03:30 .
+4704196 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 18:33 ..
+5118876 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 04:37 BigInt
+5118888 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 04:37 Binary-Trees
+5129953 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  5 18:19 Crypt
+5118896 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 04:37 Ctype
+5118922 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 04:37 Dicts
+5118933 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 04:37 Hashtables
+5118946 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 03:30 Includes
+5118969 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 04:37 Lists-Stacks-Queues
+5141787 -rwxrwxrwx  1 akharrou  2018_october    40994 Jun  6 03:30 Makefile
+5119005 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 04:37 Math
+5119064 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 04:37 Stdio
+5119112 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 04:37 Stdlib
+5119167 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 04:37 String
+5119224 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 04:37 Tries
+5129979 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 04:37 UVector
+5129950 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 04:37 Unistd
+5129912 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 04:37 Vector
+5138084 -rwxrwxrwx  1 akharrou  2018_october  1209616 Jun  6 03:31 libft.a
+
+./Libft/BigInt:
+total 832
+5118876 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 04:37 .
+5118873 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 03:30 ..
+5141270 -rwxrwxrwx  1 akharrou  2018_october   1905 Jun  6 03:30 arithmetic_dispatcher.c
+5141271 -rwxrwxrwx  1 akharrou  2018_october   2939 Jun  6 03:30 bigint_add.c
+5141273 -rwxrwxrwx  1 akharrou  2018_october   1258 Jun  6 03:30 bigint_cleaner.c
+5141274 -rwxrwxrwx  1 akharrou  2018_october   1612 Jun  6 03:30 bigint_compare.c
+5141275 -rwxrwxrwx  1 akharrou  2018_october   2257 Jun  6 03:30 bigint_div.c
+5141276 -rwxrwxrwx  1 akharrou  2018_october   1087 Jun  6 03:30 bigint_max.c
+5141277 -rwxrwxrwx  1 akharrou  2018_october   1087 Jun  6 03:30 bigint_min.c
+5141278 -rwxrwxrwx  1 akharrou  2018_october   2064 Jun  6 03:30 bigint_mul.c
+5141279 -rwxrwxrwx  1 akharrou  2018_october   2805 Jun  6 03:30 bigint_normalizer.c
+5141280 -rwxrwxrwx  1 akharrou  2018_october   2370 Jun  6 03:30 bigint_round.c
+5141281 -rwxrwxrwx  1 akharrou  2018_october   2915 Jun  6 03:30 bigint_sub.c
+
+./Libft/Binary-Trees:
+total 576
+5118888 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 04:37 .
+5118873 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 03:30 ..
+5141282 -rwxrwxrwx  1 akharrou  2018_october   1154 Jun  6 03:30 btree_apply_infix.c
+5141283 -rwxrwxrwx  1 akharrou  2018_october   1157 Jun  6 03:30 btree_apply_prefix.c
+5141284 -rwxrwxrwx  1 akharrou  2018_october   1157 Jun  6 03:30 btree_apply_suffix.c
+5141285 -rwxrwxrwx  1 akharrou  2018_october   1253 Jun  6 03:30 btree_getitem.c
+5141286 -rwxrwxrwx  1 akharrou  2018_october   1403 Jun  6 03:30 btree_insert.c
+5141287 -rwxrwxrwx  1 akharrou  2018_october   1265 Jun  6 03:30 btree_level_count.c
+5141288 -rwxrwxrwx  1 akharrou  2018_october   1174 Jun  6 03:30 btree_newnode.c
+
+./Libft/Crypt:
+total 448
+5129953 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  5 18:19 .
+5118873 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 03:30 ..
+5129954 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 04:37 MD5
+5129959 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 04:37 SHA2-224
+5129969 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 04:37 SHA2-256
+5129964 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 04:37 SHA2-384
+5129974 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 04:37 SHA2-512
+
+./Libft/Crypt/MD5:
+total 384
+5129954 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 04:37 .
+5129953 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  5 18:19 ..
+5141289 -rwxrwxrwx  1 akharrou  2018_october   2285 Jun  6 03:30 ft_md5.c
+5141290 -rwxrwxrwx  1 akharrou  2018_october   2708 Jun  6 03:30 ft_md5.h
+5141291 -rwxrwxrwx  1 akharrou  2018_october   5543 Jun  6 03:30 md5_process.c
+5141292 -rwxrwxrwx  1 akharrou  2018_october   1383 Jun  6 03:30 md5_utils.c
+
+./Libft/Crypt/SHA2-224:
+total 384
+5129959 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 04:37 .
+5129953 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  5 18:19 ..
+5141293 -rwxrwxrwx  1 akharrou  2018_october   2315 Jun  6 03:30 ft_sha224.c
+5141294 -rwxrwxrwx  1 akharrou  2018_october   2763 Jun  6 03:30 ft_sha224.h
+5141295 -rwxrwxrwx  1 akharrou  2018_october   5824 Jun  6 03:30 sha224_process.c
+5141296 -rwxrwxrwx  1 akharrou  2018_october   2423 Jun  6 03:30 sha224_utils.c
+
+./Libft/Crypt/SHA2-256:
+total 384
+5129969 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 04:37 .
+5129953 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  5 18:19 ..
+5141297 -rwxrwxrwx  1 akharrou  2018_october   2315 Jun  6 03:30 ft_sha256.c
+5141298 -rwxrwxrwx  1 akharrou  2018_october   2763 Jun  6 03:30 ft_sha256.h
+5141299 -rwxrwxrwx  1 akharrou  2018_october   5873 Jun  6 03:30 sha256_process.c
+5141300 -rwxrwxrwx  1 akharrou  2018_october   2423 Jun  6 03:30 sha256_utils.c
+
+./Libft/Crypt/SHA2-384:
+total 384
+5129964 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 04:37 .
+5129953 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  5 18:19 ..
+5141301 -rwxrwxrwx  1 akharrou  2018_october   2315 Jun  6 03:30 ft_sha384.c
+5141302 -rwxrwxrwx  1 akharrou  2018_october   2768 Jun  6 03:30 ft_sha384.h
+5141303 -rwxrwxrwx  1 akharrou  2018_october   6570 Jun  6 03:30 sha384_process.c
+5141304 -rwxrwxrwx  1 akharrou  2018_october   2423 Jun  6 03:30 sha384_utils.c
+
+./Libft/Crypt/SHA2-512:
+total 384
+5129974 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 04:37 .
+5129953 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  5 18:19 ..
+5141305 -rwxrwxrwx  1 akharrou  2018_october   2315 Jun  6 03:30 ft_sha512.c
+5141306 -rwxrwxrwx  1 akharrou  2018_october   2768 Jun  6 03:30 ft_sha512.h
+5141307 -rwxrwxrwx  1 akharrou  2018_october   6700 Jun  6 03:30 sha512_process.c
+5141308 -rwxrwxrwx  1 akharrou  2018_october   2423 Jun  6 03:30 sha512_utils.c
+
+./Libft/Ctype:
+total 1728
+5118896 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 04:37 .
+5118873 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 03:30 ..
+5141309 -rwxrwxrwx  1 akharrou  2018_october   1108 Jun  6 03:30 ft_cmpstr.c
+5141310 -rwxrwxrwx  1 akharrou  2018_october   1860 Jun  6 03:30 ft_int_isany.c
+5141311 -rwxrwxrwx  1 akharrou  2018_october    990 Jun  6 03:30 ft_isalnum.c
+5141312 -rwxrwxrwx  1 akharrou  2018_october    990 Jun  6 03:30 ft_isalpha.c
+5141313 -rwxrwxrwx  1 akharrou  2018_october    949 Jun  6 03:30 ft_isascii.c
+5141314 -rwxrwxrwx  1 akharrou  2018_october    952 Jun  6 03:30 ft_isblank.c
+5141315 -rwxrwxrwx  1 akharrou  2018_october   1028 Jun  6 03:30 ft_ischarset.c
+5141316 -rwxrwxrwx  1 akharrou  2018_october    977 Jun  6 03:30 ft_iscntrl.c
+5141317 -rwxrwxrwx  1 akharrou  2018_october    951 Jun  6 03:30 ft_isdigit.c
+5141318 -rwxrwxrwx  1 akharrou  2018_october    950 Jun  6 03:30 ft_isgraph.c
+5141319 -rwxrwxrwx  1 akharrou  2018_october    951 Jun  6 03:30 ft_islower.c
+5141320 -rwxrwxrwx  1 akharrou  2018_october   1176 Jun  6 03:30 ft_isprime.c
+5141321 -rwxrwxrwx  1 akharrou  2018_october    950 Jun  6 03:30 ft_isprint.c
+5141322 -rwxrwxrwx  1 akharrou  2018_october    991 Jun  6 03:30 ft_ispunct.c
+5141323 -rwxrwxrwx  1 akharrou  2018_october   1019 Jun  6 03:30 ft_isspace.c
+5141324 -rwxrwxrwx  1 akharrou  2018_october   1738 Jun  6 03:30 ft_isstrset.c
+5141325 -rwxrwxrwx  1 akharrou  2018_october   2131 Jun  6 03:30 ft_isstrsets.c
+5141326 -rwxrwxrwx  1 akharrou  2018_october    951 Jun  6 03:30 ft_isupper.c
+5141327 -rwxrwxrwx  1 akharrou  2018_october   1902 Jun  6 03:30 ft_str_isany.c
+5141328 -rwxrwxrwx  1 akharrou  2018_october   1117 Jun  6 03:30 ft_strtolower.c
+5141329 -rwxrwxrwx  1 akharrou  2018_october   1117 Jun  6 03:30 ft_strtoupper.c
+5141330 -rwxrwxrwx  1 akharrou  2018_october   1034 Jun  6 03:30 ft_to_big_endian.c
+5141331 -rwxrwxrwx  1 akharrou  2018_october   1037 Jun  6 03:30 ft_to_little_endian.c
+5141332 -rwxrwxrwx  1 akharrou  2018_october    989 Jun  6 03:30 ft_tolower.c
+5141333 -rwxrwxrwx  1 akharrou  2018_october    989 Jun  6 03:30 ft_toupper.c
+
+./Libft/Dicts:
+total 768
+5118922 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 04:37 .
+5118873 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 03:30 ..
+5141334 -rwxrwxrwx  1 akharrou  2018_october    998 Jun  6 03:30 dict_clear.c
+5141335 -rwxrwxrwx  1 akharrou  2018_october   1431 Jun  6 03:30 dict_extend.c
+5141336 -rwxrwxrwx  1 akharrou  2018_october   1022 Jun  6 03:30 dict_getentry.c
+5141337 -rwxrwxrwx  1 akharrou  2018_october   1332 Jun  6 03:30 dict_getentry_fast.c
+5141338 -rwxrwxrwx  1 akharrou  2018_october   1128 Jun  6 03:30 dict_getindex.c
+5141339 -rwxrwxrwx  1 akharrou  2018_october   1051 Jun  6 03:30 dict_getitem.c
+5141340 -rwxrwxrwx  1 akharrou  2018_october   1190 Jun  6 03:30 dict_getitem_fast.c
+5141341 -rwxrwxrwx  1 akharrou  2018_october   1173 Jun  6 03:30 dict_insert.c
+5141342 -rwxrwxrwx  1 akharrou  2018_october   1006 Jun  6 03:30 dict_new.c
+5141343 -rwxrwxrwx  1 akharrou  2018_october   1014 Jun  6 03:30 dict_remove.c
+
+./Libft/Hashtables:
+total 896
+5118933 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 04:37 .
+5118873 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 03:30 ..
+5141344 -rwxrwxrwx  1 akharrou  2018_october   2326 Jun  6 03:30 hashtab_clear.c
+5141345 -rwxrwxrwx  1 akharrou  2018_october   1584 Jun  6 03:30 hashtab_count.c
+5141346 -rwxrwxrwx  1 akharrou  2018_october   2433 Jun  6 03:30 hashtab_destroy.c
+5141347 -rwxrwxrwx  1 akharrou  2018_october   2039 Jun  6 03:30 hashtab_getentry.c
+5141348 -rwxrwxrwx  1 akharrou  2018_october   1856 Jun  6 03:30 hashtab_getitem.c
+5141349 -rwxrwxrwx  1 akharrou  2018_october   5022 Jun  6 03:30 hashtab_grow.c
+5141350 -rwxrwxrwx  1 akharrou  2018_october   2049 Jun  6 03:30 hashtab_init.c
+5141351 -rwxrwxrwx  1 akharrou  2018_october   4451 Jun  6 03:30 hashtab_insert.c
+5141352 -rwxrwxrwx  1 akharrou  2018_october   2558 Jun  6 03:30 hashtab_new.c
+5141353 -rwxrwxrwx  1 akharrou  2018_october   2947 Jun  6 03:30 hashtab_popitem.c
+5141354 -rwxrwxrwx  1 akharrou  2018_october   2018 Jun  6 03:30 hashtab_remove.c
+5141355 -rwxrwxrwx  1 akharrou  2018_october   5183 Jun  6 03:30 hashtab_shrink.c
+
+./Libft/Includes:
+total 1472
+5118946 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 03:30 .
+5118873 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 03:30 ..
+5141356 -rwxrwxrwx  1 akharrou  2018_october   2811 Jun  6 03:30 bigint.h
+5141357 -rwxrwxrwx  1 akharrou  2018_october   9832 Jun  6 03:30 bitfield.h
+5141358 -rwxrwxrwx  1 akharrou  2018_october   1767 Jun  6 03:30 btree.h
+5141359 -rwxrwxrwx  1 akharrou  2018_october   2671 Jun  6 03:30 crypt.h
+5141360 -rwxrwxrwx  1 akharrou  2018_october   2808 Jun  6 03:30 ctype_42.h
+5141361 -rwxrwxrwx  1 akharrou  2018_october   1936 Jun  6 03:30 dict.h
+5141362 -rwxrwxrwx  1 akharrou  2018_october   4111 Jun  6 03:30 ft_printf.h
+5141363 -rwxrwxrwx  1 akharrou  2018_october   1585 Jun  6 03:30 ft_readline.h
+5141364 -rwxrwxrwx  1 akharrou  2018_october   2327 Jun  6 03:30 hashtable.h
+5141365 -rwxrwxrwx  1 akharrou  2018_october   2345 Jun  6 03:30 libft.h
+5141366 -rwxrwxrwx  1 akharrou  2018_october   3430 Jun  6 03:30 list.h
+5141367 -rwxrwxrwx  1 akharrou  2018_october   8290 Jun  6 03:30 macros_42.h
+5141368 -rwxrwxrwx  1 akharrou  2018_october   2504 Jun  6 03:30 math_42.h
+5141369 -rwxrwxrwx  1 akharrou  2018_october   3638 Jun  6 03:30 stdint_42.h
+5141370 -rwxrwxrwx  1 akharrou  2018_october   2961 Jun  6 03:30 stdio_42.h
+5141371 -rwxrwxrwx  1 akharrou  2018_october   4563 Jun  6 03:30 stdlib_42.h
+5141372 -rwxrwxrwx  1 akharrou  2018_october   4871 Jun  6 03:30 string_42.h
+5141373 -rwxrwxrwx  1 akharrou  2018_october   1950 Jun  6 03:30 trie.h
+5141374 -rwxrwxrwx  1 akharrou  2018_october   1540 Jun  6 03:30 unistd_42.h
+5141375 -rwxrwxrwx  1 akharrou  2018_october   4630 Jun  6 03:30 uvector.h
+5141376 -rwxrwxrwx  1 akharrou  2018_october   7033 Jun  6 03:30 vector.h
+
+./Libft/Lists-Stacks-Queues:
+total 2240
+5118969 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 04:37 .
+5118873 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 03:30 ..
+5141377 -rwxrwxrwx  1 akharrou  2018_october   2177 Jun  6 03:30 list_append.c
+5141378 -rwxrwxrwx  1 akharrou  2018_october   2854 Jun  6 03:30 list_append_both.c
+5141379 -rwxrwxrwx  1 akharrou  2018_october   2402 Jun  6 03:30 list_append_tail.c
+5141380 -rwxrwxrwx  1 akharrou  2018_october   1911 Jun  6 03:30 list_clear.c
+5141381 -rwxrwxrwx  1 akharrou  2018_october   1591 Jun  6 03:30 list_count.c
+5141382 -rwxrwxrwx  1 akharrou  2018_october   1965 Jun  6 03:30 list_elem_at.c
+5141383 -rwxrwxrwx  1 akharrou  2018_october   2482 Jun  6 03:30 list_extend.c
+5141384 -rwxrwxrwx  1 akharrou  2018_october   2498 Jun  6 03:30 list_extend_tail.c
+5141385 -rwxrwxrwx  1 akharrou  2018_october   2088 Jun  6 03:30 list_extendleft.c
+5141386 -rwxrwxrwx  1 akharrou  2018_october   2306 Jun  6 03:30 list_getelem.c
+5141387 -rwxrwxrwx  1 akharrou  2018_october   2157 Jun  6 03:30 list_getitem.c
+5141388 -rwxrwxrwx  1 akharrou  2018_october   3191 Jun  6 03:30 list_insert.c
+5141389 -rwxrwxrwx  1 akharrou  2018_october   2858 Jun  6 03:30 list_insert_at.c
+5141390 -rwxrwxrwx  1 akharrou  2018_october   1823 Jun  6 03:30 list_item_at.c
+5141391 -rwxrwxrwx  1 akharrou  2018_october   1764 Jun  6 03:30 list_iter.c
+5141392 -rwxrwxrwx  1 akharrou  2018_october   2184 Jun  6 03:30 list_iteri.c
+5141393 -rwxrwxrwx  1 akharrou  2018_october   1650 Jun  6 03:30 list_last_elem.c
+5141394 -rwxrwxrwx  1 akharrou  2018_october   1671 Jun  6 03:30 list_last_item.c
+5141395 -rwxrwxrwx  1 akharrou  2018_october   2380 Jun  6 03:30 list_map.c
+5141396 -rwxrwxrwx  1 akharrou  2018_october   1857 Jun  6 03:30 list_merge.c
+5141397 -rwxrwxrwx  1 akharrou  2018_october   1787 Jun  6 03:30 list_newelem.c
+5141398 -rwxrwxrwx  1 akharrou  2018_october   2209 Jun  6 03:30 list_pop.c
+5141399 -rwxrwxrwx  1 akharrou  2018_october   2854 Jun  6 03:30 list_pop_item.c
+5141400 -rwxrwxrwx  1 akharrou  2018_october   2406 Jun  6 03:30 list_pop_item_at.c
+5141401 -rwxrwxrwx  1 akharrou  2018_october   3117 Jun  6 03:30 list_pop_tail.c
+5141402 -rwxrwxrwx  1 akharrou  2018_october   2070 Jun  6 03:30 list_popleft.c
+5141403 -rwxrwxrwx  1 akharrou  2018_october   2129 Jun  6 03:30 list_prepend.c
+5141404 -rwxrwxrwx  1 akharrou  2018_october   3034 Jun  6 03:30 list_remove_elem.c
+5141405 -rwxrwxrwx  1 akharrou  2018_october   2656 Jun  6 03:30 list_remove_elem_at.c
+5141406 -rwxrwxrwx  1 akharrou  2018_october   2657 Jun  6 03:30 list_remove_item.c
+5141407 -rwxrwxrwx  1 akharrou  2018_october   2565 Jun  6 03:30 list_remove_item_at.c
+5141408 -rwxrwxrwx  1 akharrou  2018_october   1744 Jun  6 03:30 list_reverse.c
+5141409 -rwxrwxrwx  1 akharrou  2018_october   2309 Jun  6 03:30 list_sort.c
+
+./Libft/Math:
+total 1216
+5119005 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 04:37 .
+5118873 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 03:30 ..
+5141410 -rwxrwxrwx  1 akharrou  2018_october   1682 Jun  6 03:30 ft_max.c
+5141411 -rwxrwxrwx  1 akharrou  2018_october   1705 Jun  6 03:30 ft_max_d.c
+5141412 -rwxrwxrwx  1 akharrou  2018_october   1693 Jun  6 03:30 ft_max_l.c
+5141413 -rwxrwxrwx  1 akharrou  2018_october   1682 Jun  6 03:30 ft_min.c
+5141414 -rwxrwxrwx  1 akharrou  2018_october   1705 Jun  6 03:30 ft_min_d.c
+5141415 -rwxrwxrwx  1 akharrou  2018_october   1692 Jun  6 03:30 ft_min_l.c
+5141416 -rwxrwxrwx  1 akharrou  2018_october   1727 Jun  6 03:30 ft_pow.c
+5141417 -rwxrwxrwx  1 akharrou  2018_october   1785 Jun  6 03:30 ft_powl.c
+5141418 -rwxrwxrwx  1 akharrou  2018_october   1599 Jun  6 03:30 ft_powll.c
+5141419 -rwxrwxrwx  1 akharrou  2018_october   1184 Jun  6 03:30 ft_round.c
+5141420 -rwxrwxrwx  1 akharrou  2018_october   1048 Jun  6 03:30 ft_round_with_prior.c
+5141421 -rwxrwxrwx  1 akharrou  2018_october   1779 Jun  6 03:30 ft_sqrt.c
+5141422 -rwxrwxrwx  1 akharrou  2018_october   1677 Jun  6 03:30 ft_sum.c
+5141423 -rwxrwxrwx  1 akharrou  2018_october   1697 Jun  6 03:30 ft_sum_d.c
+5141424 -rwxrwxrwx  1 akharrou  2018_october   1982 Jun  6 03:30 ft_sum_generic.c
+5141425 -rwxrwxrwx  1 akharrou  2018_october   1688 Jun  6 03:30 ft_sum_l.c
+5141426 -rwxrwxrwx  1 akharrou  2018_october   1736 Jun  6 03:30 ft_sum_ld.c
+
+./Libft/Stdio:
+total 2048
+5119064 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 04:37 .
+5118873 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 03:30 ..
+5119065 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 04:37 PrintfUtils
+5141427 -rwxrwxrwx  1 akharrou  2018_october   1132 Jun  6 03:30 ft_asprintf.c
+5141428 -rwxrwxrwx  1 akharrou  2018_october   1134 Jun  6 03:30 ft_dprintf.c
+5141429 -rwxrwxrwx  1 akharrou  2018_october   1139 Jun  6 03:30 ft_open.c
+5141430 -rwxrwxrwx  1 akharrou  2018_october   1153 Jun  6 03:30 ft_printf.c
+5141431 -rwxrwxrwx  1 akharrou  2018_october   1784 Jun  6 03:30 ft_putbits.c
+5141432 -rwxrwxrwx  1 akharrou  2018_october   1173 Jun  6 03:30 ft_putbyte.c
+5141433 -rwxrwxrwx  1 akharrou  2018_october   1194 Jun  6 03:30 ft_putbyte_fd.c
+5141434 -rwxrwxrwx  1 akharrou  2018_october   1220 Jun  6 03:30 ft_putbytes.c
+5141435 -rwxrwxrwx  1 akharrou  2018_october   1263 Jun  6 03:30 ft_putbytes_fd.c
+5141436 -rwxrwxrwx  1 akharrou  2018_october    959 Jun  6 03:30 ft_putchar.c
+5141437 -rwxrwxrwx  1 akharrou  2018_october    971 Jun  6 03:30 ft_putchar_fd.c
+5141438 -rwxrwxrwx  1 akharrou  2018_october   1047 Jun  6 03:30 ft_putendl.c
+5141439 -rwxrwxrwx  1 akharrou  2018_october   1060 Jun  6 03:30 ft_putendl_fd.c
+5141440 -rwxrwxrwx  1 akharrou  2018_october   1123 Jun  6 03:30 ft_putnbr.c
+5141441 -rwxrwxrwx  1 akharrou  2018_october   1968 Jun  6 03:30 ft_putnbr_base.c
+5141442 -rwxrwxrwx  1 akharrou  2018_october   2011 Jun  6 03:30 ft_putnbr_base_fd.c
+5141443 -rwxrwxrwx  1 akharrou  2018_october   1162 Jun  6 03:30 ft_putnbr_fd.c
+5141444 -rwxrwxrwx  1 akharrou  2018_october   1019 Jun  6 03:30 ft_putstr.c
+5141445 -rwxrwxrwx  1 akharrou  2018_october   1031 Jun  6 03:30 ft_putstr_fd.c
+5141446 -rwxrwxrwx  1 akharrou  2018_october   1054 Jun  6 03:30 ft_putstrtab.c
+5141447 -rwxrwxrwx  1 akharrou  2018_october   1079 Jun  6 03:30 ft_putstrtab_fd.c
+5141448 -rwxrwxrwx  1 akharrou  2018_october   1857 Jun  6 03:30 ft_readfile.c
+5141449 -rwxrwxrwx  1 akharrou  2018_october   2075 Jun  6 03:30 ft_readfiledes.c
+5141450 -rwxrwxrwx  1 akharrou  2018_october   2533 Jun  6 03:30 ft_readline.c
+5141451 -rwxrwxrwx  1 akharrou  2018_october   1128 Jun  6 03:30 ft_sprintf.c
+5141452 -rwxrwxrwx  1 akharrou  2018_october   1518 Jun  6 03:30 ft_vasprintf.c
+5141453 -rwxrwxrwx  1 akharrou  2018_october   1496 Jun  6 03:30 ft_vdprintf.c
+5141454 -rwxrwxrwx  1 akharrou  2018_october   1120 Jun  6 03:30 ft_vprintf.c
+5141455 -rwxrwxrwx  1 akharrou  2018_october   1481 Jun  6 03:30 ft_vsprintf.c
+
+./Libft/Stdio/PrintfUtils:
+total 320
+5119065 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 04:37 .
+5119064 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 04:37 ..
+5119066 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 04:37 Handlers
+5141456 -rwxrwxrwx  1 akharrou  2018_october   6680 Jun  6 03:30 formatter.c
+5141457 -rwxrwxrwx  1 akharrou  2018_october   6383 Jun  6 03:30 parser.c
+
+./Libft/Stdio/PrintfUtils/Handlers:
+total 1024
+5119066 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 04:37 .
+5119065 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 04:37 ..
+5141458 -rwxrwxrwx  1 akharrou  2018_october   2888 Jun  6 03:30 b_handler.c
+5141459 -rwxrwxrwx  1 akharrou  2018_october   2274 Jun  6 03:30 c_handler.c
+5141460 -rwxrwxrwx  1 akharrou  2018_october   1979 Jun  6 03:30 d_handler.c
+5141461 -rwxrwxrwx  1 akharrou  2018_october   3092 Jun  6 03:30 f_handler.c
+5141462 -rwxrwxrwx  1 akharrou  2018_october   2921 Jun  6 03:30 i_handler.c
+5141463 -rwxrwxrwx  1 akharrou  2018_october   1896 Jun  6 03:30 mod_handler.c
+5141464 -rwxrwxrwx  1 akharrou  2018_october   2928 Jun  6 03:30 o_handler.c
+5141465 -rwxrwxrwx  1 akharrou  2018_october   2396 Jun  6 03:30 p_handler.c
+5141466 -rwxrwxrwx  1 akharrou  2018_october   2758 Jun  6 03:30 r_handler.c
+5141467 -rwxrwxrwx  1 akharrou  2018_october   2301 Jun  6 03:30 s_handler.c
+5141468 -rwxrwxrwx  1 akharrou  2018_october   4769 Jun  6 03:30 style_handler.c
+5141469 -rwxrwxrwx  1 akharrou  2018_october   2481 Jun  6 03:30 u_handler.c
+5141470 -rwxrwxrwx  1 akharrou  2018_october   2880 Jun  6 03:30 x_handler.c
+5141471 -rwxrwxrwx  1 akharrou  2018_october   2884 Jun  6 03:30 xx_handler.c
+
+./Libft/Stdlib:
+total 3584
+5119112 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 04:37 .
+5118873 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 03:30 ..
+5141472 -rwxrwxrwx  1 akharrou  2018_october   1114 Jun  6 03:30 ft_alpha_to_index.c
+5141473 -rwxrwxrwx  1 akharrou  2018_october   1316 Jun  6 03:30 ft_atoi.c
+5141474 -rwxrwxrwx  1 akharrou  2018_october   2518 Jun  6 03:30 ft_atoi_base.c
+5141475 -rwxrwxrwx  1 akharrou  2018_october   1067 Jun  6 03:30 ft_bnull.c
+5141476 -rwxrwxrwx  1 akharrou  2018_october   2602 Jun  6 03:30 ft_bubble_sort.c
+5141477 -rwxrwxrwx  1 akharrou  2018_october    986 Jun  6 03:30 ft_bzero.c
+5141478 -rwxrwxrwx  1 akharrou  2018_october   1173 Jun  6 03:30 ft_char_to_index.c
+5141479 -rwxrwxrwx  1 akharrou  2018_october   1056 Jun  6 03:30 ft_chrcount.c
+5141480 -rwxrwxrwx  1 akharrou  2018_october   3092 Jun  6 03:30 ft_convert_base.c
+5141481 -rwxrwxrwx  1 akharrou  2018_october   2431 Jun  6 03:30 ft_dtoa_base.c
+5141482 -rwxrwxrwx  1 akharrou  2018_october   1084 Jun  6 03:30 ft_find_next_prime.c
+5141483 -rwxrwxrwx  1 akharrou  2018_october   1075 Jun  6 03:30 ft_ftoa.c
+5141484 -rwxrwxrwx  1 akharrou  2018_october   1057 Jun  6 03:30 ft_ftoa_base.c
+5141485 -rwxrwxrwx  1 akharrou  2018_october   1263 Jun  6 03:30 ft_hash.c
+5141486 -rwxrwxrwx  1 akharrou  2018_october   2680 Jun  6 03:30 ft_insertion_sort.c
+5141487 -rwxrwxrwx  1 akharrou  2018_october    992 Jun  6 03:30 ft_intlen.c
+5141488 -rwxrwxrwx  1 akharrou  2018_october   1128 Jun  6 03:30 ft_intlen_base.c
+5141489 -rwxrwxrwx  1 akharrou  2018_october   1166 Jun  6 03:30 ft_intmaxlen_base.c
+5141490 -rwxrwxrwx  1 akharrou  2018_october   1032 Jun  6 03:30 ft_itoa.c
+5141491 -rwxrwxrwx  1 akharrou  2018_october   1562 Jun  6 03:30 ft_itoa_base.c
+5141492 -rwxrwxrwx  1 akharrou  2018_october   2256 Jun  6 03:30 ft_ldtoa_base.c
+5141493 -rwxrwxrwx  1 akharrou  2018_october   1574 Jun  6 03:30 ft_lltoa_base.c
+5141494 -rwxrwxrwx  1 akharrou  2018_october   1560 Jun  6 03:30 ft_ltoa_base.c
+5141495 -rwxrwxrwx  1 akharrou  2018_october   1117 Jun  6 03:30 ft_malloc.c
+5141496 -rwxrwxrwx  1 akharrou  2018_october   1136 Jun  6 03:30 ft_matrix_clear.c
+5141497 -rwxrwxrwx  1 akharrou  2018_october   1339 Jun  6 03:30 ft_matrix_new.c
+5141498 -rwxrwxrwx  1 akharrou  2018_october   1070 Jun  6 03:30 ft_memalloc.c
+5141499 -rwxrwxrwx  1 akharrou  2018_october   1194 Jun  6 03:30 ft_memccpy.c
+5141500 -rwxrwxrwx  1 akharrou  2018_october   1124 Jun  6 03:30 ft_memchr.c
+5141501 -rwxrwxrwx  1 akharrou  2018_october   1261 Jun  6 03:30 ft_memcmp.c
+5141502 -rwxrwxrwx  1 akharrou  2018_october   1088 Jun  6 03:30 ft_memcpy.c
+5141503 -rwxrwxrwx  1 akharrou  2018_october   1002 Jun  6 03:30 ft_memdel.c
+5141504 -rwxrwxrwx  1 akharrou  2018_october   1786 Jun  6 03:30 ft_memdup.c
+5141505 -rwxrwxrwx  1 akharrou  2018_october   1331 Jun  6 03:30 ft_memmove.c
+5141506 -rwxrwxrwx  1 akharrou  2018_october   1065 Jun  6 03:30 ft_memset.c
+5141507 -rwxrwxrwx  1 akharrou  2018_october   1063 Jun  6 03:30 ft_memset_addr.c
+5141508 -rwxrwxrwx  1 akharrou  2018_october   1070 Jun  6 03:30 ft_memswap.c
+5141509 -rwxrwxrwx  1 akharrou  2018_october   3461 Jun  6 03:30 ft_mergesort.c
+5141510 -rwxrwxrwx  1 akharrou  2018_october   1158 Jun  6 03:30 ft_padding.c
+5141511 -rwxrwxrwx  1 akharrou  2018_october   2774 Jun  6 03:30 ft_quicksort.c
+5141512 -rwxrwxrwx  1 akharrou  2018_october   3323 Jun  6 03:30 ft_realloc.c
+5141513 -rwxrwxrwx  1 akharrou  2018_october   1223 Jun  6 03:30 ft_reverse_bytes.c
+5141514 -rwxrwxrwx  1 akharrou  2018_october   2616 Jun  6 03:30 ft_selection_sort.c
+5141515 -rwxrwxrwx  1 akharrou  2018_october    976 Jun  6 03:30 ft_swap_char.c
+5141516 -rwxrwxrwx  1 akharrou  2018_october    972 Jun  6 03:30 ft_swap_int.c
+5141517 -rwxrwxrwx  1 akharrou  2018_october    978 Jun  6 03:30 ft_swap_ptr.c
+5141518 -rwxrwxrwx  1 akharrou  2018_october    978 Jun  6 03:30 ft_swap_str.c
+5141519 -rwxrwxrwx  1 akharrou  2018_october   1124 Jun  6 03:30 ft_uintmaxlen_base.c
+5141520 -rwxrwxrwx  1 akharrou  2018_october   1483 Jun  6 03:30 ft_uitoa_base.c
+5141521 -rwxrwxrwx  1 akharrou  2018_october   1490 Jun  6 03:30 ft_ulltoa_base.c
+5141522 -rwxrwxrwx  1 akharrou  2018_october   1484 Jun  6 03:30 ft_ultoa_base.c
+5141523 -rwxrwxrwx  1 akharrou  2018_october   1479 Jun  6 03:30 ft_utoa_base.c
+5141524 -rwxrwxrwx  1 akharrou  2018_october   1256 Jun  6 03:30 ft_wcount.c
+5141525 -rwxrwxrwx  1 akharrou  2018_october   1346 Jun  6 03:30 valid_base.c
+
+./Libft/String:
+total 3712
+5119167 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 04:37 .
+5118873 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 03:30 ..
+5141526 -rwxrwxrwx  1 akharrou  2018_october   1193 Jun  6 03:30 ft_astrcpy.c
+5141527 -rwxrwxrwx  1 akharrou  2018_october   1098 Jun  6 03:30 ft_astrncpy.c
+5141528 -rwxrwxrwx  1 akharrou  2018_october   1060 Jun  6 03:30 ft_strappend.c
+5141529 -rwxrwxrwx  1 akharrou  2018_october   1316 Jun  6 03:30 ft_strcat.c
+5141530 -rwxrwxrwx  1 akharrou  2018_october   1137 Jun  6 03:30 ft_strchr.c
+5141531 -rwxrwxrwx  1 akharrou  2018_october   1161 Jun  6 03:30 ft_strchrs.c
+5141532 -rwxrwxrwx  1 akharrou  2018_october   1040 Jun  6 03:30 ft_strclr.c
+5141533 -rwxrwxrwx  1 akharrou  2018_october   1073 Jun  6 03:30 ft_strcmp.c
+5141534 -rwxrwxrwx  1 akharrou  2018_october   1317 Jun  6 03:30 ft_strcpy.c
+5141535 -rwxrwxrwx  1 akharrou  2018_october   1188 Jun  6 03:30 ft_strcpy_until.c
+5141536 -rwxrwxrwx  1 akharrou  2018_october   1002 Jun  6 03:30 ft_strdel.c
+5141537 -rwxrwxrwx  1 akharrou  2018_october   1243 Jun  6 03:30 ft_strdup.c
+5141538 -rwxrwxrwx  1 akharrou  2018_october   1043 Jun  6 03:30 ft_strdup_range.c
+5141539 -rwxrwxrwx  1 akharrou  2018_october   1050 Jun  6 03:30 ft_strequ.c
+5141540 -rwxrwxrwx  1 akharrou  2018_october   1568 Jun  6 03:30 ft_strhex.c
+5141541 -rwxrwxrwx  1 akharrou  2018_october    985 Jun  6 03:30 ft_striter.c
+5141542 -rwxrwxrwx  1 akharrou  2018_october   1054 Jun  6 03:30 ft_striteri.c
+5141543 -rwxrwxrwx  1 akharrou  2018_october   1525 Jun  6 03:30 ft_strjoin.c
+5141544 -rwxrwxrwx  1 akharrou  2018_october   1369 Jun  6 03:30 ft_strlcat.c
+5141545 -rwxrwxrwx  1 akharrou  2018_october   1324 Jun  6 03:30 ft_strlcpy.c
+5141546 -rwxrwxrwx  1 akharrou  2018_october   1029 Jun  6 03:30 ft_strlen.c
+5141547 -rwxrwxrwx  1 akharrou  2018_october   1269 Jun  6 03:30 ft_strlstrip.c
+5141548 -rwxrwxrwx  1 akharrou  2018_october   1215 Jun  6 03:30 ft_strmap.c
+5141549 -rwxrwxrwx  1 akharrou  2018_october   1280 Jun  6 03:30 ft_strmapi.c
+5141550 -rwxrwxrwx  1 akharrou  2018_october   1059 Jun  6 03:30 ft_strnappend.c
+5141551 -rwxrwxrwx  1 akharrou  2018_october   1124 Jun  6 03:30 ft_strncat.c
+5141552 -rwxrwxrwx  1 akharrou  2018_october   1135 Jun  6 03:30 ft_strncmp.c
+5141553 -rwxrwxrwx  1 akharrou  2018_october   1106 Jun  6 03:30 ft_strncpy.c
+5141554 -rwxrwxrwx  1 akharrou  2018_october   1422 Jun  6 03:30 ft_strndup.c
+5141555 -rwxrwxrwx  1 akharrou  2018_october   1095 Jun  6 03:30 ft_strnequ.c
+5141556 -rwxrwxrwx  1 akharrou  2018_october   1043 Jun  6 03:30 ft_strnew.c
+5141557 -rwxrwxrwx  1 akharrou  2018_october   1620 Jun  6 03:30 ft_strnjoin.c
+5141558 -rwxrwxrwx  1 akharrou  2018_october   1049 Jun  6 03:30 ft_strnlen.c
+5141559 -rwxrwxrwx  1 akharrou  2018_october   1288 Jun  6 03:30 ft_strnlstrip.c
+5141560 -rwxrwxrwx  1 akharrou  2018_october   1063 Jun  6 03:30 ft_strnprepend.c
+5141561 -rwxrwxrwx  1 akharrou  2018_october   1299 Jun  6 03:30 ft_strnrstrip.c
+5141562 -rwxrwxrwx  1 akharrou  2018_october   1305 Jun  6 03:30 ft_strnstr.c
+5141563 -rwxrwxrwx  1 akharrou  2018_october   1061 Jun  6 03:30 ft_strprepend.c
+5141564 -rwxrwxrwx  1 akharrou  2018_october   1189 Jun  6 03:30 ft_strrchr.c
+5141565 -rwxrwxrwx  1 akharrou  2018_october   1087 Jun  6 03:30 ft_strrev.c
+5141566 -rwxrwxrwx  1 akharrou  2018_october   1284 Jun  6 03:30 ft_strrstrip.c
+5141567 -rwxrwxrwx  1 akharrou  2018_october   1981 Jun  6 03:30 ft_strsplit.c
+5141568 -rwxrwxrwx  1 akharrou  2018_october   1270 Jun  6 03:30 ft_strstr.c
+5141569 -rwxrwxrwx  1 akharrou  2018_october   1390 Jun  6 03:30 ft_strstrip.c
+5141570 -rwxrwxrwx  1 akharrou  2018_october   1033 Jun  6 03:30 ft_strsub.c
+5141571 -rwxrwxrwx  1 akharrou  2018_october   2081 Jun  6 03:30 ft_strtab.c
+5141572 -rwxrwxrwx  1 akharrou  2018_october   1725 Jun  6 03:30 ft_strtab_appendstr.c
+5141573 -rwxrwxrwx  1 akharrou  2018_october   1178 Jun  6 03:30 ft_strtabcat.c
+5141574 -rwxrwxrwx  1 akharrou  2018_october   1334 Jun  6 03:30 ft_strtabdup.c
+5141575 -rwxrwxrwx  1 akharrou  2018_october   1047 Jun  6 03:30 ft_strtablen.c
+5141576 -rwxrwxrwx  1 akharrou  2018_october   1198 Jun  6 03:30 ft_strtabncat.c
+5141577 -rwxrwxrwx  1 akharrou  2018_october   1356 Jun  6 03:30 ft_strtabndup.c
+5141578 -rwxrwxrwx  1 akharrou  2018_october   1754 Jun  6 03:30 ft_strtabnew.c
+5141579 -rwxrwxrwx  1 akharrou  2018_october   1076 Jun  6 03:30 ft_strtabnlen.c
+5141580 -rwxrwxrwx  1 akharrou  2018_october   1344 Jun  6 03:30 ft_strtrim.c
+5141581 -rwxrwxrwx  1 akharrou  2018_october   3779 Jun  6 03:30 ft_vstrjoin.c
+
+./Libft/Tries:
+total 512
+5119224 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 04:37 .
+5118873 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 03:30 ..
+5141582 -rwxrwxrwx  1 akharrou  2018_october   1333 Jun  6 03:30 trie_clear.c
+5141583 -rwxrwxrwx  1 akharrou  2018_october   1243 Jun  6 03:30 trie_count.c
+5141584 -rwxrwxrwx  1 akharrou  2018_october   1288 Jun  6 03:30 trie_getitem.c
+5141585 -rwxrwxrwx  1 akharrou  2018_october   1499 Jun  6 03:30 trie_insert.c
+5141586 -rwxrwxrwx  1 akharrou  2018_october   1204 Jun  6 03:30 trie_newnode.c
+5141587 -rwxrwxrwx  1 akharrou  2018_october   1504 Jun  6 03:30 trie_remove.c
+
+./Libft/UVector:
+total 1536
+5129979 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 04:37 .
+5118873 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 03:30 ..
+5141588 -rwxrwxrwx  1 akharrou  2018_october  12938 Jun  6 03:30 tests_uvector
+5141589 -rwxrwxrwx  1 akharrou  2018_october   1739 Jun  6 03:30 uvector_append.c
+5141590 -rwxrwxrwx  1 akharrou  2018_october   1792 Jun  6 03:30 uvector_appendleft.c
+5141591 -rwxrwxrwx  1 akharrou  2018_october   2545 Jun  6 03:30 uvector_constructor.c
+5141592 -rwxrwxrwx  1 akharrou  2018_october   2046 Jun  6 03:30 uvector_copy.c
+5141593 -rwxrwxrwx  1 akharrou  2018_october   1467 Jun  6 03:30 uvector_deque.c
+5141594 -rwxrwxrwx  1 akharrou  2018_october   1459 Jun  6 03:30 uvector_destructor.c
+5141595 -rwxrwxrwx  1 akharrou  2018_october   1588 Jun  6 03:30 uvector_enque.c
+5141596 -rwxrwxrwx  1 akharrou  2018_october   2163 Jun  6 03:30 uvector_extend.c
+5141597 -rwxrwxrwx  1 akharrou  2018_october   2558 Jun  6 03:30 uvector_extendleft.c
+5141598 -rwxrwxrwx  1 akharrou  2018_october   1776 Jun  6 03:30 uvector_get.c
+5141599 -rwxrwxrwx  1 akharrou  2018_october   1928 Jun  6 03:30 uvector_insert.c
+5141600 -rwxrwxrwx  1 akharrou  2018_october   1550 Jun  6 03:30 uvector_isempty.c
+5141601 -rwxrwxrwx  1 akharrou  2018_october   1568 Jun  6 03:30 uvector_isfull.c
+5141602 -rwxrwxrwx  1 akharrou  2018_october   1807 Jun  6 03:30 uvector_leftshift.c
+5141603 -rwxrwxrwx  1 akharrou  2018_october   1758 Jun  6 03:30 uvector_pop.c
+5141604 -rwxrwxrwx  1 akharrou  2018_october   1692 Jun  6 03:30 uvector_popleft.c
+5141605 -rwxrwxrwx  1 akharrou  2018_october   1583 Jun  6 03:30 uvector_push.c
+5141606 -rwxrwxrwx  1 akharrou  2018_october   2349 Jun  6 03:30 uvector_resize.c
+5141607 -rwxrwxrwx  1 akharrou  2018_october   1781 Jun  6 03:30 uvector_reverse.c
+5141608 -rwxrwxrwx  1 akharrou  2018_october   1854 Jun  6 03:30 uvector_rightshift.c
+5141609 -rwxrwxrwx  1 akharrou  2018_october   1561 Jun  6 03:30 uvector_setall.c
+
+./Libft/Unistd:
+total 256
+5129950 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 04:37 .
+5118873 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 03:30 ..
+5141610 -rwxrwxrwx  1 akharrou  2018_october   1935 Jun  6 03:30 ft_getdirentries.c
+5141611 -rwxrwxrwx  1 akharrou  2018_october   2071 Jun  6 03:30 ft_getdirents.c
+
+./Libft/Vector:
+total 2496
+5129912 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 04:37 .
+5118873 drwxrwxrwx  1 akharrou  2018_october  32768 Jun  6 03:30 ..
+5141612 -rwxrwxrwx  1 akharrou  2018_october  12185 Jun  6 03:30 tests_vector
+5141613 -rwxrwxrwx  1 akharrou  2018_october   1886 Jun  6 03:30 vector_append.c
+5141614 -rwxrwxrwx  1 akharrou  2018_october   1854 Jun  6 03:30 vector_appendleft.c
+5141615 -rwxrwxrwx  1 akharrou  2018_october   1645 Jun  6 03:30 vector_clear.c
+5141616 -rwxrwxrwx  1 akharrou  2018_october   3291 Jun  6 03:30 vector_constructor.c
+5141617 -rwxrwxrwx  1 akharrou  2018_october   2045 Jun  6 03:30 vector_copy.c
+5141618 -rwxrwxrwx  1 akharrou  2018_october   1884 Jun  6 03:30 vector_count.c
+5141619 -rwxrwxrwx  1 akharrou  2018_october   1482 Jun  6 03:30 vector_deque.c
+5141620 -rwxrwxrwx  1 akharrou  2018_october   1558 Jun  6 03:30 vector_destructor.c
+5141621 -rwxrwxrwx  1 akharrou  2018_october   1712 Jun  6 03:30 vector_empty.c
+5141622 -rwxrwxrwx  1 akharrou  2018_october   1572 Jun  6 03:30 vector_enque.c
+5141623 -rwxrwxrwx  1 akharrou  2018_october   2147 Jun  6 03:30 vector_extend.c
+5141624 -rwxrwxrwx  1 akharrou  2018_october   2532 Jun  6 03:30 vector_extendleft.c
+5141625 -rwxrwxrwx  1 akharrou  2018_october   2493 Jun  6 03:30 vector_filter.c
+5141626 -rwxrwxrwx  1 akharrou  2018_october   1845 Jun  6 03:30 vector_find.c
+5141627 -rwxrwxrwx  1 akharrou  2018_october   1557 Jun  6 03:30 vector_free.c
+5141628 -rwxrwxrwx  1 akharrou  2018_october   2023 Jun  6 03:30 vector_from.c
+5141629 -rwxrwxrwx  1 akharrou  2018_october   1713 Jun  6 03:30 vector_get.c
+5141630 -rwxrwxrwx  1 akharrou  2018_october   2351 Jun  6 03:30 vector_getby_ref.c
+5141259 -rwxrwxrwx  1 akharrou  2018_october   1744 Jun  6 03:30 vector_init.c
+5141631 -rwxrwxrwx  1 akharrou  2018_october   1975 Jun  6 03:30 vector_insert.c
+5141632 -rwxrwxrwx  1 akharrou  2018_october   1595 Jun  6 03:30 vector_instance.c
+5141633 -rwxrwxrwx  1 akharrou  2018_october   1539 Jun  6 03:30 vector_isempty.c
+5141634 -rwxrwxrwx  1 akharrou  2018_october   1557 Jun  6 03:30 vector_isfull.c
+5141635 -rwxrwxrwx  1 akharrou  2018_october   1523 Jun  6 03:30 vector_isvoid.c
+5141636 -rwxrwxrwx  1 akharrou  2018_october   1766 Jun  6 03:30 vector_iter.c
+5141637 -rwxrwxrwx  1 akharrou  2018_october   1974 Jun  6 03:30 vector_leftshift.c
+5141638 -rwxrwxrwx  1 akharrou  2018_october   3722 Jun  6 03:30 vector_map.c
+5141639 -rwxrwxrwx  1 akharrou  2018_october   1733 Jun  6 03:30 vector_pop.c
+5141640 -rwxrwxrwx  1 akharrou  2018_october   1704 Jun  6 03:30 vector_popleft.c
+5141641 -rwxrwxrwx  1 akharrou  2018_october   1567 Jun  6 03:30 vector_push.c
+5141642 -rwxrwxrwx  1 akharrou  2018_october   1800 Jun  6 03:30 vector_remove.c
+5141643 -rwxrwxrwx  1 akharrou  2018_october   2328 Jun  6 03:30 vector_resize.c
+5141644 -rwxrwxrwx  1 akharrou  2018_october   1760 Jun  6 03:30 vector_reverse.c
+5141645 -rwxrwxrwx  1 akharrou  2018_october   2005 Jun  6 03:30 vector_rightshift.c
+5141646 -rwxrwxrwx  1 akharrou  2018_october   2317 Jun  6 03:30 vector_search.c
+5141647 -rwxrwxrwx  1 akharrou  2018_october   2593 Jun  6 03:30 vector_viter.c

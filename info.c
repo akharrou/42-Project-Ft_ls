@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:20:43 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/06 04:35:24 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/06 20:51:59 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ static mode_t	mode2type(mode_t mode)
 
 	if (S_ISREG(mode))
 		type = REGULAR_FILE;
-	else if (S_ISDIR(mode))
-		type = DIRECTORY;
 	else if (S_ISLNK(mode))
 		type = SYMBOLIC_LINK;
+	else if (S_ISDIR(mode))
+		type = DIRECTORY;
 	else if (S_ISFIFO(mode))
 		type = NAMED_PIPE;
 	else if (S_ISSOCK(mode))
@@ -35,13 +35,13 @@ static mode_t	mode2type(mode_t mode)
 	return (type);
 }
 
-t_file			ft_getfile(const char path[MAX_PATHLEN + 1])
+t_file			ft_getfile(const char path[MAX_PATHLEN + 1], uint64_t flags)
 {
 	struct stat	filestat;
 	t_file		file;
 	char		*tmp;
 
-	if (stat(path, &filestat) == -1)
+	if (((flags & L_FLAG) ? stat(path, &filestat) : lstat(path, &filestat)) < 0)
 		EXIT(perror(NULL));
 	file = (t_file) {
 		.type = mode2type(filestat.st_mode),
@@ -68,22 +68,25 @@ static void		*wrap_getfile_from_dirent(void *vector_element, va_list ap)
 {
 	t_file		*file;
 	char		*path;
+	uint64_t	flags;
 
 	path = va_arg(ap, char *);
 	path = ft_strdup(path);
+	flags = va_arg(ap, uint64_t);
 	file = (t_file *)malloc(sizeof(t_file));
 	path = ft_strjoin(path, ((struct dirent *)vector_element)->d_name);
-	(*file) = ft_getfile(path);
+	(*file) = ft_getfile(path, flags);
 	free(path);
 	return (file);
 }
 
-t_vector		ft_getdirfiles(const char dirpath[MAX_PATHLEN + 1])
+t_vector		ft_getdirfiles(const char dirpath[MAX_PATHLEN + 1],
+					uint64_t flags)
 {
 	t_vector	dir;
 
 	dir = ft_getdirentries(dirpath);
 	if (dir.vector != NULL)
-		dir.remap(&dir, &wrap_getfile_from_dirent, dirpath);
+		dir.remap(&dir, &wrap_getfile_from_dirent, dirpath, flags);
 	return (dir);
 }

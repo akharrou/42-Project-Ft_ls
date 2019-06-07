@@ -6,14 +6,22 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:24:50 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/06 05:25:59 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/06 20:44:02 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static void		cmode(mode_t mode, char *modestr)
+#define OWNER_WIDTH (str_lengths[0])
+#define GROUP_WIDTH (str_lengths[1])
+#define INODE_WIDTH (num_lengths[0])
+#define SIZE_WIDTH  (num_lengths[1])
+#define LINKS_WIDTH (num_lengths[2])
+
+static void		cmode(const char *path, mode_t mode, char *modestr)
 {
+	ssize_t ret;
+
 	ft_strcpy(modestr, "----------");
 	S_ISREG(mode) && (modestr[0] = '-');
 	S_ISDIR(mode) && (modestr[0] = 'd');
@@ -37,30 +45,32 @@ static void		cmode(mode_t mode, char *modestr)
 		modestr[6] = (mode & S_IXGRP) ? 's' : 'l';
 	if (mode & S_ISVTX)
 		modestr[9] = (mode & S_IXOTH) ? 't' : 'T';
-	modestr[10] = '\0';
+	modestr[10] = ((ret = listxattr(path, &modestr[10], 1, 0)) > 0) ? '@' : '\0';
+	modestr[11] = '\0';
 }
 
 void			ft_printfile(t_file file, uint64_t flags,
 					int *str_lengths, int *num_lengths)
 {
 	char		timestr[13];
-	char		modestr[11];
+	char		modestr[12];
 
 	if (!(flags & a_FLAG) && file.name[0] == '.')
 		return ;
 	if (flags & i_FLAG)
-		ft_printf("%*i ", num_lengths[0], file.inode);
+		ft_printf("%*i ", INODE_WIDTH, file.inode);
 	if (flags & l_FLAG)
 	{
 		ft_strncpy(timestr, ctime(&file.modifi_time) + 4, 12);
-		cmode(file.mode, modestr);
-		ft_printf("%s %*i %*s  %*s  %*i %12s %s%s\n",
-			modestr, num_lengths[2], file.nlinks,
-			str_lengths[0], file.owner, str_lengths[1], file.group,
-			num_lengths[1], file.size, timestr, file.name,
+		cmode(file.path, file.mode, modestr);
+		ft_printf("%-11s %*i %*s  %*s  %*i %12s %s%s",
+			modestr, LINKS_WIDTH, file.nlinks,
+			OWNER_WIDTH, file.owner, GROUP_WIDTH, file.group,
+			SIZE_WIDTH, file.size, timestr, file.name,
 			((flags & p_FLAG) && file.type == DIRECTORY) ? "/" : "");
-		if (file.type == SYMBOLIC_LINK)
-			ft_printf(" -> %s", file.linkpath);
+		(file.type == SYMBOLIC_LINK) ?
+			ft_printf(" -> %s\n", file.linkpath) :
+			ft_printf("\n");
 	}
 	else
 		ft_printf("%s%s\n",
@@ -83,31 +93,31 @@ static void		wrap_printfile(void *vector_element, va_list ap)
 
 void			ft_printdir(t_vector dir, uint64_t flags)
 {
-	int			str_lengths[2];
-	int			num_lengths[3];
+	int			*str_lengths;
+	int			*num_lengths;
 	blkcnt_t	total;
 	t_file		file;
 	size_t		i;
 
 	total = 0;
-	ft_bzero(str_lengths, (sizeof(int) * 2));
-	ft_bzero(num_lengths, (sizeof(int) * 3));
+	str_lengths = ft_malloc(sizeof(int) * 2, '\0');
+	num_lengths = ft_malloc(sizeof(int) * 3, '\0');
 	i = -1;
 	while (++i < dir.length)
 	{
 		file = *((t_file *)dir.vector[i]);
 		if (!(flags & a_FLAG) && file.name[0] == '.')
 			continue ;
-		str_lengths[0] = MAX(str_lengths[0], (int)ft_strlen(file.owner));
-		str_lengths[1] = MAX(str_lengths[1], (int)ft_strlen(file.group));
-		num_lengths[0] = MAX(num_lengths[0], (int)file.inode);
-		num_lengths[1] = MAX(num_lengths[1], (int)file.size);
-		num_lengths[2] = MAX(num_lengths[2], (int)file.nlinks);
-		total += ((t_file *)dir.vector[i])->nblocks;
+		OWNER_WIDTH = MAX(OWNER_WIDTH, (int)ft_strlen(file.owner));
+		GROUP_WIDTH = MAX(GROUP_WIDTH, (int)ft_strlen(file.group));
+		INODE_WIDTH = MAX(INODE_WIDTH, (int)ft_intlen(file.inode));
+		LINKS_WIDTH = MAX(LINKS_WIDTH, (int)ft_intlen(file.nlinks));
+		SIZE_WIDTH = MAX(SIZE_WIDTH, (int)ft_intlen(file.size));
+		total += file.nblocks;
 	}
 	if (flags & l_FLAG)
 		ft_printf("total %i\n", total);
 	dir.viter(&dir, &wrap_printfile, flags, str_lengths, num_lengths);
+	free(str_lengths);
+	free(num_lengths);
 }
-
-/* TODO : make sure getting the widths works and prints correctly */

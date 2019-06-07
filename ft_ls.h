@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:50:11 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/06 05:18:05 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/06 20:52:10 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 
 # include <sys/types.h>
 # include <sys/stat.h>
+# include <sys/xattr.h>
 
 # include <grp.h>
 # include <pwd.h>
@@ -77,8 +78,9 @@ enum			e_flag_values
 	p_FLAG = (1 << 7),
 	i_FLAG = (1 << 8),
 	f_FLAG = ((1 << 9) | a_FLAG),
-	R_FLAG = (1 << 10),
-	_1_FLAG = (1 << 11)
+	L_FLAG = (1 << 10),
+	R_FLAG = (1 << 11),
+	_1_FLAG = (1 << 12)
 };
 
 /*
@@ -143,9 +145,11 @@ int				ft_listdir(char *dirpath, uint64_t flags,
 **  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 */
 
-t_vector		ft_getdirfiles(const char dirname[MAX_PATHLEN + 1]);
+t_vector		ft_getdirfiles(const char dirpath[MAX_PATHLEN + 1],
+					uint64_t flags);
 
-t_file			ft_getfile(const char path[MAX_PATHLEN + 1]);
+t_file			ft_getfile(const char path[MAX_PATHLEN + 1],
+					uint64_t flags);
 
 /*
 **  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
@@ -200,3 +204,13 @@ int				reverse_compare_by_ctime(void *a, void *b);
 */
 
 #endif
+
+/* TODO :
+
+	- FIX LINKS
+	- FIX WRONG TOTALS
+	- FIX SORTING FLAGS
+	- FIX @ SIGN
+	- FIX MULTIPLE ARGUMENTS
+
+ */
