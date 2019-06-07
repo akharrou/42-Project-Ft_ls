@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:50:11 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/07 01:45:28 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/07 03:57:47 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,9 @@ void			*get_cmpft(uint64_t flags);
 int				ft_ls(int argc, const char *argv[], uint64_t flags,
 					int (*cmpft)(void *, void *));
 
+void			ft_listdirs(t_vector files, uint64_t flags,
+					int (*cmpft)(void *, void *));
+
 int				ft_listdir(char *dirpath, uint64_t flags,
 					int (*cmpft)(void *, void *));
 
@@ -208,6 +211,9 @@ int				reverse_compare_by_ctime(void *a, void *b);
 /* TODO :
 
 	- FIX SORTING FLAGS
-	- FIX MULTIPLE ARGUMENTS
+	- FIX Libft/Stdlib -- .O STDLIB DIR FOREVER RECURSIVE LOOP
+	- FIX ~/
+	- FIX RETURN LINE OR NOT FOR PRINTING MULTIPLE DIRS
+	- FIX LEAKS
 
  */

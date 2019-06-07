@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:20:06 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/07 03:04:55 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/07 03:49:52 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int				ft_listdir(char *dirpath, uint64_t flags,
 		ft_quicksort(dir.vector, dir.length, sizeof(void *), cmpft);
 		ft_printdir(dir, flags);
 		if (flags & R_FLAG)
-			dir.viter(&dir, &vprint_dirs, 2, dirpath, flags, cmpft);
+			ft_listdirs(dir, flags, cmpft);
+			// dir.viter(&dir, &vprint_dirs, 2, dirpath, flags, cmpft);
 		vector.destructor(&dir);
 	}
 	free(dirpath);
@@ -49,56 +50,6 @@ static void		*wrap_getfile_from_argv(void *vector_element, va_list ap)
 	file = (t_file *)malloc(sizeof(t_file));
 	(*file) = ft_getfile(path, flags);
 	return (file);
-}
-
-void			ft_printdirs(t_vector files, uint64_t flags,
-					int (*cmpft)(void *, void *))
-{
-	t_file		*file;
-	size_t		i;
-
-	i = -1;
-	while (++i < files.length)
-	{
-		file = (t_file *)files.vector[i];
-		if (file->type == DIRECTORY)
-		{
-			if ((!(flags & a_FLAG) && file->name[0] == '.') ||
-				ft_strcmp(file->name, ".") == 0 ||
-				ft_strcmp(file->name, "..") == 0)
-			{
-				continue ;
-			}
-			ft_printf("\n%s:\n", file->name);
-			ft_listdir(ft_strdup(file->path), flags, cmpft);
-		}
-	}
-}
-
-void			vprint_dirs(void *vector_element, va_list ap)
-{
-	int			(*cmpft)(void *, void *);
-	char		*dirpath;
-	uint64_t	flags;
-	t_file		*file;
-
-	if (!vector_element)
-		return ;
-	dirpath = va_arg(ap, char *);
-	flags = va_arg(ap, uint64_t);
-	cmpft = va_arg(ap, int (*)(void *, void *));
-	file = (t_file *)vector_element;
-	if ((!(flags & a_FLAG) && file->name[0] == '.') ||
-		ft_strcmp(file->name, ".") == 0 ||
-		ft_strcmp(file->name, "..") == 0)
-	{
-		return ;
-	}
-	if (file->type == DIRECTORY)
-	{
-		ft_printf("\n%s%s:\n", dirpath, file->name);
-		ft_listdir(ft_vstrjoin(dirpath, 2, file->name, "/"), flags, cmpft);
-	}
 }
 
 int				ft_ls(int argc, const char *argv[], uint64_t flags,
@@ -129,7 +80,7 @@ int				ft_ls(int argc, const char *argv[], uint64_t flags,
 		ft_quicksort(files.vector, files.length, sizeof(void *), cmpft);
 		files.iter(&files, &print_errors);
 		files.viter(&files, &vprint_files, flags);
-		ft_printdirs(files, flags, cmpft);
+		ft_listdirs(files, flags, cmpft);
 		vector.destructor(&files);
 	}
 	return (0);
