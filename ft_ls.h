@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:50:11 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/06 22:34:15 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/07 01:45:28 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ enum			e_flag_values
 
 typedef struct	s_file_information
 {
-	char		name[MAX_NAMELEN + 1];
+	char		name[MAX_PATHLEN + 1];
 	char		path[MAX_PATHLEN + 1];
 	\
 	ino_t		inode;
@@ -167,8 +167,8 @@ void			ft_printfile(t_file file, uint64_t flags,
 */
 
 void			print_errors(void *vector_element);
-void			print_files(void *vector_element);
-void			vprint_directories(void *vector_element, va_list ap);
+void			vprint_files(void *vector_element, va_list ap);
+void			vprint_dirs(void *vector_element, va_list ap);
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **

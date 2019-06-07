@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:24:50 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/06 22:26:39 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/07 03:04:48 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ static void		cmode(const char *path, mode_t mode, char *modestr,
 	(mode & S_ISUID) && (modestr[3] = (mode & S_IXUSR) ? 's' : 'S');
 	(mode & S_ISGID) && (modestr[6] = (mode & S_IXGRP) ? 's' : 'l');
 	(mode & S_ISVTX) && (modestr[9] = (mode & S_IXOTH) ? 't' : 'T');
-	ret = listxattr(path, NULL, 0, (flags & L_FLAG) ? 0 : XATTR_NOFOLLOW);
+	(void)flags;
+	ret = listxattr(path, NULL, 0, XATTR_NOFOLLOW);
 	modestr[10] = (ret > 0) ? '@' : '\0';
 	modestr[11] = '\0';
 }
@@ -62,7 +63,7 @@ void			ft_printfile(t_file file, uint64_t flags,
 	{
 		ft_strncpy(timestr, ctime(&file.modifi_time) + 4, 12);
 		cmode(file.path, file.mode, modestr, flags);
-		ft_printf("%-11s %*i %*s  %*s  %*i %12s %s%s",
+		ft_printf("%-11s %*i %-*s  %-*s  %*i %s %s%s",
 			modestr, LINKS_WIDTH, file.nlinks,
 			OWNER_WIDTH, file.owner, GROUP_WIDTH, file.group,
 			SIZE_WIDTH, file.size, timestr, file.name,

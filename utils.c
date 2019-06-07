@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 17:03:13 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/06 22:32:26 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/07 02:32:22 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,39 +23,23 @@ void			print_errors(void *vector_element)
 		ft_printf("./ft_ls: %s: No such file or directory\n", file.name);
 }
 
-void			print_files(void *vector_element)
+void			vprint_files(void *vector_element, va_list ap)
 {
 	t_file		file;
+	uint64_t	flags;
 
 	if (!vector_element)
 		return ;
+	flags = va_arg(ap, uint64_t);
 	file = *(t_file *)vector_element;
 	if (file.type != UNKNOWN_FILE && file.type != DIRECTORY)
-		ft_printf("%s\n", file.name);
-}
-
-void			vprint_directories(void *vector_element, va_list ap)
-{
-	int			(*cmpft)(void *, void *);
-	char		*dirpath;
-	uint64_t	flags;
-	t_file		*file;
-
-	if (!vector_element)
-		return ;
-	dirpath = va_arg(ap, char *);
-	flags = va_arg(ap, uint64_t);
-	cmpft = va_arg(ap, int (*)(void *, void *));
-	file = (t_file *)vector_element;
-	if ((!(flags & a_FLAG) && file->name[0] == '.') ||
-		ft_strcmp(file->name, ".") == 0 ||
-		ft_strcmp(file->name, "..") == 0)
 	{
-		return ;
-	}
-	if (file->type == DIRECTORY)
-	{
-		ft_printf("\n%s%s:\n", dirpath, file->name);
-		ft_listdir(ft_vstrjoin(dirpath, 2, file->name, "/"), flags, cmpft);
+		ft_strncpy(file.name, file.path, MAX_PATHLEN);
+		if (!(flags & l_FLAG))
+			ft_printf("%s\n", file.name);
+		else
+			ft_printfile(file, flags, (int[2]){ft_strlen(file.owner),
+				ft_strlen(file.group)}, (int[3]){ft_intlen(file.inode),
+				ft_intlen(file.size), ft_intlen(file.nlinks)});
 	}
 }

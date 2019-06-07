@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:20:43 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/06 21:54:12 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/07 02:29:37 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,9 @@ t_file			ft_getfile(const char path[MAX_PATHLEN + 1], uint64_t flags)
 {
 	struct stat	filestat;
 	t_file		file;
-	char		*tmp;
 
-	if (((flags & L_FLAG) ? stat(path, &filestat) : lstat(path, &filestat)) < 0)
-		EXIT(perror(NULL));
+	ft_bzero(&filestat, sizeof(struct stat));
+	(flags & L_FLAG) ? stat(path, &filestat) : lstat(path, &filestat);
 	file = (t_file) {
 		.type = mode2type(filestat.st_mode),
 		.inode = filestat.st_ino,
@@ -57,8 +56,7 @@ t_file			ft_getfile(const char path[MAX_PATHLEN + 1], uint64_t flags)
 		.modifi_time = filestat.st_mtime,
 		.change_time = filestat.st_ctime };
 	ft_strncpy(file.path, path, MAX_PATHLEN);
-	tmp = ft_strrchr(path, '/');
-	ft_strncpy(file.name, ((tmp != NULL) ? tmp + 1 : path), MAX_NAMELEN);
+	ft_basename(file.path, file.name);
 	if (file.type == SYMBOLIC_LINK)
 		readlink(file.path, file.linkpath, MAX_PATHLEN);
 	return (file);
