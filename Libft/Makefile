@@ -6,7 +6,7 @@
 #    By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/17 16:23:01 by akharrou          #+#    #+#              #
-#    Updated: 2019/06/05 18:19:09 by akharrou         ###   ########.fr        #
+#    Updated: 2019/06/06 22:15:59 by akharrou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -140,10 +140,10 @@ STDIO       =   Stdio/ft_readline.c                                           \
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
-STDLIB      =   Stdlib/ft_bubble_sort.c                                       \
+STDLIB      =   Stdlib/ft_quicksort.c                                       \
                 Stdlib/ft_insertion_sort.c                                    \
                 Stdlib/ft_selection_sort.c                                    \
-                Stdlib/ft_mergesort.c                                         \
+                Stdlib/ft_quicksort.c                                         \
                 Stdlib/ft_quicksort.c                                         \
                                                                               \
                 Stdlib/ft_bzero.c                                             \

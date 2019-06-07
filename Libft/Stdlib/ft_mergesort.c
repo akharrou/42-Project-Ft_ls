@@ -6,19 +6,19 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 22:38:54 by akharrou          #+#    #+#             */
-/*   Updated: 2019/05/26 11:33:26 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/06 22:15:59 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
 **    NAME
-**         ft_mergesort -- sort an array by ascending order
+**         ft_quicksort -- sort an array by ascending order
 **
 **    SYNOPSIS
 **         #include <libft.h>
 **
 **         int
-**         ft_mergesort(void *base, size_t length, size_t width,
+**         ft_quicksort(void *base, size_t length, size_t width,
 **             int (*cmp)(void *, void *));
 **
 **    PARAMETERS
@@ -74,7 +74,7 @@ static int	merge(void *base[2], size_t length[2], size_t width,
 	return (0);
 }
 
-int			ft_mergesort(void *base, size_t length, size_t width,
+int			ft_quicksort(void *base, size_t length, size_t width,
 				int (*cmp)(void *, void *))
 {
 	size_t	half_lengths[2];
@@ -88,8 +88,8 @@ int			ft_mergesort(void *base, size_t length, size_t width,
 		half_lengths[1] = (length / 2) + (length % 2);
 		half_bases[0] = base;
 		half_bases[1] = base + (half_lengths[0] * width);
-		ret1 = ft_mergesort(half_bases[0], half_lengths[0], width, cmp);
-		ret2 = ft_mergesort(half_bases[1], half_lengths[1], width, cmp);
+		ret1 = ft_quicksort(half_bases[0], half_lengths[0], width, cmp);
+		ret2 = ft_quicksort(half_bases[1], half_lengths[1], width, cmp);
 		if (ret1 == -1 || ret2 == -1)
 			return (-1);
 		return (merge(half_bases, half_lengths, width, cmp));

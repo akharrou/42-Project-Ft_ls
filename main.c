@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:23:20 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/06 04:36:37 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/06 21:35:17 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ int				main(int ac, const char *av[])
 }
 
 /*
-** Did the following bonuses: u, c, S, f, i, p
+** Did the following bonuses: u, c, S, f, i, p, L
 */

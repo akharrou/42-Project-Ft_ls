@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bubble_sort.c                                   :+:      :+:    :+:   */
+/*   ft_quicksort.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,13 +12,13 @@
 
 /*
 **    NAME
-**         ft_bubble_sort -- sort an array by ascending order
+**         ft_quicksort -- sort an array by ascending order
 **
 **    SYNOPSIS
 **         #include <libft.h>
 **
 **         int
-**         ft_bubble_sort(void *base, size_t length, size_t width,
+**         ft_quicksort(void *base, size_t length, size_t width,
 **             int (*cmp)(void *, void *));
 **
 **    PARAMETERS
@@ -47,7 +47,7 @@
 
 #include "../Includes/stdlib_42.h"
 
-int			ft_bubble_sort(void *base, size_t length, size_t width,
+int			ft_quicksort(void *base, size_t length, size_t width,
 				int (*cmp)(void *, void *))
 {
 	int		unordered;

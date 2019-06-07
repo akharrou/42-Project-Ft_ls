@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:20:33 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/06 20:52:25 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/06 22:02:19 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_flag g_flags[] =
 	{ 'c', c_FLAG, &compare_by_ctime, &reverse_compare_by_ctime },
 	{ 'p', p_FLAG, compare_by_ascii, reverse_compare_by_ascii },
 	{ 'i', i_FLAG, compare_by_ascii, reverse_compare_by_ascii },
-	{ 's', S_FLAG, &compare_by_size, &reverse_compare_by_size },
+	{ 'S', S_FLAG, &compare_by_size, &reverse_compare_by_size },
 	{ 'f', f_FLAG, &compare_by_none, &compare_by_none },
 	\
 	{ '\0', 0, NULL, NULL }

@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:50:11 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/06 20:52:10 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/06 22:28:21 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,10 +207,7 @@ int				reverse_compare_by_ctime(void *a, void *b);
 
 /* TODO :
 
-	- FIX LINKS
-	- FIX WRONG TOTALS
 	- FIX SORTING FLAGS
-	- FIX @ SIGN
 	- FIX MULTIPLE ARGUMENTS
 
  */

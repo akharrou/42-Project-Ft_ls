@@ -83,7 +83,7 @@ total 8768
 total 8768
 5139582 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 03:07 .
 4713832 drwxrwxrwx  1 akharrou  2018_october    32768 Jun  6 18:15 ..
-5139584 -rwxrwxrwx  1 akharrou  2018_october  4382720 Jun  6 03:07 ft_mergesort.ipch
+5139584 -rwxrwxrwx  1 akharrou  2018_october  4382720 Jun  6 03:07 ft_quicksort.ipch
 5139583 -rwxrwxrwx  1 akharrou  2018_october        8 Jun  6 03:07 mmap_address.bin
 
 ./.vscode/ipch/1ec5827161419aa1:
@@ -606,7 +606,7 @@ total 3584
 5141473 -rwxrwxrwx  1 akharrou  2018_october   1316 Jun  6 03:30 ft_atoi.c
 5141474 -rwxrwxrwx  1 akharrou  2018_october   2518 Jun  6 03:30 ft_atoi_base.c
 5141475 -rwxrwxrwx  1 akharrou  2018_october   1067 Jun  6 03:30 ft_bnull.c
-5141476 -rwxrwxrwx  1 akharrou  2018_october   2602 Jun  6 03:30 ft_bubble_sort.c
+5141476 -rwxrwxrwx  1 akharrou  2018_october   2602 Jun  6 03:30 ft_quicksort.c
 5141477 -rwxrwxrwx  1 akharrou  2018_october    986 Jun  6 03:30 ft_bzero.c
 5141478 -rwxrwxrwx  1 akharrou  2018_october   1173 Jun  6 03:30 ft_char_to_index.c
 5141479 -rwxrwxrwx  1 akharrou  2018_october   1056 Jun  6 03:30 ft_chrcount.c
@@ -639,7 +639,7 @@ total 3584
 5141506 -rwxrwxrwx  1 akharrou  2018_october   1065 Jun  6 03:30 ft_memset.c
 5141507 -rwxrwxrwx  1 akharrou  2018_october   1063 Jun  6 03:30 ft_memset_addr.c
 5141508 -rwxrwxrwx  1 akharrou  2018_october   1070 Jun  6 03:30 ft_memswap.c
-5141509 -rwxrwxrwx  1 akharrou  2018_october   3461 Jun  6 03:30 ft_mergesort.c
+5141509 -rwxrwxrwx  1 akharrou  2018_october   3461 Jun  6 03:30 ft_quicksort.c
 5141510 -rwxrwxrwx  1 akharrou  2018_october   1158 Jun  6 03:30 ft_padding.c
 5141511 -rwxrwxrwx  1 akharrou  2018_october   2774 Jun  6 03:30 ft_quicksort.c
 5141512 -rwxrwxrwx  1 akharrou  2018_october   3323 Jun  6 03:30 ft_realloc.c
