@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:20:43 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/07 20:08:43 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/07 20:47:32 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,15 @@ t_file				ft_getfile(const char path[MAX_PATHLEN + 1], uint64_t flags)
 		.inode = filestat.st_ino,
 		.device_id = filestat.st_rdev,
 		.mode = filestat.st_mode,
-		.owner = getpwuid(filestat.st_uid)->pw_name,
-		.group = getgrgid(filestat.st_gid)->gr_name,
 		.size = filestat.st_size,
 		.nlinks = filestat.st_nlink,
 		.nblocks = filestat.st_blocks,
 		.access_time = filestat.st_atime,
 		.modifi_time = filestat.st_mtime,
-		.change_time = filestat.st_ctime };
+		.change_time = filestat.st_ctime
+	};
+	ft_strncpy(file.owner, getpwuid(filestat.st_uid)->pw_name, MAX_NAMELEN);
+	ft_strncpy(file.group, getgrgid(filestat.st_gid)->gr_name, MAX_NAMELEN);
 	ft_strncpy(file.path, path, MAX_PATHLEN);
 	ft_basename(file.path, file.name);
 	if (file.type == SYMBOLIC_LINK)

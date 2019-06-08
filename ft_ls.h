@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:50:11 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/07 19:39:16 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/07 20:45:55 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,10 @@ typedef struct	s_file_information
 {
 	char		name[MAX_PATHLEN + 1];
 	char		path[MAX_PATHLEN + 1];
+	char		owner[MAX_NAMELEN + 1];
+	char		group[MAX_NAMELEN + 1];
 	ino_t		inode;
 	dev_t		device_id;
-	char		*owner;
-	char		*group;
 	uint8_t		type;
 	mode_t		mode;
 	char		linkpath[MAX_PATHLEN + 1];
