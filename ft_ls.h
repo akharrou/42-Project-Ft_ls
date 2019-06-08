@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:50:11 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/07 12:35:32 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/07 17:30:03 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@
 # include <time.h>
 
 # include <sys/dir.h>
-# include <dirent.h>
-
 # include <sys/types.h>
-# include <sys/stat.h>
 # include <sys/xattr.h>
+# include <sys/acl.h>
+# include <sys/stat.h>
+# include <dirent.h>
 
 # include <grp.h>
 # include <pwd.h>
@@ -138,10 +138,13 @@ void			*get_cmpft(uint64_t flags);
 int				ft_ls(int argc, const char *argv[], uint64_t flags,
 					int (*cmpft)(void *, void *));
 
-void			ft_listdirs(t_vector files, uint64_t flags,
+int				ft_listdirs(t_vector files, uint64_t flags,
 					int (*cmpft)(void *, void *));
 
 int				ft_listdir(char *dirpath, uint64_t flags,
+					int (*cmpft)(void *, void *));
+
+int				ft_listfile(char *path, uint64_t flags,
 					int (*cmpft)(void *, void *));
 
 /*
@@ -172,6 +175,8 @@ void			ft_printfile(t_file file, uint64_t flags,
 void			print_errors(void *vector_element);
 void			vprint_files(void *vector_element, va_list ap);
 void			vprint_dirs(void *vector_element, va_list ap);
+void			*wrap_getfile_from_argv(void *vector_element, va_list ap);
+void			free_file_element(void *vector_element);
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
@@ -211,10 +216,5 @@ int				reverse_compare_by_ctime(void *a, void *b);
 /* TODO :
 
 	- FIX SORTING FLAGS
-	- FIX Libft/Stdlib -- .O STDLIB DIR FOREVER RECURSIVE LOOP
-	- FIX ~/
-	- FIX RETURN LINE OR NOT FOR PRINTING MULTIPLE DIRS
-	- FIX LEAKS
-	- FIX NORM
 
  */

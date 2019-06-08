@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:24:50 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/07 12:54:18 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/07 15:52:12 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,31 @@
 #define SIZE_WIDTH  (num_lengths[1])
 #define LINKS_WIDTH (num_lengths[2])
 
+static char		get_special_char(const char *path)
+{
+	ssize_t		xattr;
+	acl_t		acl;
+	acl_entry_t dummy;
+
+	acl = NULL;
+	xattr = 0;
+	acl = acl_get_link_np(path, ACL_TYPE_EXTENDED);
+	if (acl && acl_get_entry(acl, ACL_FIRST_ENTRY, &dummy) == -1)
+	{
+		acl_free(acl);
+		acl = NULL;
+	}
+	xattr = listxattr(path, NULL, 0, XATTR_NOFOLLOW);
+	if (xattr > 0)
+		return ('@');
+	else if (acl != NULL)
+		return ('+');
+	else
+		return (' ');
+}
+
 static void		cmode(const char *path, mode_t mode, char *modestr)
 {
-	ssize_t ret;
-
 	ft_strcpy(modestr, "----------");
 	S_ISREG(mode) && (modestr[0] = '-');
 	S_ISDIR(mode) && (modestr[0] = 'd');
@@ -42,8 +63,7 @@ static void		cmode(const char *path, mode_t mode, char *modestr)
 	(mode & S_ISUID) && (modestr[3] = (mode & S_IXUSR) ? 's' : 'S');
 	(mode & S_ISGID) && (modestr[6] = (mode & S_IXGRP) ? 's' : 'l');
 	(mode & S_ISVTX) && (modestr[9] = (mode & S_IXOTH) ? 't' : 'T');
-	ret = listxattr(path, NULL, 0, XATTR_NOFOLLOW);
-	modestr[10] = (ret > 0) ? '@' : '\0';
+	modestr[10] = get_special_char(path);
 	modestr[11] = '\0';
 }
 
@@ -75,20 +95,6 @@ void			ft_printfile(t_file file, uint64_t flags,
 			file.name, ((flags & p_FLAG) && file.type == DIRECTORY) ? "/" : "");
 }
 
-static void		wrap_printfile(void *vector_element, va_list ap)
-{
-	int			*str_lengths;
-	int			*num_lengths;
-	uint64_t	flags;
-
-	if (!vector_element)
-		return ;
-	flags = va_arg(ap, uint64_t);
-	str_lengths = va_arg(ap, int *);
-	num_lengths = va_arg(ap, int *);
-	ft_printfile(*(t_file *)vector_element, flags, str_lengths, num_lengths);
-}
-
 static void		vget_max_widths(void *vector_element, va_list ap)
 {
 	int			*str_lengths;
@@ -117,6 +123,7 @@ void			ft_printdir(t_vector dir, uint64_t flags)
 	int			*str_lengths;
 	int			*num_lengths;
 	blkcnt_t	total;
+	size_t		i;
 
 	total = 0;
 	str_lengths = ft_malloc(sizeof(int) * 2, '\0');
@@ -125,7 +132,12 @@ void			ft_printdir(t_vector dir, uint64_t flags)
 		flags, &str_lengths, &num_lengths, &total);
 	if (flags & l_FLAG)
 		ft_printf("total %i\n", total);
-	dir.viter(&dir, &wrap_printfile, flags, str_lengths, num_lengths);
+	i = 0;
+	while (i < dir.length)
+	{
+		ft_printfile(*(t_file *)dir.vector[i], flags, str_lengths, num_lengths);
+		++i;
+	}
 	free(str_lengths);
 	free(num_lengths);
 }

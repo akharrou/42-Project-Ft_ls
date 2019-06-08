@@ -6,11 +6,16 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 17:03:13 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/07 03:42:06 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/07 17:25:49 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+void			free_file_element(void *vector_element)
+{
+	free((t_file *)vector_element);
+}
 
 void			print_errors(void *vector_element)
 {
@@ -44,26 +49,15 @@ void			vprint_files(void *vector_element, va_list ap)
 	}
 }
 
-void			ft_listdirs(t_vector files, uint64_t flags,
-					int (*cmpft)(void *, void *))
+void			*wrap_getfile_from_argv(void *vector_element, va_list ap)
 {
+	const char	*path;
+	uint64_t	flags;
 	t_file		*file;
-	size_t		i;
 
-	i = -1;
-	while (++i < files.length)
-	{
-		file = (t_file *)files.vector[i];
-		if (file->type == DIRECTORY)
-		{
-			if ((!(flags & a_FLAG) && file->name[0] == '.') ||
-				ft_strcmp(file->name, ".") == 0 ||
-				ft_strcmp(file->name, "..") == 0)
-			{
-				continue ;
-			}
-			ft_printf("\n%s:\n", file->path);
-			ft_listdir(ft_strdup(file->path), flags, cmpft);
-		}
-	}
+	flags = va_arg(ap, uint64_t);
+	path = (*(const char **)vector_element);
+	file = (t_file *)malloc(sizeof(t_file));
+	(*file) = ft_getfile(path, flags);
+	return (file);
 }

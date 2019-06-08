@@ -29,27 +29,30 @@
 **    Allowed Functions:
 **
 **
-**        ◦ stat       —>  gets info about a file
-**        ◦ lstat      —>  gets info about a file
+**        ◦ stat       —>  gets info about a file                                /* NOTE : used */
+**        ◦ lstat      —>  gets info about a file                                /* NOTE : used */
 **
-**        ◦ getpwuid   —>  gets info associated with a user id (uid)
-**        ◦ getgrgid   —>  gets info associated with a group id (gid)
+**        ◦ getpwuid   —>  gets info associated with a user id (uid)             /* NOTE : used */
+**        ◦ getgrgid   —>  gets info associated with a group id (gid)            /* NOTE : used */
 **
-**        ◦ getxattr   —>  extended attributes
+**        ◦ getxattr   —>  extended attributes                                   /* NOTE : used */
 **        ◦ tcgetattr  —>  extended attributes
 **        ◦ listxattr  —>  extended attributes
 **
-**        ◦ readlink
+**        ◦ acl_get_link_np                                                      /* NOTE : used */
+**        ◦ acl_get_entry                                                        /* NOTE : used */
+**        ◦ acl_free                                                             /* NOTE : used */
+**
+**        ◦ readlink                                                             /* NOTE : used */
 **
 **        ◦ time
-**        ◦ ctime      —>  converts a time_t into a null-terminated string of the form "Wed Jun 30 21:49:08 1993\n"
+**        ◦ ctime      —>  converts a time_t into a null-terminated string of the form "Wed Jun 30 21:49:08 1993\n"  /* NOTE : used */
 **        ◦ gmtime     —>  converts the calendar time timep to broken-down time representation
 **        ◦ strftime
 **
-**
-**        ◦ opendir
-**        ◦ readdir
-**        ◦ closedir
+**        ◦ opendir    /* NOTE : used */
+**        ◦ readdir    /* NOTE : used */
+**        ◦ closedir   /* NOTE : used */
 **
 **        ◦ write
 **        ◦ malloc
@@ -289,6 +292,11 @@
 **        Understanding how to deconstruct & use 'mode_t':
 **
 **        https://jameshfisher.com/2017/02/24/what-is-mode_t/
+** — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — #
+**
+**        Understanding how to get ACL and Extended Attributes:
+**
+**        https://stackoverflow.com/questions/36229265/how-to-get-extended-attributes-of-a-fileunix-c
 **
 ** — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — #
 **

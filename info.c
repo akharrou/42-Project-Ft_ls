@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:20:43 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/07 12:58:38 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/07 17:29:52 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ t_vector			ft_getdirfiles(const char dirpath[MAX_PATHLEN + 1],
 	errno = 0;
 	dir = vector.empty(NULL);
 	if ((dirdes = opendir(dirpath)) != NULL)
+	{
 		while (errno == 0 && (direntry = readdir(dirdes)) != NULL)
 		{
 			if (!(file = (t_file *)malloc(sizeof(t_file))))
@@ -80,6 +81,8 @@ t_vector			ft_getdirfiles(const char dirpath[MAX_PATHLEN + 1],
 			(*file) = ft_getfile(ft_strjoin(dirpath, direntry->d_name), flags);
 			dir.append(&dir, file);
 		}
+		dir.free = &free_file_element;
+	}
 	if (errno != 0)
 	{
 		perror(NULL);
