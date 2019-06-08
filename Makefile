@@ -6,7 +6,7 @@
 #    By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/07 18:55:23 by akharrou          #+#    #+#              #
-#    Updated: 2019/06/07 18:25:27 by akharrou         ###   ########.fr        #
+#    Updated: 2019/06/07 20:13:30 by akharrou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,11 +47,11 @@ SOURCES     =                                                                 \
                     core.c                                                    \
                     info.c                                                    \
                     output.c                                                  \
-					                                                          \
+                                                                              \
                     utils.c                                                   \
                     globals.c                                                 \
                     error.c                                                   \
-					                                                          \
+                                                                              \
                 	Comparators/compare_by_none.c                             \
                 	Comparators/compare_by_ascii.c                            \
                 	Comparators/compare_by_size.c                             \
@@ -85,9 +85,11 @@ DEL = /bin/rm -rf
 
 clean:
 	@$(DEL) $(shell find . -name '*.o')
+	# @make clean -C Libft/
 
 fclean: clean
 	@$(DEL) $(NAME)
+	# @make fclean -C Libft/
 
 re: fclean all
 

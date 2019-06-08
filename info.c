@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:20:43 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/07 18:30:23 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/07 20:08:43 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ t_file				ft_getfile(const char path[MAX_PATHLEN + 1], uint64_t flags)
 	t_file			file;
 
 	ft_bzero(&filestat, sizeof(struct stat));
-	(flags & L_FLAG) ? stat(path, &filestat) : lstat(path, &filestat);
+	(((flags & L_FLAG) || !(flags & l_FLAG)) ?
+		stat(path, &filestat) : lstat(path, &filestat));
 	file = (t_file) {
 		.type = mode2type(filestat.st_mode),
 		.inode = filestat.st_ino,
@@ -65,6 +66,7 @@ t_file				ft_getfile(const char path[MAX_PATHLEN + 1], uint64_t flags)
 t_vector			ft_getdirfiles(char dirpath[MAX_PATHLEN + 1],
 						uint64_t flags)
 {
+	char			pathcpy[MAX_PATHLEN + 1];
 	struct dirent	*dirent;
 	DIR				*dirdes;
 	t_file			*file;
@@ -72,17 +74,16 @@ t_vector			ft_getdirfiles(char dirpath[MAX_PATHLEN + 1],
 
 	errno = 0;
 	dir = vector.empty(NULL);
+	dir.free = &free_file_element;
 	if ((dirdes = opendir(dirpath)) != NULL)
-	{
 		while (errno == 0 && (dirent = readdir(dirdes)) != NULL)
 		{
 			if (!(file = (t_file *)malloc(sizeof(t_file))))
-				EXIT(perror(NULL));
-			(*file) = ft_getfile(ft_strcat(dirpath, dirent->d_name), flags);
+				EXIT(perror(NULL); dir.clear(&dir); closedir(dirdes));
+			ft_vstrncpy(pathcpy, MAX_PATHLEN, 2, dirpath, dirent->d_name);
+			(*file) = ft_getfile(pathcpy, flags);
 			dir.append(&dir, file);
 		}
-		dir.free = &free_file_element;
-	}
 	if (errno != 0)
 	{
 		perror(NULL);

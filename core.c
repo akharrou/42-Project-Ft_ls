@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:20:06 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/07 18:28:16 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/07 20:00:44 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,24 @@ int				ft_listfile(char *path, uint64_t flags,
 {
 	t_file		file;
 	int			ret;
+	int			fd;
 
 	ret = 0;
 	path = ft_strdup(path);
 	file = ft_getfile(path, flags);
-	if (!(flags & l_FLAG) || (flags & L_FLAG) || file.type == DIRECTORY)
-	{
-		ft_printf("%s:\n", path);
+	if (file.type == DIRECTORY)
 		ret = ft_listdir(path, flags, cmpft);
-	}
 	else
-		ft_printfile(file, flags, (int[2]){ft_strlen(file.owner),
-			ft_strlen(file.group)}, (int[3]){ft_intlen(file.inode),
-			ft_intlen(file.size), ft_intlen(file.nlinks)});
+	{
+		fd = open(file.path, O_RDONLY);
+		if (fd >= 0)
+			ft_printfile(file, flags, (int[2]){ft_strlen(file.owner),
+				ft_strlen(file.group)}, (int[3]){ft_intlen(file.inode),
+				ft_intlen(file.size), ft_intlen(file.nlinks)});
+		else
+			ft_printf("ft_ls: %s: %s\n", path, strerror(errno));
+		close(fd);
+	}
 	free(path);
 	return (ret);
 }
@@ -51,14 +56,14 @@ int				ft_listdir(char *dirpath, uint64_t flags,
 		if (dirpath[ft_strlen(dirpath) - 1] != '/')
 			dirpath = ft_strappend(dirpath, "/", 1, 0);
 		dir = ft_getdirfiles(dirpath, flags);
-	}
-	if (dir.vector)
-	{
-		ft_quicksort(dir.vector, dir.length, sizeof(void *), cmpft);
-		ft_printdir(dir, flags);
-		if (flags & R_FLAG)
-			ret = ft_listdirs(dir, flags, cmpft);
-		vector.destructor(&dir);
+		if (dir.vector)
+		{
+			ft_quicksort(dir.vector, dir.length, sizeof(void *), cmpft);
+			ft_printdir(dir, flags);
+			if (flags & R_FLAG)
+				ret = ft_listdirs(dir, flags, cmpft);
+			vector.destructor(&dir);
+		}
 	}
 	free(dirpath);
 	return (ret);
