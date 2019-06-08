@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:24:50 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/07 15:52:12 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/07 21:55:27 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,20 @@
 
 static char		get_special_char(const char *path)
 {
+	char		special;
 	ssize_t		xattr;
 	acl_t		acl;
-	acl_entry_t dummy;
 
-	acl = NULL;
-	xattr = 0;
-	acl = acl_get_link_np(path, ACL_TYPE_EXTENDED);
-	if (acl && acl_get_entry(acl, ACL_FIRST_ENTRY, &dummy) == -1)
-	{
-		acl_free(acl);
-		acl = NULL;
-	}
 	xattr = listxattr(path, NULL, 0, XATTR_NOFOLLOW);
+	acl = acl_get_link_np(path, ACL_TYPE_EXTENDED);
 	if (xattr > 0)
-		return ('@');
+		special = '@';
 	else if (acl != NULL)
-		return ('+');
+		special = '+';
 	else
-		return (' ');
+		special = ' ';
+	acl_free(acl);
+	return (special);
 }
 
 static void		cmode(const char *path, mode_t mode, char *modestr)

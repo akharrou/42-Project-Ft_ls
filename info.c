@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:20:43 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/07 20:47:32 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/07 21:49:59 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ t_vector			ft_getdirfiles(char dirpath[MAX_PATHLEN + 1],
 	dir = vector.empty(NULL);
 	dir.free = &free_file_element;
 	if ((dirdes = opendir(dirpath)) != NULL)
+	{
 		while (errno == 0 && (dirent = readdir(dirdes)) != NULL)
 		{
 			if (!(file = (t_file *)malloc(sizeof(t_file))))
@@ -85,11 +86,12 @@ t_vector			ft_getdirfiles(char dirpath[MAX_PATHLEN + 1],
 			(*file) = ft_getfile(pathcpy, flags);
 			dir.append(&dir, file);
 		}
+		closedir(dirdes);
+	}
 	if (errno != 0)
 	{
 		perror(NULL);
 		dir.clear(&dir);
 	}
-	closedir(dirdes);
 	return (dir);
 }
