@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:50:11 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/07 17:30:03 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/07 18:27:22 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 
 # include "Libft/Includes/libft.h"
 
-# include <time.h>
-
 # include <sys/dir.h>
 # include <sys/types.h>
 # include <sys/xattr.h>
@@ -32,6 +30,8 @@
 # include <grp.h>
 # include <pwd.h>
 
+# include <time.h>
+
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
 ** Macro(s).
@@ -41,7 +41,7 @@
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
-** File Types.
+** File Type(s).
 */
 
 # define UNKNOWN_FILE    DT_UNKNOWN
@@ -55,7 +55,7 @@
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
-** Flags.
+** Flag(s).
 */
 
 typedef struct	s_flag
@@ -92,21 +92,16 @@ typedef struct	s_file_information
 {
 	char		name[MAX_PATHLEN + 1];
 	char		path[MAX_PATHLEN + 1];
-	\
 	ino_t		inode;
 	dev_t		device_id;
 	char		*owner;
 	char		*group;
-	\
 	uint8_t		type;
 	mode_t		mode;
-	\
 	char		linkpath[MAX_PATHLEN + 1];
-	\
 	off_t		size;
 	nlink_t		nlinks;
 	blkcnt_t	nblocks;
-	\
 	time_t		access_time;
 	time_t		modifi_time;
 	time_t		change_time;
@@ -151,7 +146,7 @@ int				ft_listfile(char *path, uint64_t flags,
 **  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 */
 
-t_vector		ft_getdirfiles(const char dirpath[MAX_PATHLEN + 1],
+t_vector		ft_getdirfiles(char dirpath[MAX_PATHLEN + 1],
 					uint64_t flags);
 
 t_file			ft_getfile(const char path[MAX_PATHLEN + 1],
@@ -176,6 +171,7 @@ void			print_errors(void *vector_element);
 void			vprint_files(void *vector_element, va_list ap);
 void			vprint_dirs(void *vector_element, va_list ap);
 void			*wrap_getfile_from_argv(void *vector_element, va_list ap);
+
 void			free_file_element(void *vector_element);
 
 /*
@@ -212,9 +208,3 @@ int				reverse_compare_by_ctime(void *a, void *b);
 */
 
 #endif
-
-/* TODO :
-
-	- FIX SORTING FLAGS
-
- */

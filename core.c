@@ -6,39 +6,48 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:20:06 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/07 17:34:10 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/07 18:28:16 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int			ft_listfile(char *path, uint64_t flags,
-				int (*cmpft)(void *, void *))
+int				ft_listfile(char *path, uint64_t flags,
+					int (*cmpft)(void *, void *))
 {
-	t_file	file;
+	t_file		file;
+	int			ret;
 
+	ret = 0;
+	path = ft_strdup(path);
 	file = ft_getfile(path, flags);
 	if (!(flags & l_FLAG) || (flags & L_FLAG) || file.type == DIRECTORY)
 	{
 		ft_printf("%s:\n", path);
-		return (ft_listdir(ft_strdup(path), flags, cmpft));
+		ret = ft_listdir(path, flags, cmpft);
 	}
 	else
 		ft_printfile(file, flags, (int[2]){ft_strlen(file.owner),
 			ft_strlen(file.group)}, (int[3]){ft_intlen(file.inode),
 			ft_intlen(file.size), ft_intlen(file.nlinks)});
-	return (0);
+	free(path);
+	return (ret);
 }
 
 int				ft_listdir(char *dirpath, uint64_t flags,
 					int (*cmpft)(void *, void *))
 {
+	DIR			*dirdes;
 	t_vector	dir;
+	int			ret;
 
-	if (!opendir(dirpath))
+	ret = -1;
+	dirpath = ft_strdup(dirpath);
+	if (!(dirdes = opendir(dirpath)))
 		ft_printf("ft_ls: %s: %s\n", dirpath, strerror(errno));
 	else
 	{
+		closedir(dirdes);
 		if (dirpath[ft_strlen(dirpath) - 1] != '/')
 			dirpath = ft_strappend(dirpath, "/", 1, 0);
 		dir = ft_getdirfiles(dirpath, flags);
@@ -48,11 +57,11 @@ int				ft_listdir(char *dirpath, uint64_t flags,
 		ft_quicksort(dir.vector, dir.length, sizeof(void *), cmpft);
 		ft_printdir(dir, flags);
 		if (flags & R_FLAG)
-			ft_listdirs(dir, flags, cmpft);
+			ret = ft_listdirs(dir, flags, cmpft);
 		vector.destructor(&dir);
 	}
 	free(dirpath);
-	return (0);
+	return (ret);
 }
 
 int				ft_listdirs(t_vector files, uint64_t flags,
@@ -74,7 +83,7 @@ int				ft_listdirs(t_vector files, uint64_t flags,
 				continue ;
 			}
 			ft_printf("\n%s:\n", file->path);
-			if (ft_listdir(ft_strdup(file->path), flags, cmpft) == -1)
+			if (ft_listdir(file->path, flags, cmpft) == -1)
 				return (-1);
 		}
 	}
@@ -87,7 +96,7 @@ int				ft_ls(int argc, const char *argv[], uint64_t flags,
 	t_vector	files;
 
 	if (argc == 0)
-		return (ft_listdir(ft_strdup("."), flags, cmpft));
+		return (ft_listdir(".", flags, cmpft));
 	else if (argc == 1)
 		return (ft_listfile((char *)*argv, flags, cmpft));
 	else

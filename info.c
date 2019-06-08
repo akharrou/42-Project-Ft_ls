@@ -6,15 +6,15 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:20:43 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/07 17:29:52 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/07 18:30:23 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static mode_t	mode2type(mode_t mode)
+static mode_t		mode2type(mode_t mode)
 {
-	mode_t		type;
+	mode_t			type;
 
 	if (S_ISREG(mode))
 		type = REGULAR_FILE;
@@ -35,10 +35,10 @@ static mode_t	mode2type(mode_t mode)
 	return (type);
 }
 
-t_file			ft_getfile(const char path[MAX_PATHLEN + 1], uint64_t flags)
+t_file				ft_getfile(const char path[MAX_PATHLEN + 1], uint64_t flags)
 {
-	struct stat	filestat;
-	t_file		file;
+	struct stat		filestat;
+	t_file			file;
 
 	ft_bzero(&filestat, sizeof(struct stat));
 	(flags & L_FLAG) ? stat(path, &filestat) : lstat(path, &filestat);
@@ -62,10 +62,10 @@ t_file			ft_getfile(const char path[MAX_PATHLEN + 1], uint64_t flags)
 	return (file);
 }
 
-t_vector			ft_getdirfiles(const char dirpath[MAX_PATHLEN + 1],
+t_vector			ft_getdirfiles(char dirpath[MAX_PATHLEN + 1],
 						uint64_t flags)
 {
-	struct dirent	*direntry;
+	struct dirent	*dirent;
 	DIR				*dirdes;
 	t_file			*file;
 	t_vector		dir;
@@ -74,11 +74,11 @@ t_vector			ft_getdirfiles(const char dirpath[MAX_PATHLEN + 1],
 	dir = vector.empty(NULL);
 	if ((dirdes = opendir(dirpath)) != NULL)
 	{
-		while (errno == 0 && (direntry = readdir(dirdes)) != NULL)
+		while (errno == 0 && (dirent = readdir(dirdes)) != NULL)
 		{
 			if (!(file = (t_file *)malloc(sizeof(t_file))))
 				EXIT(perror(NULL));
-			(*file) = ft_getfile(ft_strjoin(dirpath, direntry->d_name), flags);
+			(*file) = ft_getfile(ft_strcat(dirpath, dirent->d_name), flags);
 			dir.append(&dir, file);
 		}
 		dir.free = &free_file_element;
