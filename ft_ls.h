@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:50:11 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/09 00:00:51 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/09 16:46:46 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@
 */
 
 # define SORT_FLAG (t_FLAG | u_FLAG | c_FLAG | S_FLAG| f_FLAG | r_FLAG)
+# define SIX_MONTHS (15780000)
 
+# define NO_FOLLOW_SELF  (0)
+# define FOLLOW_SELF     (1)
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
 ** File Type(s).
@@ -139,7 +142,8 @@ int				ft_ls(int argc, const char *argv[], uint64_t flags,
 					int (*cmpft)(const void *, const void *));
 
 int				ft_listdirs(t_vector files, uint64_t flags,
-					int (*cmpft)(const void *, const void *));
+					int (*cmpft)(const void *, const void *),
+					bool option);
 
 int				ft_listdir(char *dirpath, uint64_t flags,
 					int (*cmpft)(const void *, const void *));

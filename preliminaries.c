@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 22:08:16 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/09 00:10:27 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/09 16:35:34 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void			*get_cmpft(uint64_t flags)
 	size_t		i;
 
 	i = 0;
+	if (flags & a_FLAG)
+		flags ^= a_FLAG;
 	cmpft = &compare_by_ascii;
 	if (flags & SORT_FLAG)
 		while (g_sortflags[i].symbol != '\0')

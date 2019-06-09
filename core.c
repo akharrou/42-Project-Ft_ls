@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:20:06 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/08 14:50:42 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/09 16:47:45 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int				ft_listfile(char *path, uint64_t flags,
 		ret = ft_listdir(path, flags, cmpft);
 	else
 	{
+		ft_strncpy(file.name, file.path, MAX_PATHLEN);
 		fd = open(file.path, O_RDONLY);
 		if (fd >= 0)
 			ft_printfile(file, flags, (int[2]){ft_strlen(file.owner),
@@ -60,7 +61,8 @@ int				ft_listdir(char *dirpath, uint64_t flags,
 		{
 			ft_quicksort(dir.vector, dir.length, sizeof(void *), cmpft);
 			ret = ft_printdir(dir, flags);
-			(flags & R_FLAG) ? (ret = ft_listdirs(dir, flags, cmpft)) : PASS;
+			if (flags & R_FLAG)
+				ret = ft_listdirs(dir, flags, cmpft, NO_FOLLOW_SELF);
 			vector.destructor(&dir);
 		}
 	}
@@ -69,7 +71,8 @@ int				ft_listdir(char *dirpath, uint64_t flags,
 }
 
 int				ft_listdirs(t_vector files, uint64_t flags,
-					int (*cmpft)(const void *, const void *))
+					int (*cmpft)(const void *, const void *),
+					bool option)
 {
 	t_file		*file;
 	size_t		i;
@@ -80,9 +83,10 @@ int				ft_listdirs(t_vector files, uint64_t flags,
 		file = (t_file *)files.vector[i];
 		if (file->type == DIRECTORY)
 		{
-			if ((!(flags & a_FLAG) && file->name[0] == '.') ||
+			if (option == NO_FOLLOW_SELF ||
+				!((!(flags & a_FLAG) && file->name[0] == '.') ||
 				ft_strcmp(file->name, ".") == 0 ||
-				ft_strcmp(file->name, "..") == 0)
+				ft_strcmp(file->name, "..") == 0))
 			{
 				continue ;
 			}
@@ -111,7 +115,7 @@ int				ft_ls(int argc, const char *argv[], uint64_t flags,
 		ft_quicksort(files.vector, files.length, sizeof(void *), cmpft);
 		files.iter(&files, &print_errors);
 		files.viter(&files, &vprint_files, flags);
-		ft_listdirs(files, flags, cmpft);
+		ft_listdirs(files, flags, cmpft, FOLLOW_SELF);
 		files.free = &free_file_element;
 		vector.destructor(&files);
 	}

@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:24:50 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/08 23:59:05 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/09 15:57:49 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,13 @@ void			ft_printfile(t_file file, uint64_t flags,
 		ft_printf("%*i ", INODE_WIDTH, file.inode);
 	if (flags & l_FLAG)
 	{
-		ft_strncpy(timestr, ctime(&file.time) + 4, 12);
-		timestr[12] = '\0';
+		ft_bzero(timestr, 13);
+		ft_strncpy(timestr, ctime(&file.time) + 4, 7);
+		(file.time > time(0) - SIX_MONTHS) ?
+			ft_strncpy(timestr + 7, ctime(&file.time) + 11, 5) :
+			ft_strncpy(timestr + 7, ctime(&file.time) + 19, 5);
 		cmode(file.path, file.mode, modestr);
-		ft_printf("%-11s %*i %-*s  %-*s  %*lli %s %s%s",
+		ft_printf("%-11s %*i %-*s  %-*s  %*lli %12s %s%s",
 			modestr, LINKS_WIDTH, file.nlinks,
 			OWNER_WIDTH, file.owner, GROUP_WIDTH, file.group,
 			SIZE_WIDTH, file.size, timestr, file.name,
