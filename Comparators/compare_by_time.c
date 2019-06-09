@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   compare_by_ctime.c                                 :+:      :+:    :+:   */
+/*   compare_by_time.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/04 22:05:56 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/07 16:01:17 by akharrou         ###   ########.fr       */
+/*   Created: 2019/06/08 23:57:25 by akharrou          #+#    #+#             */
+/*   Updated: 2019/06/09 00:10:08 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_ls.h"
 
-int		compare_by_ctime(void *a, void *b)
+int		compare_by_time(const void *a, const void *b)
 {
-	return ((*(t_file **)a)->change_time > (*(t_file **)b)->change_time);
+	long	ret;
+
+	ret = (*(t_file **)b)->time - (*(t_file **)a)->time;
+	if (ret == 0)
+		ret = ft_strcmp((*(t_file **)a)->name, (*(t_file **)b)->name);
+	return (ret);
 }
 
-int		reverse_compare_by_ctime(void *a, void *b)
+int		reverse_compare_by_time(const void *a, const void *b)
 {
-	return (-(compare_by_ctime(a, b)));
+	return (-(compare_by_time(a, b)));
 }

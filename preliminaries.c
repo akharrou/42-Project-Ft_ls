@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 22:08:16 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/06 22:28:24 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/09 00:10:27 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,19 @@ uint64_t		get_flags(int *argc, const char **argv[])
 
 void			*get_cmpft(uint64_t flags)
 {
-	int			(*cmpft)(void *, void *);
+	int			(*cmpft)(const void *, const void *);
 	size_t		i;
 
 	i = 0;
 	cmpft = &compare_by_ascii;
 	if (flags & SORT_FLAG)
-		while (g_flags[i].symbol != '\0')
+		while (g_sortflags[i].symbol != '\0')
 		{
-			if (flags & g_flags[i].value)
+			if (flags & g_sortflags[i].value)
 			{
 				cmpft = (flags & r_FLAG) ?
-					g_flags[i].reverse_cmp_function :
-					g_flags[i].cmp_function;
+					g_sortflags[i].reverse_cmp_function :
+					g_sortflags[i].cmp_function;
 				break ;
 			}
 			++i;

@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:20:33 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/06 22:02:19 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/09 00:09:01 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,35 @@
 
 t_flag g_flags[] =
 {
-	{ '1', _1_FLAG, compare_by_ascii, reverse_compare_by_ascii },
-	{ 'R', R_FLAG, compare_by_ascii, reverse_compare_by_ascii },
-	{ 'L', L_FLAG, compare_by_ascii, reverse_compare_by_ascii },
-	{ 'l', l_FLAG, compare_by_ascii, reverse_compare_by_ascii },
-	{ 'a', a_FLAG, compare_by_ascii, reverse_compare_by_ascii },
-	{ 'r', r_FLAG, compare_by_ascii, reverse_compare_by_ascii },
-	{ 't', t_FLAG, &compare_by_mtime, &reverse_compare_by_mtime },
-	{ 'u', u_FLAG, &compare_by_atime, &reverse_compare_by_atime },
-	{ 'c', c_FLAG, &compare_by_ctime, &reverse_compare_by_ctime },
-	{ 'p', p_FLAG, compare_by_ascii, reverse_compare_by_ascii },
-	{ 'i', i_FLAG, compare_by_ascii, reverse_compare_by_ascii },
+	{ '1', _1_FLAG },
+	{ 'R', R_FLAG },
+	{ 'L', L_FLAG },
+	{ 'l', l_FLAG },
+	{ 'a', a_FLAG },
+	{ 'r', r_FLAG },
+	{ 't', t_FLAG },
+	{ 'u', u_FLAG },
+	{ 'c', c_FLAG },
+	{ 'p', p_FLAG },
+	{ 'i', i_FLAG },
+	{ 'S', S_FLAG },
+	{ 'f', f_FLAG },
+	\
+	{ '\0', 0 }
+};
+
+/*
+**    DESCRIPTION
+**         Dispatch table associating every sorting flag with
+**         its comparsion function.
+*/
+
+t_sortflag g_sortflags[] =
+{
 	{ 'S', S_FLAG, &compare_by_size, &reverse_compare_by_size },
+	{ 't', t_FLAG, &compare_by_time, &reverse_compare_by_time },
+	{ 'u', u_FLAG, &compare_by_time, &reverse_compare_by_time },
+	{ 'c', c_FLAG, &compare_by_time, &reverse_compare_by_time },
 	{ 'f', f_FLAG, &compare_by_none, &compare_by_none },
 	\
 	{ '\0', 0, NULL, NULL }

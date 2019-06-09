@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:50:11 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/07 20:45:55 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/09 00:00:51 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,15 @@ typedef struct	s_flag
 {
 	const char	symbol;
 	uint64_t	value;
-	int			(*cmp_function)(void *, void *);
-	int			(*reverse_cmp_function)(void *, void *);
 }				t_flag;
+
+typedef struct	s_sortflag
+{
+	const char	symbol;
+	uint64_t	value;
+	int			(*cmp_function)(const void *, const void *);
+	int			(*reverse_cmp_function)(const void *, const void *);
+}				t_sortflag;
 
 enum			e_flag_values
 {
@@ -102,9 +108,7 @@ typedef struct	s_file_information
 	off_t		size;
 	nlink_t		nlinks;
 	blkcnt_t	nblocks;
-	time_t		access_time;
-	time_t		modifi_time;
-	time_t		change_time;
+	time_t		time;
 }				t_file;
 
 /*
@@ -113,7 +117,8 @@ typedef struct	s_file_information
 ** Global(s).
 */
 
-extern t_flag	g_flags[];
+extern t_flag		g_flags[];
+extern t_sortflag	g_sortflags[];
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
@@ -131,16 +136,16 @@ void			*get_cmpft(uint64_t flags);
 */
 
 int				ft_ls(int argc, const char *argv[], uint64_t flags,
-					int (*cmpft)(void *, void *));
+					int (*cmpft)(const void *, const void *));
 
 int				ft_listdirs(t_vector files, uint64_t flags,
-					int (*cmpft)(void *, void *));
+					int (*cmpft)(const void *, const void *));
 
 int				ft_listdir(char *dirpath, uint64_t flags,
-					int (*cmpft)(void *, void *));
+					int (*cmpft)(const void *, const void *));
 
 int				ft_listfile(char *path, uint64_t flags,
-					int (*cmpft)(void *, void *));
+					int (*cmpft)(const void *, const void *));
 
 /*
 **  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
@@ -156,7 +161,7 @@ t_file			ft_getfile(const char path[MAX_PATHLEN + 1],
 **  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 */
 
-void			ft_printdir(t_vector dir, uint64_t flags);
+int				ft_printdir(t_vector dir, uint64_t flags);
 
 void			ft_printfile(t_file file, uint64_t flags,
 					int *str_lengths, int *num_lengths);
@@ -189,19 +194,15 @@ void			unknown_flag(char unknown_flag);
 ** Compare Function(s).
 */
 
-int				compare_by_none(void *a, void *b);
+int				compare_by_none(const void *a, const void *b);
 
-int				compare_by_size(void *a, void *b);
-int				compare_by_ascii(void *a, void *b);
-int				compare_by_mtime(void *a, void *b);
-int				compare_by_atime(void *a, void *b);
-int				compare_by_ctime(void *a, void *b);
+int				compare_by_size(const void *a, const void *b);
+int				compare_by_ascii(const void *a, const void *b);
+int				compare_by_time(const void *a, const void *b);
 
-int				reverse_compare_by_size(void *a, void *b);
-int				reverse_compare_by_ascii(void *a, void *b);
-int				reverse_compare_by_mtime(void *a, void *b);
-int				reverse_compare_by_atime(void *a, void *b);
-int				reverse_compare_by_ctime(void *a, void *b);
+int				reverse_compare_by_size(const void *a, const void *b);
+int				reverse_compare_by_ascii(const void *a, const void *b);
+int				reverse_compare_by_time(const void *a, const void *b);
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **

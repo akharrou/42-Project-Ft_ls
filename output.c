@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:24:50 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/07 21:55:27 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/08 23:59:05 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ void			ft_printfile(t_file file, uint64_t flags,
 		ft_printf("%*i ", INODE_WIDTH, file.inode);
 	if (flags & l_FLAG)
 	{
-		ft_strncpy(timestr, ctime(&file.modifi_time) + 4, 12);
+		ft_strncpy(timestr, ctime(&file.time) + 4, 12);
+		timestr[12] = '\0';
 		cmode(file.path, file.mode, modestr);
 		ft_printf("%-11s %*i %-*s  %-*s  %*lli %s %s%s",
 			modestr, LINKS_WIDTH, file.nlinks,
@@ -113,7 +114,7 @@ static void		vget_max_widths(void *vector_element, va_list ap)
 	(*total) += file.nblocks;
 }
 
-void			ft_printdir(t_vector dir, uint64_t flags)
+int				ft_printdir(t_vector dir, uint64_t flags)
 {
 	int			*str_lengths;
 	int			*num_lengths;
@@ -121,8 +122,10 @@ void			ft_printdir(t_vector dir, uint64_t flags)
 	size_t		i;
 
 	total = 0;
-	str_lengths = ft_malloc(sizeof(int) * 2, '\0');
-	num_lengths = ft_malloc(sizeof(int) * 3, '\0');
+	if (!(str_lengths = ft_malloc(sizeof(int) * 2, '\0')))
+		return (-1);
+	if (!(num_lengths = ft_malloc(sizeof(int) * 3, '\0')))
+		return (-1);
 	dir.viter(&dir, &vget_max_widths,
 		flags, &str_lengths, &num_lengths, &total);
 	if (flags & l_FLAG)
@@ -135,4 +138,5 @@ void			ft_printdir(t_vector dir, uint64_t flags)
 	}
 	free(str_lengths);
 	free(num_lengths);
+	return (0);
 }

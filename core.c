@@ -6,14 +6,14 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:20:06 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/07 20:00:44 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/08 14:50:42 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
 int				ft_listfile(char *path, uint64_t flags,
-					int (*cmpft)(void *, void *))
+					int (*cmpft)(const void *, const void *))
 {
 	t_file		file;
 	int			ret;
@@ -40,14 +40,15 @@ int				ft_listfile(char *path, uint64_t flags,
 }
 
 int				ft_listdir(char *dirpath, uint64_t flags,
-					int (*cmpft)(void *, void *))
+					int (*cmpft)(const void *, const void *))
 {
 	DIR			*dirdes;
 	t_vector	dir;
 	int			ret;
 
 	ret = -1;
-	dirpath = ft_strdup(dirpath);
+	if (!(dirpath = ft_strdup(dirpath)))
+		return (-1);
 	if (!(dirdes = opendir(dirpath)))
 		ft_printf("ft_ls: %s: %s\n", dirpath, strerror(errno));
 	else
@@ -55,13 +56,11 @@ int				ft_listdir(char *dirpath, uint64_t flags,
 		closedir(dirdes);
 		if (dirpath[ft_strlen(dirpath) - 1] != '/')
 			dirpath = ft_strappend(dirpath, "/", 1, 0);
-		dir = ft_getdirfiles(dirpath, flags);
-		if (dir.vector)
+		if ((dir = ft_getdirfiles(dirpath, flags)).vector)
 		{
 			ft_quicksort(dir.vector, dir.length, sizeof(void *), cmpft);
-			ft_printdir(dir, flags);
-			if (flags & R_FLAG)
-				ret = ft_listdirs(dir, flags, cmpft);
+			ret = ft_printdir(dir, flags);
+			(flags & R_FLAG) ? (ret = ft_listdirs(dir, flags, cmpft)) : PASS;
 			vector.destructor(&dir);
 		}
 	}
@@ -70,7 +69,7 @@ int				ft_listdir(char *dirpath, uint64_t flags,
 }
 
 int				ft_listdirs(t_vector files, uint64_t flags,
-					int (*cmpft)(void *, void *))
+					int (*cmpft)(const void *, const void *))
 {
 	t_file		*file;
 	size_t		i;
@@ -96,7 +95,7 @@ int				ft_listdirs(t_vector files, uint64_t flags,
 }
 
 int				ft_ls(int argc, const char *argv[], uint64_t flags,
-					int (*cmpft)(void *, void *))
+					int (*cmpft)(const void *, const void *))
 {
 	t_vector	files;
 

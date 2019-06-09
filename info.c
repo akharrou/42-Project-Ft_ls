@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:20:43 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/07 21:49:59 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/09 00:00:34 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,13 @@ t_file				ft_getfile(const char path[MAX_PATHLEN + 1], uint64_t flags)
 		.size = filestat.st_size,
 		.nlinks = filestat.st_nlink,
 		.nblocks = filestat.st_blocks,
-		.access_time = filestat.st_atime,
-		.modifi_time = filestat.st_mtime,
-		.change_time = filestat.st_ctime
 	};
+	if (flags & u_FLAG)
+		file.time = filestat.st_atime;
+	else if (flags & c_FLAG)
+		file.time = filestat.st_ctime;
+	else
+		file.time = filestat.st_mtime;
 	ft_strncpy(file.owner, getpwuid(filestat.st_uid)->pw_name, MAX_NAMELEN);
 	ft_strncpy(file.group, getgrgid(filestat.st_gid)->gr_name, MAX_NAMELEN);
 	ft_strncpy(file.path, path, MAX_PATHLEN);
