@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:24:50 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/09 20:54:29 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/09 22:42:27 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,14 @@ void			ft_printfile(t_file file, uint64_t flags,
 
 	if (!(flags & a_FLAG) && file.name[0] == '.')
 		return ;
-	if (flags & i_FLAG)
-		ft_printf("%*i ", INODE_WIDTH, file.inode);
+	(flags & i_FLAG) ? ft_printf("%*i ", INODE_WIDTH, file.inode) : PASS;
 	if (flags & l_FLAG)
 	{
-		ft_bzero(timestr, 13);
 		ft_strncpy(timestr, ctime(&file.time) + 4, 7);
 		(file.time < time(0) - SIX_MONTHS || time(0) + SIX_MONTHS < file.time) ?
 			ft_strncpy(timestr + 7, ctime(&file.time) + 11, 5) :
 			ft_strncpy(timestr + 7, ctime(&file.time) + 19, 5);
+		timestr[12] = '\0';
 		cmode(file.path, file.mode, modestr);
 		ft_printf("%-11s %*i %-*s  %-*s  %*lli %12s %s%s",
 			modestr, LINKS_WIDTH, file.nlinks,
@@ -86,8 +85,7 @@ void			ft_printfile(t_file file, uint64_t flags,
 			SIZE_WIDTH, file.size, timestr, file.name,
 			((flags & p_FLAG) && file.type == DIRECTORY) ? "/" : "");
 		(file.type == SYMBOLIC_LINK) ?
-			ft_printf(" -> %s\n", file.linkpath) :
-			ft_printf("\n");
+			ft_printf(" -> %s\n", file.linkpath) : ft_printf("\n");
 	}
 	else
 		ft_printf("%s%s\n",

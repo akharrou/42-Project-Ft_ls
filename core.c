@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:20:06 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/09 20:43:57 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/09 22:42:44 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,7 @@ int				ft_listdirs(t_vector files, uint64_t flags,
 				continue ;
 			}
 			if (!(option == PRINT_DOTTED) && (flags & a_FLAG) &&
-				(ft_strcmp(file.name, ".") == 0 ||
-				ft_strcmp(file.name, "..") == 0))
+			(ft_strcmp(file.name, ".") == 0 || ft_strcmp(file.name, "..") == 0))
 			{
 				continue ;
 			}

@@ -6,7 +6,7 @@
 #    By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/07 18:55:23 by akharrou          #+#    #+#              #
-#    Updated: 2019/06/09 20:55:04 by akharrou         ###   ########.fr        #
+#    Updated: 2019/06/09 23:07:04 by akharrou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,11 +83,11 @@ DEL = /bin/rm -rf
 
 clean:
 	@$(DEL) $(shell find . -name '*.o')
-	# @make clean -C Libft/
+	@make clean -C Libft/
 
 fclean: clean
 	@$(DEL) $(NAME)
-	# @make fclean -C Libft/
+	@make fclean -C Libft/
 
 re: fclean all
 
