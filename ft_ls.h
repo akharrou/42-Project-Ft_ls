@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:50:11 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/09 16:46:46 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/09 20:54:27 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,18 @@
 ** Macro(s).
 */
 
-# define SORT_FLAG (t_FLAG | u_FLAG | c_FLAG | S_FLAG| f_FLAG | r_FLAG)
-# define SIX_MONTHS (15780000)
+# define SORT_FLAG        (f_FLAG | S_FLAG | t_FLAG)
+# define SIX_MONTHS       (15778463)
+# define PRINT_DOTTED     (1)
+# define NO_PRINT_DOTTED  (0)
 
-# define NO_FOLLOW_SELF  (0)
-# define FOLLOW_SELF     (1)
+# define SORT_BY_SIZE     (g_sortflags[0])
+# define SORT_BY_NONE     (g_sortflags[1])
+
+# define SORT_BY_MTIME    (g_sortflags[2])
+# define SORT_BY_ATIME    (g_sortflags[3])
+# define SORT_BY_CTIME    (g_sortflags[4])
+
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
 ** File Type(s).
@@ -89,7 +96,7 @@ enum			e_flag_values
 	f_FLAG = ((1 << 9) | a_FLAG),
 	L_FLAG = (1 << 10),
 	R_FLAG = (1 << 11),
-	_1_FLAG = (1 << 12)
+	_1_FLAG = (1 << 12),
 };
 
 /*
@@ -143,7 +150,7 @@ int				ft_ls(int argc, const char *argv[], uint64_t flags,
 
 int				ft_listdirs(t_vector files, uint64_t flags,
 					int (*cmpft)(const void *, const void *),
-					bool option);
+					uint8_t option);
 
 int				ft_listdir(char *dirpath, uint64_t flags,
 					int (*cmpft)(const void *, const void *));

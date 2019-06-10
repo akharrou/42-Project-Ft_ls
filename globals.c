@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:20:33 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/09 00:09:01 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/09 20:02:47 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,4 @@ t_flag g_flags[] =
 	{ 'f', f_FLAG },
 	\
 	{ '\0', 0 }
-};
-
-/*
-**    DESCRIPTION
-**         Dispatch table associating every sorting flag with
-**         its comparsion function.
-*/
-
-t_sortflag g_sortflags[] =
-{
-	{ 'S', S_FLAG, &compare_by_size, &reverse_compare_by_size },
-	{ 't', t_FLAG, &compare_by_time, &reverse_compare_by_time },
-	{ 'u', u_FLAG, &compare_by_time, &reverse_compare_by_time },
-	{ 'c', c_FLAG, &compare_by_time, &reverse_compare_by_time },
-	{ 'f', f_FLAG, &compare_by_none, &compare_by_none },
-	\
-	{ '\0', 0, NULL, NULL }
 };

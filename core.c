@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:20:06 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/09 16:47:45 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/09 20:43:57 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int				ft_listdir(char *dirpath, uint64_t flags,
 			ft_quicksort(dir.vector, dir.length, sizeof(void *), cmpft);
 			ret = ft_printdir(dir, flags);
 			if (flags & R_FLAG)
-				ret = ft_listdirs(dir, flags, cmpft, NO_FOLLOW_SELF);
+				ret = ft_listdirs(dir, flags, cmpft, NO_PRINT_DOTTED);
 			vector.destructor(&dir);
 		}
 	}
@@ -72,26 +72,30 @@ int				ft_listdir(char *dirpath, uint64_t flags,
 
 int				ft_listdirs(t_vector files, uint64_t flags,
 					int (*cmpft)(const void *, const void *),
-					bool option)
+					uint8_t option)
 {
-	t_file		*file;
+	t_file		file;
 	size_t		i;
 
 	i = -1;
 	while (++i < files.length)
 	{
-		file = (t_file *)files.vector[i];
-		if (file->type == DIRECTORY)
+		file = *(t_file *)files.vector[i];
+		if (file.type == DIRECTORY)
 		{
-			if (option == NO_FOLLOW_SELF ||
-				!((!(flags & a_FLAG) && file->name[0] == '.') ||
-				ft_strcmp(file->name, ".") == 0 ||
-				ft_strcmp(file->name, "..") == 0))
+			if (!(option == PRINT_DOTTED) && !(flags & a_FLAG) &&
+				file.name[0] == '.')
 			{
 				continue ;
 			}
-			ft_printf("\n%s:\n", file->path);
-			if (ft_listdir(file->path, flags, cmpft) == -1)
+			if (!(option == PRINT_DOTTED) && (flags & a_FLAG) &&
+				(ft_strcmp(file.name, ".") == 0 ||
+				ft_strcmp(file.name, "..") == 0))
+			{
+				continue ;
+			}
+			ft_printf("\n%s:\n", file.path);
+			if (ft_listdir(file.path, flags, cmpft) == -1)
 				return (-1);
 		}
 	}
@@ -115,7 +119,7 @@ int				ft_ls(int argc, const char *argv[], uint64_t flags,
 		ft_quicksort(files.vector, files.length, sizeof(void *), cmpft);
 		files.iter(&files, &print_errors);
 		files.viter(&files, &vprint_files, flags);
-		ft_listdirs(files, flags, cmpft, FOLLOW_SELF);
+		ft_listdirs(files, flags, cmpft, PRINT_DOTTED);
 		files.free = &free_file_element;
 		vector.destructor(&files);
 	}

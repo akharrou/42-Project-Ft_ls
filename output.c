@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:24:50 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/09 15:57:49 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/09 20:54:29 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void			ft_printfile(t_file file, uint64_t flags,
 	{
 		ft_bzero(timestr, 13);
 		ft_strncpy(timestr, ctime(&file.time) + 4, 7);
-		(file.time > time(0) - SIX_MONTHS) ?
+		(file.time < time(0) - SIX_MONTHS || time(0) + SIX_MONTHS < file.time) ?
 			ft_strncpy(timestr + 7, ctime(&file.time) + 11, 5) :
 			ft_strncpy(timestr + 7, ctime(&file.time) + 19, 5);
 		cmode(file.path, file.mode, modestr);

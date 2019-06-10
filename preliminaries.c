@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 22:08:16 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/09 16:35:34 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/09 20:28:25 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,24 +43,25 @@ uint64_t		get_flags(int *argc, const char **argv[])
 
 void			*get_cmpft(uint64_t flags)
 {
-	int			(*cmpft)(const void *, const void *);
-	size_t		i;
-
-	i = 0;
 	if (flags & a_FLAG)
 		flags ^= a_FLAG;
-	cmpft = &compare_by_ascii;
 	if (flags & SORT_FLAG)
-		while (g_sortflags[i].symbol != '\0')
+	{
+		if (flags & f_FLAG)
 		{
-			if (flags & g_sortflags[i].value)
-			{
-				cmpft = (flags & r_FLAG) ?
-					g_sortflags[i].reverse_cmp_function :
-					g_sortflags[i].cmp_function;
-				break ;
-			}
-			++i;
+			return ((void *)&compare_by_none);
 		}
-	return ((void *)cmpft);
+		else if (flags & S_FLAG)
+		{
+			return ((void *)(flags & r_FLAG) ?
+				&reverse_compare_by_size : &compare_by_size);
+		}
+		else if (flags & t_FLAG)
+		{
+			return ((void *)(flags & r_FLAG) ?
+				&reverse_compare_by_time : &compare_by_time);
+		}
+	}
+	return ((void *)(flags & r_FLAG) ?
+		&reverse_compare_by_ascii : &compare_by_ascii);
 }
