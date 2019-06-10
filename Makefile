@@ -6,14 +6,14 @@
 #    By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/07 18:55:23 by akharrou          #+#    #+#              #
-#    Updated: 2019/06/09 23:07:04 by akharrou         ###   ########.fr        #
+#    Updated: 2019/06/10 10:07:08 by akharrou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
 CC          =   gcc
-CFLAGS      =   -Wall -Wextra -Werror $(OPTIM_FLAGS)
+CFLAGS      =   -Wall -Wextra -Werror $(DEBUG_FLAGS)
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 

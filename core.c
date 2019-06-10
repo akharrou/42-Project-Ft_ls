@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:20:06 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/09 22:42:44 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/10 12:27:05 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int				ft_listfile(char *path, uint64_t flags,
 		ret = ft_listdir(path, flags, cmpft);
 	else
 	{
-		ft_strncpy(file.name, file.path, MAX_PATHLEN);
 		fd = open(file.path, O_RDONLY);
 		if (fd >= 0)
 			ft_printfile(file, flags, (int[2]){ft_strlen(file.owner),
@@ -72,28 +71,28 @@ int				ft_listdir(char *dirpath, uint64_t flags,
 
 int				ft_listdirs(t_vector files, uint64_t flags,
 					int (*cmpft)(const void *, const void *),
-					uint8_t option)
+					uint8_t options)
 {
+	int			first;
 	t_file		file;
 	size_t		i;
 
+	first = 1;
 	i = -1;
 	while (++i < files.length)
 	{
 		file = *(t_file *)files.vector[i];
 		if (file.type == DIRECTORY)
 		{
-			if (!(option == PRINT_DOTTED) && !(flags & a_FLAG) &&
+			if (first-- == 1 && (PRINT_NEWLINE & options))
+				ft_printf("\n");
+			if (!(PRINT_DOTTED & options) && !(flags & a_FLAG) &&
 				file.name[0] == '.')
-			{
 				continue ;
-			}
-			if (!(option == PRINT_DOTTED) && (flags & a_FLAG) &&
+			if (!(PRINT_DOTTED & options) && (flags & a_FLAG) &&
 			(ft_strcmp(file.name, ".") == 0 || ft_strcmp(file.name, "..") == 0))
-			{
 				continue ;
-			}
-			ft_printf("\n%s:\n", file.path);
+			ft_printf("%s:\n", file.path);
 			if (ft_listdir(file.path, flags, cmpft) == -1)
 				return (-1);
 		}
@@ -105,6 +104,7 @@ int				ft_ls(int argc, const char *argv[], uint64_t flags,
 					int (*cmpft)(const void *, const void *))
 {
 	t_vector	files;
+	int			res;
 
 	if (argc == 0)
 		return (ft_listdir(".", flags, cmpft));
@@ -116,9 +116,9 @@ int				ft_ls(int argc, const char *argv[], uint64_t flags,
 		files.free = &free;
 		files.remap(&files, &wrap_getfile_from_argv, flags);
 		ft_quicksort(files.vector, files.length, sizeof(void *), cmpft);
-		files.iter(&files, &print_errors);
-		files.viter(&files, &vprint_files, flags);
-		ft_listdirs(files, flags, cmpft, PRINT_DOTTED);
+		print_errors(files);
+		res = print_files(files, flags);
+		ft_listdirs(files, flags, cmpft, PRINT_DOTTED | res);
 		files.free = &free_file_element;
 		vector.destructor(&files);
 	}

@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:50:11 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/09 23:06:35 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/10 12:45:54 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,16 @@
 
 # define SORT_FLAG        (f_FLAG | S_FLAG | t_FLAG)
 # define SIX_MONTHS       (15778463)
-# define PRINT_DOTTED     (1)
+
 # define NO_PRINT_DOTTED  (0)
+# define PRINT_DOTTED     (1 << 0)
+# define PRINT_NEWLINE    (1 << 1)
 
-# define SORT_BY_SIZE     (g_sortflags[0])
-# define SORT_BY_NONE     (g_sortflags[1])
-
-# define SORT_BY_MTIME    (g_sortflags[2])
-# define SORT_BY_ATIME    (g_sortflags[3])
-# define SORT_BY_CTIME    (g_sortflags[4])
+# define OWNER_WIDTH      (str_lengths[0])
+# define GROUP_WIDTH      (str_lengths[1])
+# define INODE_WIDTH      (num_lengths[0])
+# define SIZE_WIDTH       (num_lengths[1])
+# define LINKS_WIDTH      (num_lengths[2])
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
@@ -150,7 +151,7 @@ int				ft_ls(int argc, const char *argv[], uint64_t flags,
 
 int				ft_listdirs(t_vector files, uint64_t flags,
 					int (*cmpft)(const void *, const void *),
-					uint8_t option);
+					uint8_t options);
 
 int				ft_listdir(char *dirpath, uint64_t flags,
 					int (*cmpft)(const void *, const void *));
@@ -183,9 +184,8 @@ void			ft_printfile(t_file file, uint64_t flags,
 ** Utility Function(s).
 */
 
-void			print_errors(void *vector_element);
-void			vprint_files(void *vector_element, va_list ap);
-void			vprint_dirs(void *vector_element, va_list ap);
+void			print_errors(t_vector files);
+int				print_files(t_vector files, uint64_t flags);
 void			*wrap_getfile_from_argv(void *vector_element, va_list ap);
 
 void			free_file_element(void *vector_element);

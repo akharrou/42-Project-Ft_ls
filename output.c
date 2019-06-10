@@ -6,17 +6,11 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 23:44:04 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/09 23:44:05 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/10 13:08:10 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-
-#define OWNER_WIDTH (str_lengths[0])
-#define GROUP_WIDTH (str_lengths[1])
-#define INODE_WIDTH (num_lengths[0])
-#define SIZE_WIDTH  (num_lengths[1])
-#define LINKS_WIDTH (num_lengths[2])
 
 static char		get_special_char(const char *path)
 {
@@ -100,10 +94,10 @@ static void		vget_max_widths(void *vector_element, va_list ap)
 	uint64_t	flags;
 	t_file		file;
 
-	flags = va_arg(ap, uint64_t);
-	str_lengths = *(va_arg(ap, int **));
-	num_lengths = *(va_arg(ap, int **));
+	str_lengths = va_arg(ap, int *);
+	num_lengths = va_arg(ap, int *);
 	total = (va_arg(ap, blkcnt_t *));
+	flags = va_arg(ap, uint64_t);
 	file = *((t_file *)vector_element);
 	if (!(flags & a_FLAG) && file.name[0] == '.')
 		return ;
@@ -117,18 +111,16 @@ static void		vget_max_widths(void *vector_element, va_list ap)
 
 int				ft_printdir(t_vector dir, uint64_t flags)
 {
-	int			*str_lengths;
-	int			*num_lengths;
+	int			str_lengths[2];
+	int			num_lengths[3];
 	blkcnt_t	total;
 	size_t		i;
 
+	ft_bzero(str_lengths, sizeof(int) * 2);
+	ft_bzero(num_lengths, sizeof(int) * 3);
 	total = 0;
-	if (!(str_lengths = ft_malloc(sizeof(int) * 2, '\0')))
-		return (-1);
-	if (!(num_lengths = ft_malloc(sizeof(int) * 3, '\0')))
-		return (-1);
-	dir.viter(&dir, &vget_max_widths,
-		flags, &str_lengths, &num_lengths, &total);
+	dir.viter(
+		&dir, &vget_max_widths, str_lengths, num_lengths, &total, flags);
 	if (flags & l_FLAG)
 		ft_printf("total %i\n", total);
 	i = 0;
@@ -137,7 +129,6 @@ int				ft_printdir(t_vector dir, uint64_t flags)
 		ft_printfile(*(t_file *)dir.vector[i], flags, str_lengths, num_lengths);
 		++i;
 	}
-	free(str_lengths);
-	free(num_lengths);
+	ft_printf("\n");
 	return (0);
 }
