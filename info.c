@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:20:43 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/09 23:22:56 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/10 22:09:04 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_file					ft_getfile(const char path[MAX_PATHLEN + 1],
 	ft_strncpy(file.owner, getpwuid(filestat.st_uid)->pw_name, MAX_NAMELEN);
 	ft_strncpy(file.group, getgrgid(filestat.st_gid)->gr_name, MAX_NAMELEN);
 	ft_strncpy(file.path, path, MAX_PATHLEN);
-	ft_basename(file.path, file.name);
+	ft_basename(file.name, file.path);
 	if (file.type == SYMBOLIC_LINK)
 		readlink(file.path, file.linkpath, MAX_PATHLEN);
 	return (file);

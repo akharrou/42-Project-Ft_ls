@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:50:11 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/10 12:45:54 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/10 17:34:23 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@
 # define SORT_FLAG        (f_FLAG | S_FLAG | t_FLAG)
 # define SIX_MONTHS       (15778463)
 
-# define NO_PRINT_DOTTED  (0)
-# define PRINT_DOTTED     (1 << 0)
-# define PRINT_NEWLINE    (1 << 1)
+# define RECURSIVE        (1 << 0)
+# define PRINT_DOTTED     (1 << 1)
+# define HAS_FILES        (1 << 2)
 
 # define OWNER_WIDTH      (str_lengths[0])
 # define GROUP_WIDTH      (str_lengths[1])
@@ -146,17 +146,17 @@ void			*get_cmpft(uint64_t flags);
 ** Core Function(s).
 */
 
-int				ft_ls(int argc, const char *argv[], uint64_t flags,
+void			ft_listfile(char *path, uint64_t flags,
 					int (*cmpft)(const void *, const void *));
 
-int				ft_listdirs(t_vector files, uint64_t flags,
+void			ft_listdir(char *dirpath, uint64_t flags,
+					int (*cmpft)(const void *, const void *));
+
+void			ft_listdirs(t_vector files, uint64_t flags,
 					int (*cmpft)(const void *, const void *),
 					uint8_t options);
 
-int				ft_listdir(char *dirpath, uint64_t flags,
-					int (*cmpft)(const void *, const void *));
-
-int				ft_listfile(char *path, uint64_t flags,
+void			ft_ls(int argc, const char *argv[], uint64_t flags,
 					int (*cmpft)(const void *, const void *));
 
 /*

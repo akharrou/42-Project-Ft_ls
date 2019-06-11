@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 17:03:13 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/10 13:08:40 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/10 17:13:20 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,29 +56,27 @@ int				print_files(t_vector files, uint64_t flags)
 {
 	int			str_lengths[2];
 	int			num_lengths[3];
-	int			has_file;
+	size_t		total_files;
 	t_file		file;
 	size_t		i;
 
 	ft_bzero(str_lengths, sizeof(int) * 2);
 	ft_bzero(num_lengths, sizeof(int) * 3);
 	files.viter(&files, &vget_format_info, str_lengths, num_lengths);
-	has_file = 0;
+	total_files = 0;
 	i = 0;
 	while (i < files.length)
 	{
 		file = *(t_file *)files.vector[i];
 		if (file.type != UNKNOWN_FILE && file.type != DIRECTORY)
 		{
-			has_file = true;
+			++total_files;
 			ft_strncpy(file.name, file.path, MAX_PATHLEN);
-			(flags & l_FLAG) ?
-				ft_printfile(file, flags, str_lengths, num_lengths) :
-				ft_printf("%s\n", file.name);
+			ft_printfile(file, flags, str_lengths, num_lengths);
 		}
 		++i;
 	}
-	return ((has_file == true) ? PRINT_NEWLINE : 0);
+	return ((total_files > 0) ? HAS_FILES : 0);
 }
 
 void			*wrap_getfile_from_argv(void *vector_element, va_list ap)

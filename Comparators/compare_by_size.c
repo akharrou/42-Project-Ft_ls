@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 22:07:30 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/10 13:20:38 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/10 17:09:28 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		compare_by_size(const void *a, const void *b)
 
 	ret = (*(t_file **)b)->size - (*(t_file **)a)->size;
 	if (ret == 0)
-		return (compare_by_ascii(a, b));
+		ret = ft_strcmp((*(t_file **)a)->name, (*(t_file **)b)->name);
 	return (ret);
 }
 

@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 23:44:04 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/10 13:08:10 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/10 15:46:50 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,5 @@ int				ft_printdir(t_vector dir, uint64_t flags)
 		ft_printfile(*(t_file *)dir.vector[i], flags, str_lengths, num_lengths);
 		++i;
 	}
-	ft_printf("\n");
 	return (0);
 }
