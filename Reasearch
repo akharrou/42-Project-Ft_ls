@@ -1,6 +1,6 @@
 
 /*
-**    Handled Flags:  1R -- aL -- lip -- Sutcfr
+**    Handled Flags:  1R -- aL -- ligp -- StuUcfr
 **
 **    Also handled is extended attributes & ACL.
 **
@@ -13,6 +13,8 @@
 **             $> drwx------  16 akharrou  2018_october    12288 May 20 16:22 .
 **
 **
+** — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — #
+**
 **    Allowed Functions:
 **
 **
@@ -24,11 +26,7 @@
 **
 **        ◦ getxattr   —>  extended attributes                                   /* NOTE : used */
 **        ◦ tcgetattr  —>  extended attributes
-**        ◦ listxattr  —>  extended attributes
-**
-**        ◦ acl_get_link_np                                                      /* NOTE : used */
-**        ◦ acl_get_entry                                                        /* NOTE : used */
-**        ◦ acl_free                                                             /* NOTE : used */
+**        ◦ listxattr  —>  extended attributes                                   /* NOTE : used */
 **
 **        ◦ readlink                                                             /* NOTE : used */
 **
@@ -48,9 +46,13 @@
 **        ◦ strerror
 **        ◦ perror
 **        ◦ exit
-
-
-
+**
+**    Justified Use:
+**
+**        ◦ acl_get_link_np                                                      /* NOTE : used */
+**        ◦ acl_get_entry                                                        /* NOTE : used */
+**        ◦ acl_free                                                             /* NOTE : used */
+**
 ** — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — #
 **
 **  opendir:
@@ -251,23 +253,57 @@
 **
 **                 ==>> structure describing information about a directory <<==
 **
-**                 struct stat {
-**                     dev_t      st_dev;         /* ID of device containing file */
-**                     ino_t      st_ino;         /* inode number */
-**                     mode_t     st_mode;        /* protection */                              NOTE : USEFUL
-**                     nlink_t    st_nlink;       /* number of hard links */                    NOTE : USEFUL
-**                     uid_t      st_uid;         /* user ID of owner */                        NOTE : USEFUL
-**                     gid_t      st_gid;         /* group ID of owner */                       NOTE : USEFUL
-**                     dev_t      st_rdev;        /* device ID (if special file) */
-**                     off_t      st_size;        /* total size, in bytes */                    NOTE : USEFUL
-**                     blksize_t  st_blksize;     /* blocksize for file system I/O */
-**                     blkcnt_t   st_blocks;      /* number of 512B blocks allocated */
-**                     time_t     st_atime;       /* time of last access */                     NOTE : USEFUL
-**                     time_t     st_mtime;       /* time of last modification */               NOTE : USEFUL
-**                     time_t     st_ctime;       /* time of last status change */              NOTE : USEFUL
-**                 };
+**             The buf argument is a pointer to a stat structure as defined by
+**             <sys/stat.h> and into which information is placed concerning the
+**             file. When the macro _DARWIN_FEATURE_64_BIT_INODE is not defined
+**             (see below for more information about this macro), the stat structure
+**             is defined as:
 **
-**             FUNCTION
+**             struct stat  /* when _DARWIN_FEATURE_64_BIT_INODE is NOT defined */
+**             {
+**                 dev_t    st_dev;                       /* device inode resides on */
+**                 ino_t    st_ino;                       /* inode's number */
+**                 mode_t   st_mode;                      /* inode protection mode */
+**                 nlink_t  st_nlink;                     /* number of hard links to the file */
+**                 uid_t    st_uid;                       /* user-id of owner */
+**                 gid_t    st_gid;                       /* group-id of owner */
+**                 dev_t    st_rdev;                      /* device type, for special file inode */
+**                 struct timespec st_atimespec;          /* time of last access */
+**                 struct timespec st_mtimespec;          /* time of last data modification */
+**                 struct timespec st_ctimespec;          /* time of last file status change */
+**                 off_t    st_size;                      /* file size, in bytes */
+**                 quad_t   st_blocks;                    /* blocks allocated for file */
+**                 u_long   st_blksize;                   /* optimal file sys I/O ops blocksize */
+**                 u_long   st_flags;                     /* user defined flags for file */
+**                 u_long   st_gen;                       /* file generation number */
+**             };
+**
+**             NOTE: However, when the macro _DARWIN_FEATURE_64_BIT_INODE is defined,
+**             the stat structure will now be defined as:
+**
+**             struct stat  /* when _DARWIN_FEATURE_64_BIT_INODE is defined */
+**             {
+**                 dev_t             st_dev;              /* ID of device containing file */
+**                 mode_t            st_mode;             /* Mode of file (see below) */
+**                 nlink_t           st_nlink;            /* Number of hard links */
+**                 ino_t             st_ino;              /* File serial number */
+**                 uid_t             st_uid;              /* User ID of the file */
+**                 gid_t             st_gid;              /* Group ID of the file */
+**                 dev_t             st_rdev;             /* Device ID */
+**                 struct timespec   st_atimespec;        /* time of last access */
+**                 struct timespec   st_mtimespec;        /* time of last data modification */
+**                 struct timespec   st_ctimespec;        /* time of last status change */
+**                 struct timespec   st_birthtimespec;    /* time of file creation(birth) */
+**                 off_t             st_size;             /* file size, in bytes */
+**                 blkcnt_t          st_blocks;           /* blocks allocated for file */
+**                 blksize_t         st_blksize;          /* optimal blocksize for I/O */
+**                 uint32_t          st_flags;            /* user defined flags for file */
+**                 uint32_t          st_gen;              /* file generation number */
+**                 int32_t           st_lspare;           /* RESERVED: DO NOT USE! */
+**                 int64_t           st_qspare[2];        /* RESERVED: DO NOT USE! */
+**             };
+**
+**            FUNCTION
 **                  int stat(const char *path, struct stat *buf);
 **
 **             DESCRIPTION
@@ -282,6 +318,7 @@
 **        Understanding how to deconstruct & use 'mode_t':
 **
 **        https://jameshfisher.com/2017/02/24/what-is-mode_t/
+**
 ** — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — #
 **
 **        Understanding how to get ACL and Extended Attributes:

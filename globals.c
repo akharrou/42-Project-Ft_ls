@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:20:33 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/09 20:02:47 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/11 12:42:01 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@ t_flag g_flags[] =
 	{ 'r', r_FLAG },
 	{ 't', t_FLAG },
 	{ 'u', u_FLAG },
+	{ 'U', U_FLAG },
 	{ 'c', c_FLAG },
 	{ 'p', p_FLAG },
 	{ 'i', i_FLAG },
+	{ 'g', g_FLAG },
 	{ 'S', S_FLAG },
 	{ 'f', f_FLAG },
 	\

@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:20:43 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/10 22:09:04 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/11 12:45:34 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,16 @@ static mode_t			mode2type(mode_t mode)
 	return (type);
 }
 
-inline static time_t	get_time(struct stat filestat, uint64_t flags)
+static struct timespec	get_time(struct stat filestat, uint64_t flags)
 {
+	if (flags & U_FLAG)
+		return (filestat.st_birthtimespec);
 	if (flags & u_FLAG)
-		return (filestat.st_atime);
+		return (filestat.st_atimespec);
 	else if (flags & c_FLAG)
-		return (filestat.st_ctime);
+		return (filestat.st_ctimespec);
 	else
-		return (filestat.st_mtime);
+		return (filestat.st_mtimespec);
 }
 
 t_file					ft_getfile(const char path[MAX_PATHLEN + 1],

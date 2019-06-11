@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:50:11 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/10 17:34:23 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/11 12:44:52 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
 ** Macro(s).
 */
+
+# ifndef _DARWIN_FEATURE_64_BIT_INODE
+#  define _DARWIN_FEATURE_64_BIT_INODE
+# endif
 
 # define SORT_FLAG        (f_FLAG | S_FLAG | t_FLAG)
 # define SIX_MONTHS       (15778463)
@@ -69,35 +73,37 @@
 ** Flag(s).
 */
 
-typedef struct	s_flag
+typedef struct			s_flag
 {
-	const char	symbol;
-	uint64_t	value;
-}				t_flag;
+	const char			symbol;
+	uint64_t			value;
+}						t_flag;
 
-typedef struct	s_sortflag
+typedef struct			s_sortflag
 {
-	const char	symbol;
-	uint64_t	value;
-	int			(*cmp_function)(const void *, const void *);
-	int			(*reverse_cmp_function)(const void *, const void *);
-}				t_sortflag;
+	const char			symbol;
+	uint64_t			value;
+	int					(*cmp_function)(const void *, const void *);
+	int					(*reverse_cmp_function)(const void *, const void *);
+}						t_sortflag;
 
-enum			e_flag_values
+enum					e_flag_values
 {
 	a_FLAG = (1 << 0),
 	l_FLAG = (1 << 1),
 	r_FLAG = (1 << 2),
 	t_FLAG = (1 << 3),
 	u_FLAG = (1 << 4),
-	c_FLAG = (1 << 5),
-	S_FLAG = (1 << 6),
-	p_FLAG = (1 << 7),
-	i_FLAG = (1 << 8),
-	f_FLAG = ((1 << 9) | a_FLAG),
-	L_FLAG = (1 << 10),
-	R_FLAG = (1 << 11),
-	_1_FLAG = (1 << 12),
+	U_FLAG = (1 << 5),
+	c_FLAG = (1 << 6),
+	S_FLAG = (1 << 7),
+	p_FLAG = (1 << 8),
+	i_FLAG = (1 << 9),
+	g_FLAG = (1 << 10),
+	f_FLAG = ((1 << 11) | a_FLAG),
+	L_FLAG = (1 << 12),
+	R_FLAG = (1 << 13),
+	_1_FLAG = (1 << 14),
 };
 
 /*
@@ -105,22 +111,22 @@ enum			e_flag_values
 ** Structure(s).
 */
 
-typedef struct	s_file_information
+typedef struct			s_file_information
 {
-	char		name[MAX_PATHLEN + 1];
-	char		path[MAX_PATHLEN + 1];
-	char		owner[MAX_NAMELEN + 1];
-	char		group[MAX_NAMELEN + 1];
-	uint8_t		type;
-	ino_t		inode;
-	dev_t		device_id;
-	mode_t		mode;
-	char		linkpath[MAX_PATHLEN + 1];
-	off_t		size;
-	nlink_t		nlinks;
-	blkcnt_t	nblocks;
-	time_t		time;
-}				t_file;
+	char				name[MAX_PATHLEN + 1];
+	char				path[MAX_PATHLEN + 1];
+	char				owner[MAX_NAMELEN + 1];
+	char				group[MAX_NAMELEN + 1];
+	uint8_t				type;
+	ino_t				inode;
+	dev_t				device_id;
+	mode_t				mode;
+	char				linkpath[MAX_PATHLEN + 1];
+	off_t				size;
+	nlink_t				nlinks;
+	blkcnt_t			nblocks;
+	struct timespec		time;
+}						t_file;
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
@@ -128,8 +134,8 @@ typedef struct	s_file_information
 ** Global(s).
 */
 
-extern t_flag		g_flags[];
-extern t_sortflag	g_sortflags[];
+extern t_flag			g_flags[];
+extern t_sortflag		g_sortflags[];
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
@@ -137,8 +143,8 @@ extern t_sortflag	g_sortflags[];
 ** Utility Function(s).
 */
 
-uint64_t		get_flags(int *argc, const char **argv[]);
-void			*get_cmpft(uint64_t flags);
+uint64_t				get_flags(int *argc, const char **argv[]);
+void					*get_cmpft(uint64_t flags);
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
@@ -146,37 +152,37 @@ void			*get_cmpft(uint64_t flags);
 ** Core Function(s).
 */
 
-void			ft_listfile(char *path, uint64_t flags,
-					int (*cmpft)(const void *, const void *));
+void					ft_listfile(char *path, uint64_t flags,
+							int (*cmpft)(const void *, const void *));
 
-void			ft_listdir(char *dirpath, uint64_t flags,
-					int (*cmpft)(const void *, const void *));
+void					ft_listdir(char *dirpath, uint64_t flags,
+							int (*cmpft)(const void *, const void *));
 
-void			ft_listdirs(t_vector files, uint64_t flags,
-					int (*cmpft)(const void *, const void *),
-					uint8_t options);
+void					ft_listdirs(t_vector files, uint64_t flags,
+							int (*cmpft)(const void *, const void *),
+							uint8_t options);
 
-void			ft_ls(int argc, const char *argv[], uint64_t flags,
-					int (*cmpft)(const void *, const void *));
-
-/*
-**  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
-*/
-
-t_vector		ft_getdirfiles(char dirpath[MAX_PATHLEN + 1],
-					uint64_t flags);
-
-t_file			ft_getfile(const char path[MAX_PATHLEN + 1],
-					uint64_t flags);
+void					ft_ls(int argc, const char *argv[], uint64_t flags,
+							int (*cmpft)(const void *, const void *));
 
 /*
 **  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 */
 
-int				ft_printdir(t_vector dir, uint64_t flags);
+t_vector				ft_getdirfiles(char dirpath[MAX_PATHLEN + 1],
+							uint64_t flags);
 
-void			ft_printfile(t_file file, uint64_t flags,
-					int *str_lengths, int *num_lengths);
+t_file					ft_getfile(const char path[MAX_PATHLEN + 1],
+							uint64_t flags);
+
+/*
+**  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+*/
+
+int						ft_printdir(t_vector dir, uint64_t flags);
+
+void					ft_printfile(t_file file, uint64_t flags,
+							int *str_lengths, int *num_lengths);
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
@@ -184,11 +190,11 @@ void			ft_printfile(t_file file, uint64_t flags,
 ** Utility Function(s).
 */
 
-void			print_errors(t_vector files);
-int				print_files(t_vector files, uint64_t flags);
-void			*wrap_getfile_from_argv(void *vector_element, va_list ap);
+void					print_errors(t_vector files);
+int						print_files(t_vector files, uint64_t flags);
+void					*wrap_getfile_from_argv(void *vector_element, va_list ap);
 
-void			free_file_element(void *vector_element);
+void					free_file_element(void *vector_element);
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
@@ -196,8 +202,8 @@ void			free_file_element(void *vector_element);
 ** Error Management Function(s).
 */
 
-void			usage(void);
-void			unknown_flag(char unknown_flag);
+void					usage(void);
+void					unknown_flag(char unknown_flag);
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
@@ -205,15 +211,15 @@ void			unknown_flag(char unknown_flag);
 ** Compare Function(s).
 */
 
-int				compare_by_none(const void *a, const void *b);
+int						compare_by_none(const void *a, const void *b);
 
-int				compare_by_size(const void *a, const void *b);
-int				compare_by_ascii(const void *a, const void *b);
-int				compare_by_time(const void *a, const void *b);
+int						compare_by_size(const void *a, const void *b);
+int						compare_by_ascii(const void *a, const void *b);
+int						compare_by_time(const void *a, const void *b);
 
-int				reverse_compare_by_size(const void *a, const void *b);
-int				reverse_compare_by_ascii(const void *a, const void *b);
-int				reverse_compare_by_time(const void *a, const void *b);
+int						reverse_compare_by_size(const void *a, const void *b);
+int						reverse_compare_by_ascii(const void *a, const void *b);
+int						reverse_compare_by_time(const void *a, const void *b);
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
