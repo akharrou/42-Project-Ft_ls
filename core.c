@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:20:06 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/10 22:10:53 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/11 22:31:11 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,7 @@ void			ft_listdir(char *dirpath, uint64_t flags,
 	else
 	{
 		closedir(dirdes);
-		if (dirpath[ft_strlen(dirpath) - 1] != '/')
-			dirpath = ft_strappend(dirpath, "/", 1, 0);
+		dirpath = ft_strappend(dirpath, "/", 1, 0);
 		if ((dir = ft_getdirfiles(dirpath, flags)).vector)
 		{
 			ft_quicksort(dir.vector, dir.length, sizeof(void *), cmpft);
@@ -83,8 +82,8 @@ void			ft_listdirs(t_vector files, uint64_t flags,
 		file = *(t_file *)files.vector[i];
 		if (file.type == DIRECTORY)
 		{
-			if ((!(options == PRINT_DOTTED) && !(flags & a_FLAG) &&
-			file.name[0] == '.') || (!(options == PRINT_DOTTED) &&
+			if ((!(options & PRINT_DOTTED) && !(flags & a_FLAG) &&
+			file.name[0] == '.') || (!(options & PRINT_DOTTED) &&
 			(flags & a_FLAG) && (ft_strcmp(file.name, ".") == 0 ||
 			ft_strcmp(file.name, "..") == 0)))
 				continue ;
@@ -115,7 +114,8 @@ void			ft_ls(int argc, const char *argv[], uint64_t flags,
 		ft_quicksort(files.vector, files.length, sizeof(void *), cmpft);
 		print_errors(files);
 		res = print_files(files, flags);
-		ft_listdirs(files, flags, cmpft, PRINT_DOTTED | res);
+		if (!(flags & d_FLAG))
+			ft_listdirs(files, flags, cmpft, PRINT_DOTTED | res);
 		files.free = &free_file_element;
 		vector.destructor(&files);
 	}

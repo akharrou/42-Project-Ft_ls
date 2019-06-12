@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:50:11 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/11 12:44:52 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/11 22:27:56 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,20 +90,21 @@ typedef struct			s_sortflag
 enum					e_flag_values
 {
 	a_FLAG = (1 << 0),
-	l_FLAG = (1 << 1),
-	r_FLAG = (1 << 2),
-	t_FLAG = (1 << 3),
-	u_FLAG = (1 << 4),
-	U_FLAG = (1 << 5),
-	c_FLAG = (1 << 6),
-	S_FLAG = (1 << 7),
-	p_FLAG = (1 << 8),
-	i_FLAG = (1 << 9),
-	g_FLAG = (1 << 10),
-	f_FLAG = ((1 << 11) | a_FLAG),
-	L_FLAG = (1 << 12),
-	R_FLAG = (1 << 13),
-	_1_FLAG = (1 << 14),
+	d_FLAG = (1 << 1),
+	l_FLAG = (1 << 2),
+	r_FLAG = (1 << 3),
+	t_FLAG = (1 << 4),
+	u_FLAG = (1 << 5),
+	U_FLAG = (1 << 6),
+	c_FLAG = (1 << 7),
+	S_FLAG = (1 << 8),
+	p_FLAG = (1 << 9),
+	i_FLAG = (1 << 10),
+	g_FLAG = (1 << 11),
+	f_FLAG = ((1 << 12) | a_FLAG),
+	L_FLAG = (1 << 13),
+	R_FLAG = (1 << 14),
+	_1_FLAG = (1 << 15),
 };
 
 /*

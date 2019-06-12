@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 17:03:13 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/10 17:13:20 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/11 22:28:46 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ int				print_files(t_vector files, uint64_t flags)
 	while (i < files.length)
 	{
 		file = *(t_file *)files.vector[i];
-		if (file.type != UNKNOWN_FILE && file.type != DIRECTORY)
+		if (file.type != UNKNOWN_FILE &&
+			(file.type != DIRECTORY || (flags & d_FLAG)))
 		{
 			++total_files;
 			ft_strncpy(file.name, file.path, MAX_PATHLEN);
