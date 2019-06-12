@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 23:44:04 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/11 12:49:15 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/11 22:44:02 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void			ft_printfile(t_file file, uint64_t flags,
 	if (!(flags & a_FLAG) && file.name[0] == '.')
 		return ;
 	(flags & i_FLAG) ? ft_printf("%*i ", INODE_WIDTH, file.inode) : PASS;
-	if (flags & l_FLAG)
+	if (flags & (l_FLAG | g_FLAG))
 	{
 		ctimespec(timestr, file.time);
 		cmode(file.path, file.mode, modestr);
@@ -102,29 +102,6 @@ void			ft_printfile(t_file file, uint64_t flags,
 			file.name, ((flags & p_FLAG) && file.type == DIRECTORY) ? "/" : "");
 }
 
-static void		vget_max_widths(void *vector_element, va_list ap)
-{
-	int			*str_lengths;
-	int			*num_lengths;
-	blkcnt_t	*total;
-	uint64_t	flags;
-	t_file		file;
-
-	str_lengths = va_arg(ap, int *);
-	num_lengths = va_arg(ap, int *);
-	total = (va_arg(ap, blkcnt_t *));
-	flags = va_arg(ap, uint64_t);
-	file = *((t_file *)vector_element);
-	if (!(flags & a_FLAG) && file.name[0] == '.')
-		return ;
-	OWNER_WIDTH = MAX(OWNER_WIDTH, (int)ft_strlen(file.owner));
-	GROUP_WIDTH = MAX(GROUP_WIDTH, (int)ft_strlen(file.group));
-	INODE_WIDTH = MAX(INODE_WIDTH, (int)ft_intlen(file.inode));
-	LINKS_WIDTH = MAX(LINKS_WIDTH, (int)ft_intlen(file.nlinks));
-	SIZE_WIDTH = MAX(SIZE_WIDTH, (int)ft_intlen(file.size));
-	(*total) += file.nblocks;
-}
-
 int				ft_printdir(t_vector dir, uint64_t flags)
 {
 	int			str_lengths[2];
@@ -137,7 +114,7 @@ int				ft_printdir(t_vector dir, uint64_t flags)
 	total = 0;
 	dir.viter(
 		&dir, &vget_max_widths, str_lengths, num_lengths, &total, flags);
-	if (flags & l_FLAG)
+	if (flags & (l_FLAG | g_FLAG))
 		ft_printf("total %i\n", total);
 	i = 0;
 	while (i < dir.length)

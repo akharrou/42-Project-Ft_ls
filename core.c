@@ -6,11 +6,16 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:20:06 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/11 22:31:11 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/11 22:34:54 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+void			free_file_element(void *vector_element)
+{
+	free((t_file *)vector_element);
+}
 
 void			ft_listfile(char *path, uint64_t flags,
 					int (*cmpft)(const void *, const void *))

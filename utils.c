@@ -6,16 +6,11 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 17:03:13 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/11 22:28:46 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/11 22:34:35 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-
-void			free_file_element(void *vector_element)
-{
-	free((t_file *)vector_element);
-}
 
 void			print_errors(t_vector files)
 {
@@ -92,4 +87,27 @@ void			*wrap_getfile_from_argv(void *vector_element, va_list ap)
 	(*file) = ft_getfile(path, flags);
 	ft_strncpy(file->name, file->path, MAX_PATHLEN);
 	return (file);
+}
+
+void			vget_max_widths(void *vector_element, va_list ap)
+{
+	int			*str_lengths;
+	int			*num_lengths;
+	blkcnt_t	*total;
+	uint64_t	flags;
+	t_file		file;
+
+	str_lengths = va_arg(ap, int *);
+	num_lengths = va_arg(ap, int *);
+	total = (va_arg(ap, blkcnt_t *));
+	flags = va_arg(ap, uint64_t);
+	file = *((t_file *)vector_element);
+	if (!(flags & a_FLAG) && file.name[0] == '.')
+		return ;
+	OWNER_WIDTH = MAX(OWNER_WIDTH, (int)ft_strlen(file.owner));
+	GROUP_WIDTH = MAX(GROUP_WIDTH, (int)ft_strlen(file.group));
+	INODE_WIDTH = MAX(INODE_WIDTH, (int)ft_intlen(file.inode));
+	LINKS_WIDTH = MAX(LINKS_WIDTH, (int)ft_intlen(file.nlinks));
+	SIZE_WIDTH = MAX(SIZE_WIDTH, (int)ft_intlen(file.size));
+	(*total) += file.nblocks;
 }

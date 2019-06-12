@@ -6,7 +6,7 @@
 /*   By: akharrou <akharrou@student.42.us.org>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 19:50:11 by akharrou          #+#    #+#             */
-/*   Updated: 2019/06/11 22:27:56 by akharrou         ###   ########.fr       */
+/*   Updated: 2019/06/11 22:33:39 by akharrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,7 +193,9 @@ void					ft_printfile(t_file file, uint64_t flags,
 
 void					print_errors(t_vector files);
 int						print_files(t_vector files, uint64_t flags);
-void					*wrap_getfile_from_argv(void *vector_element, va_list ap);
+void					*wrap_getfile_from_argv(void *vector_element,
+							va_list ap);
+void					vget_max_widths(void *vector_element, va_list ap);
 
 void					free_file_element(void *vector_element);
 
