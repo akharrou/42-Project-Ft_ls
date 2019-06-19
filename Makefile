@@ -52,14 +52,14 @@ SOURCES     =                                                                 \
                     globals.c                                                 \
                     error.c                                                   \
                                                                               \
-                	Comparators/compare_by_none.c                             \
-                	Comparators/compare_by_ascii.c                            \
-                	Comparators/compare_by_size.c                             \
-                	Comparators/compare_by_time.c                             \
+                    Comparators/compare_by_none.c                             \
+                    Comparators/compare_by_ascii.c                            \
+                    Comparators/compare_by_size.c                             \
+                    Comparators/compare_by_time.c                             \
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
-OBJECTS     =   $(SOURCES:.c=.o)
+OBJECTS     =       $(SOURCES:.c=.o)
 
 # Main — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
