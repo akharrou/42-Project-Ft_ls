@@ -79,14 +79,6 @@ typedef struct			s_flag
 	uint64_t			value;
 }						t_flag;
 
-typedef struct			s_sortflag
-{
-	const char			symbol;
-	uint64_t			value;
-	int					(*cmp_function)(const void *, const void *);
-	int					(*reverse_cmp_function)(const void *, const void *);
-}						t_sortflag;
-
 enum					e_flag_values
 {
 	a_FLAG = (1 << 0),
@@ -136,7 +128,6 @@ typedef struct			s_file_information
 */
 
 extern t_flag			g_flags[];
-extern t_sortflag		g_sortflags[];
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
@@ -170,20 +161,20 @@ void					ft_ls(int argc, const char *argv[], uint64_t flags,
 **  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 */
 
-t_vector				ft_getdirfiles(char dirpath[MAX_PATHLEN + 1],
+t_file					ft_getfile(const char path[MAX_PATHLEN + 1],
 							uint64_t flags);
 
-t_file					ft_getfile(const char path[MAX_PATHLEN + 1],
+t_vector				ft_getdirfiles(char dirpath[MAX_PATHLEN + 1],
 							uint64_t flags);
 
 /*
 **  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
 */
 
-int						ft_printdir(t_vector dir, uint64_t flags);
-
 void					ft_printfile(t_file file, uint64_t flags,
 							int *str_lengths, int *num_lengths);
+
+int						ft_printdir(t_vector dir, uint64_t flags);
 
 /*
 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
