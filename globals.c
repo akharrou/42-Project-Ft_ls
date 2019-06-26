@@ -15,8 +15,7 @@
 /*
 **    DESCRIPTION
 **         Dispatch table associating every flag with the
-**         unique bit it is represented by & its comparsion.
-**         function if it has one.
+**         unique value (bit) it is represented by.
 */
 
 t_flag g_flags[] =
