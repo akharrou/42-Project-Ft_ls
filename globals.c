@@ -14,7 +14,7 @@
 
 /*
 **    DESCRIPTION
-**         Dispatch table associating every flag with the
+**         Dispatch table associating every letter (i.e flag) with the
 **         unique value (bit) it is represented by.
 */
 
